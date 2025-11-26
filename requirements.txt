@@ -6,3 +6,9 @@ ruff
 tqdm
 typer
 -e .
+numpy
+pandas
+matplotlib
+emcee
+sklearn
+scipy
