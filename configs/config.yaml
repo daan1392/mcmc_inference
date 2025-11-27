@@ -22,46 +22,47 @@ defaults:
 # -----------------------------------------------------------------------------
 parameters:
   names: ["Cr53_Gg4keV"]
-  prior_means: [3.5]
-  prior_stds: [0.10]
+  prior_means: [3.08939406]
+  prior_stds: [0.05]
 
 # -----------------------------------------------------------------------------
 # Experiment Definitions
 # -----------------------------------------------------------------------------
 experiments:
-  - id: "pmi002"
-    title: "PMI002"
-    description: "PU-MET-INTER-002 using stainless steel reflector"
-    type: "integral"
+  # - id: "pmi002"
+  #   title: "PMI002"
+  #   description: "PU-MET-INTER-002 using stainless steel reflector"
+  #   type: "integral"
     
-    training_data:
-      input_path: "data/processed/pmi002/pmi002_inputs.csv"
-      output_path: "data/processed/pmi002/pmi002_outputs.csv"
+  #   training_data:
+  #     input_path: "data/processed/pmi002/pmi002_inputs.csv"
+  #     output_path: "data/processed/pmi002/pmi002_outputs.csv"
     
-    experimental_data:
-      measurement: 0.98780
-      uncertainty: 0.00230
+  #   experimental_data:
+  #     measurement: 0.98780
+  #     uncertainty: 0.00230
 
-  - id: "hmi001"
-    title: "HMI001"
-    description: "Stainless steel reflector"
-    type: "integral"
+  # - id: "hmi001"
+  #   title: "HMI001"
+  #   description: "Stainless steel reflector"
+  #   type: "integral"
       
-    training_data:
-      input_path: "data/processed/hmi001/hmi001_inputs.csv"
-      output_path: "data/processed/hmi001/hmi001_outputs.csv"
+  #   training_data:
+  #     input_path: "data/processed/hmi001/hmi001_inputs.csv"
+  #     output_path: "data/processed/hmi001/hmi001_outputs.csv"
       
-    experimental_data:
-      measurement: 0.99600
-      uncertainty: 0.00260
+  #   experimental_data:
+  #     measurement: 0.99600
+  #     uncertainty: 0.00260
 
   - id: "cr53_thin"
     title: "nTOF Cr53 thin (2022)"
     description: "Time-of-Flight measurement performed in nTOF (CERN) by Pablo Perez et at. using thin Cr-53 target"
-    type: "microscopic"
+    type: "microscopic" # microscopic assumes your output is based on chi-squared
     gp_override:
       kernel: "Quadratic"
       
     training_data:
       input_path: "data/processed/ntof/ntof_inputs_eV.csv"
-      output_path: "data/processed/ntof/ntof_outputs.csv"
+      output_path: "data/processed/ntof/ntof_outputs.csv" # Using reduced chi-squared statistic
+      C_constant: 10.330074020916287 # -0.5 * (np.log(2 * np.pi * df_lst['dx'].mean()**2))

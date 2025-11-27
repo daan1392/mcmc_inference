@@ -49,8 +49,9 @@ class MicroscopicExperiment:
     """
     Evaluates the likelihood for a microscopic experiment using its specific GP.
     """
-    def __init__(self, exp_id, gp_path, weight=1.0):
+    def __init__(self, exp_id, C, gp_path, weight=1.0):
         self.id = exp_id
+        self.C = C
         self.weight = weight
         self.gp = joblib.load(gp_path)
 
@@ -60,7 +61,7 @@ class MicroscopicExperiment:
         chi2 = max(0.0, chi2_val.item()) # Clamp to 0
         
         # Standard Likelihood = -0.5 * Chi2
-        ll = -0.5 * chi2
+        ll = self.C - 0.5 * chi2
         
         # adjust ll with weight if needed
         return self.weight * ll
@@ -132,6 +133,7 @@ def run_joint_mcmc(config_path):
             elif exp['type'] == "microscopic":
                 exp_obj = MicroscopicExperiment(
                     exp_id=exp['id'],
+                    C = exp['C_constant'],
                     gp_path=gp_path,
                 )
             models.append(exp_obj)

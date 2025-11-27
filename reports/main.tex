@@ -1,0 +1,170 @@
+\documentclass[11pt, a4paper]{article}
+
+% Required packages
+\usepackage[utf8]{inputenc}
+\usepackage{geometry}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{bm} 
+\usepackage{microtype}
+
+\newcommand{\keff}{$k_\text{eff}$}
+\newcommand{\nuclide}[2]{$^{#1}$#2}
+
+% Set margins
+\geometry{left=25mm, right=25mm, top=25mm, bottom=25mm}
+
+% Title and Author
+\title{Using microscopic and integral measurements to infer nuclear data parameters}
+\author{Daan Houben}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\section{Introduction}
+
+Nuclear data is considered as the major source of uncertainty in some reactor observables, most notably effective multiplication factor (\keff). The nuclear data available in evaluated nuclear data libraries, such as JEFF-4.0, are a result of a complex fitting procedure including theoretical models, microscopic experiments, expert judgement and sometimes integral experiments. Although integral experiments are often not directly including in the fitting procedure due to the computational cost, they form an important step towards validating the nuclear data vector. In this work, a Bayesian Optimization framework is proposed which enables consolidating microscopic energy dependent measurements with integral experiments to estimate nuclear data parameters. Due to the computational cost of evaluating the performance of nuclear data in high-fidelity simulation software, most notably in integral experiments, Gaussian Processes (GPs) are trained. Subsequently, the GPs are used in a Markov Chain Monte Carlo (MCMC) algorithm in order to obtain a posterior estimate of the parameter(s) to infer. A case study is performed on the $\Gamma_\gamma$ width of \nuclide{53}{Cr} in the keV energy range using data recently published by P. Maroto et al. (2025) \cite{perez-maroto_50cr_2025}, complemented with integral experiments. 
+
+\section{Background and mathematical motivation}
+
+To enable efficient sampling of the parameter space, we replace the computationally expensive high-fidelity model $f(\bm{\theta})$ with a Gaussian Process (GP) emulator. A GP defines a distribution over functions, specified by a mean function $m(\bm{\theta})$ and a covariance kernel $k(\bm{\theta}, \bm{\theta}')$.
+
+For an unknown parameter set $\bm{\theta}^*$, the GP predicts the model output as a normal distribution:
+
+\begin{equation}
+    P(f(\bm{\theta}^*) \mid \mathcal{D}_{train}) \sim \mathcal{N}(\mu_{GP}(\bm{\theta}^*), \Sigma_{GP}(\bm{\theta}^*))
+\end{equation}
+
+Where:
+\begin{itemize}
+    \item $\mu_{GP}(\bm{\theta}^*)$ is the predicted mean response.
+    \item $\Sigma_{GP}(\bm{\theta}^*)$ captures the epistemic uncertainty of the emulator itself.
+\end{itemize}
+
+In this work, the GP is trained on a set of input-output pairs generated from the high-fidelity model. For any candidate $\bm{\theta}$ proposed during MCMC, the GP prediction $\mu_{GP}(\bm{\theta})$ is used as the model response.
+
+\section{Markov Chain Monte Carlo (MCMC) Framework}
+
+We seek the posterior distribution $P(\bm{\theta} \mid D)$ of the parameters given the experimental data $D$. According to Bayes' theorem:
+
+\begin{equation}
+    P(\bm{\theta} \mid D) \propto P(D \mid \bm{\theta}) P(\bm{\theta})
+\end{equation}
+
+Where:
+\begin{itemize}
+    \item $P(\bm{\theta} \mid D)$ is the \textbf{Posterior}.
+    \item $P(D \mid \bm{\theta}) = \mathcal{L}(\bm{\theta})$ is the \textbf{Likelihood} (the goodness-of-fit).
+    \item $P(\bm{\theta})$ is the \textbf{Prior} (initial beliefs about parameter bounds).
+\end{itemize}
+
+We employ the Metropolis-Hastings algorithm to sample from this posterior. The acceptance ratio $\alpha$ for a proposed step $\bm{\theta}_{new}$ is defined as:
+
+\begin{equation}
+    \alpha = \min\left(1, \frac{\mathcal{L}(\bm{\theta}_{new}) P(\bm{\theta}_{new})}{\mathcal{L}(\bm{\theta}_{old}) P(\bm{\theta}_{old})} \right)
+\end{equation}
+
+Crucially, the calculations operate in \textbf{log-space} to prevent numerical underflow. The acceptance criterion becomes a comparison of log-likelihoods ($ll$):
+
+\begin{equation}
+    \ln(\alpha) = \min(0, ll_{new} + \ln(P_{new}) - ll_{old} - \ln(P_{old}))
+\end{equation}
+
+\section{Likelihood Formulation}
+
+The definition of the log-likelihood $\ln(\mathcal{L})$ depends on the nature of the experimental data. We distinguish between \textbf{Integral Experiments} (scalar values) and \textbf{Microscopic Experiments} (correlated vectors).
+
+% --- FIXED SECTION BELOW ---
+% Used \texorpdfstring to allow math in the body, but text in the PDF bookmarks
+\subsection{Derivation: The Relationship Between \texorpdfstring{$\chi^2$}{Chi-Squared} and Log-Likelihood}
+
+Standard Bayesian inference assumes that experimental errors follow a Gaussian (Normal) distribution. The probability density function (PDF) for a set of observations $D$ given prediction $M(\bm{\theta})$ is:
+
+\begin{equation}
+    P(D|\bm{\theta}) = \frac{1}{\sqrt{(2\pi)^N |\bm{\Sigma}|}} \exp\left( -\frac{1}{2} (D - M(\bm{\theta}))^T \bm{\Sigma}^{-1} (D - M(\bm{\theta})) \right)
+\end{equation}
+
+Taking the natural logarithm yields the log-likelihood:
+
+\begin{equation}
+    \ln(\mathcal{L}) = -\frac{1}{2} \underbrace{(D - M(\bm{\theta}))^T \bm{\Sigma}^{-1} (D - M(\bm{\theta}))}_{\chi^2} - \underbrace{\frac{1}{2} \ln((2\pi)^N |\bm{\Sigma}|)}_{\text{Constant}}
+\end{equation}
+
+\begin{equation}
+    \ln(\mathcal{L}) = -\frac{1}{2}\chi^2 + C
+\end{equation}
+
+In MCMC, we calculate the \textit{difference} between log-likelihoods. Since the covariance matrix $\bm{\Sigma}$ (and thus the constant $C$) depends only on the data and not the parameters $\bm{\theta}$, it cancels out. Therefore, we evaluate the log-likelihood simply as:
+
+\begin{equation}
+    \ln(\mathcal{L}) \propto -\frac{1}{2} \chi^2
+\end{equation}
+
+\subsection{Integral Experiments (Scalar Data)}
+
+Integral experiments provide a single measured value $d_{int}$ with an associated experimental uncertainty $\sigma_{int}$. The Gaussian Process predicts a scalar mean $\mu_{GP}$ and variance $\sigma^2_{GP}$. To account for both experimental error and emulator uncertainty, we sum the variances:
+
+\begin{equation}
+    \chi^2_{int} = \frac{(d_{int} - \mu_{GP}(\bm{\theta}))^2}{\sigma_{int}^2 + \sigma_{GP}^2(\bm{\theta})}
+\end{equation}
+
+The contribution to the log-likelihood is:
+\begin{equation}
+    ll_{int} = -0.5 \cdot \chi^2_{int}
+\end{equation}
+
+\subsection{Microscopic Experiments (Vector Data with High Correlation)}
+
+Microscopic experiments yield a vector of $N$ data points $D_{micro} = [d_1, ..., d_N]$ (e.g., a spectrum or time series). However, exploratory analysis revealed extreme multicollinearity in the data (correlation coefficients $\rho > 0.99$), rendering the covariance matrix singular and ill-conditioned.
+
+Treating these $N$ points as independent would falsely inflate the degrees of freedom, leading to artificially narrow posterior distributions. To address this, we adopt a \textbf{dimensionality reduction approach}, treating the highly correlated vector as a single effective data point representing the average behavior.
+
+\subsubsection{Methodology: The ``Super-Point'' Approximation}
+
+\begin{enumerate}
+    \item \textbf{Data Reduction:} We calculate the scalar mean of the experimental vector:
+    \begin{equation}
+        \bar{D} = \frac{1}{N} \sum_{i=1}^N d_i
+    \end{equation}
+    
+    \item \textbf{Model Reduction:} We similarly average the GP prediction vector:
+    \begin{equation}
+        \bar{M}(\bm{\theta}) = \frac{1}{N} \sum_{i=1}^N \mu_{GP, i}(\bm{\theta})
+    \end{equation}
+    
+    \item \textbf{Uncertainty Quantification:} Due to the near-perfect correlation, the uncertainty of the mean does \textit{not} decrease by $1/\sqrt{N}$. Instead, the relative uncertainty of the ``super-point'' is constrained by the representative experimental uncertainty $\sigma_{exp}$:
+    \begin{equation}
+        \sigma_{eff} \approx \sigma_{exp}
+    \end{equation}
+\end{enumerate}
+
+The effective Chi-squared is calculated as:
+
+\begin{equation}
+    \chi^2_{micro} = \left( \frac{\bar{D} - \bar{M}(\bm{\theta})}{\sigma_{eff}} \right)^2
+\end{equation}
+
+This formulation prevents the ``double-counting'' of information inherent in strongly correlated datasets while preserving the global signal-to-noise ratio. The log-likelihood contribution is:
+
+\begin{equation}
+    ll_{micro} = -0.5 \cdot \chi^2_{micro}
+\end{equation}
+
+\section{Total Log-Likelihood}
+
+Assuming independence between the integral and microscopic experiments, the total log-likelihood used to drive the MCMC sampling is the weighted sum of the individual components:
+
+\begin{equation}
+    \ln(\mathcal{L}_{total}) = \sum w_{int} \cdot ll_{int} + \sum w_{micro} \cdot ll_{micro}
+\end{equation}
+
+This methodology ensures a statistically robust parameter estimation that honors the physical constraints of the data, the uncertainty of the surrogate model, and the effective information content of correlated experiments.
+
+\bibliographystyle{ieeetr}
+\bibliography{references}
+
+\end{document}

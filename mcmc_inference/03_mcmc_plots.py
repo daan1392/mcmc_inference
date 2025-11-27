@@ -90,7 +90,7 @@ def input_pdf_plot(prior_samples, posterior_samples, save_path):
 
     ax.set(
         title=f"Prior vs Posterior Predictive",
-        xlabel="Response Variable",
+        xlabel=r"$\Gamma_\gamma$, eV",
         ylabel="Density"
     )
     ax.legend()
@@ -100,7 +100,7 @@ def output_scatter_plot(exp_mean, exp_unc, prior_X_samples, prior_samples, poste
     """
     Plots the prior and posterior predictive distributions for a given experiment.
     """
-    fig, ax = plt.subplots(figsize=(5, 4))
+    fig, ax = plt.subplots(figsize=(5, 4), layout='constrained')
     ax.axhline(
         exp_mean,
         ls='--',
@@ -135,8 +135,8 @@ def output_scatter_plot(exp_mean, exp_unc, prior_X_samples, prior_samples, poste
 
     ax.set(
         title=f"Prior vs Posterior Predictive",
-        xlabel="Response Variable",
-        ylabel="Density",
+        xlabel=r"$\Gamma_\gamma$, eV",
+        ylabel="Output Response",
         # xlim=(0.9,1.1)
     )
     ax.legend()
@@ -146,7 +146,7 @@ def output_pdf_plot(experiment_samples, prior_X_samples, prior_samples, posterio
     """
     Plots the prior and posterior predictive distributions for a given experiment.
     """
-    fig, ax = plt.subplots(figsize=(5, 4))
+    fig, ax = plt.subplots(figsize=(5, 4), layout='constrained')
     ax.hist(
         experiment_samples,
         # bins=30,
@@ -172,7 +172,7 @@ def output_pdf_plot(experiment_samples, prior_X_samples, prior_samples, posterio
 
     ax.set(
         title=f"Prior vs Posterior Predictive",
-        xlabel="Response Variable",
+        xlabel=r"$\Gamma_\gamma$, eV",
         ylabel="Density",
         # xlim=(0.9,1.1)
     )
@@ -272,14 +272,14 @@ def plot_mcmc_results(config_path):
     # ---------------------------------------------------------
     # Plot 2: Corner Plot (Posterior Correlations)
     # ---------------------------------------------------------
-    print("Generating Corner Plot...")
-    corner_plot(idata, os.path.join(figures_dir, "corner_plot.png"))
+    # print("Generating Corner Plot...")
+    # corner_plot(idata, os.path.join(figures_dir, "corner_plot.png"))
 
     # ---------------------------------------------------------
     # Plot 3: Forest Plot (Summary of intervals)
     # ---------------------------------------------------------
-    print("Generating Forest Plot...")
-    forest_plot(idata, os.path.join(figures_dir, "forest_plot.png"))
+    # print("Generating Forest Plot...")
+    # forest_plot(idata, os.path.join(figures_dir, "forest_plot.png"))
 
     # ---------------------------------------------------------
     # 4. Plot prior and posterior input responses
