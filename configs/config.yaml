@@ -26,7 +26,7 @@ parameters:
   # prior_stds: [0.05, 0.05]
   names: ["Cr53_Gg4keV"]
   prior_means: [3.08939406]
-  prior_stds: [0.05]
+  prior_stds: [0.10]
 
 # -----------------------------------------------------------------------------
 # Experiment Definitions
@@ -67,5 +67,5 @@ experiments:
       
     training_data:
       input_path: "data/processed/ntof/ntof_inputs_eV.csv"
-      output_path: "data/processed/ntof/ntof_outputs.csv" # Using reduced chi-squared statistic
+      output_path: "data/processed/ntof/ntof_outputs_reduced.csv" # Using reduced chi-squared statistic
       C_constant: 10.330074020916287 # -0.5 * (np.log(2 * np.pi * df_lst['dx'].mean()**2))

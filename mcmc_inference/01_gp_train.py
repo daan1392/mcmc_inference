@@ -117,8 +117,8 @@ def plot_gp_slices(gp, X_train, y_train, feature_names, save_dir, exp_id):
         # Overlay Training Data (Projected onto this dimension)
         ax.scatter(X_train[:, i], y_train, c='k', s=10, alpha=0.3, label='Training Data')
         
-        ax.set_title(f"Sensitivity: {fname}")
-        ax.set_xlabel(fname)
+        ax.set_title(exp_id + f" - Varying: {fname}")
+        ax.set_xlabel(r"$\Gamma_\gamma(E=4 keV)$, eV")
         ax.set_ylabel("Output")
         ax.grid(True, alpha=0.3)
         if i == 0: ax.legend()

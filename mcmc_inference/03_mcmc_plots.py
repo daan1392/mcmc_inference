@@ -135,8 +135,8 @@ def output_scatter_plot(exp, prior, posterior, save_path):
     )
 
     ax.axhspan(exp.y_meas-2*exp.y_err, exp.y_meas+2*exp.y_err, 
-           facecolor='C0',
-           alpha=0.2,
+        facecolor='C0',
+        alpha=0.2,
     )
 
     ax.plot(
@@ -162,6 +162,7 @@ def output_scatter_plot(exp, prior, posterior, save_path):
         title=f"{exp.id}",
         xlabel=r"$\Gamma_\gamma(E=4 keV)$, eV",
         ylabel=r"$k_{\text{eff}}$" if exp.type == 'integral' else r"$\chi^2$",
+        ylim=(0,None) if exp.type == 'microscopic' else None,
     )
     ax.legend()
     fig.savefig(save_path, dpi=300)
@@ -186,6 +187,7 @@ def output_pdf_plot(exp, prior, posterior, save_path):
         alpha=0.5,
         label='Prior Samples'
     )
+
     ax.hist(
         exp.gp.predict(posterior),
         bins=30,
@@ -199,6 +201,7 @@ def output_pdf_plot(exp, prior, posterior, save_path):
         xlabel=r"$k_{\text{eff}}$" if exp.type == 'integral' else r"$\chi^2$",
         ylabel="Density",
     )
+
     ax.legend()
     fig.savefig(save_path, dpi=300)
 
@@ -224,8 +227,6 @@ def plot_mcmc_results(config_path):
     param_names = list(idata.posterior.data_vars.keys())
     n_params = len(param_names)
     print(f"Parameters found: {param_names}")
-
-    # 3. Prepare Data for Plots
 
     # 3. Initialize Evaluators for each Experiment
     models = []
@@ -269,16 +270,7 @@ def plot_mcmc_results(config_path):
 
     # collect parameter columns and build a (nsamples, n_params) array
     param_arrays = [posterior_stacked[param].values.reshape(-1) for param in param_names]
-    posterior_all = np.vstack(param_arrays).T  # shape: (nsamples_total, n_params)
-
-    # match the number of posterior samples to prior samples (n_prior_samples)
-    n_post_needed = prior_X_samples.shape[0]
-    if posterior_all.shape[0] >= n_post_needed:
-        idx = np.random.choice(posterior_all.shape[0], size=n_post_needed, replace=False)
-    else:
-        idx = np.random.choice(posterior_all.shape[0], size=n_post_needed, replace=True)
-    posterior_X_samples = posterior_all[idx]
-
+    posterior_X_samples = np.vstack(param_arrays).T  # shape: (nsamples_total, n_params)
     
     # ---------------------------------------------------------
     # Plot 1: Trace Plot (Convergence Check)
@@ -289,14 +281,14 @@ def plot_mcmc_results(config_path):
     # ---------------------------------------------------------
     # Plot 2: Corner Plot (Posterior Correlations)
     # ---------------------------------------------------------
-    # print("Generating Corner Plot...")
-    # corner_plot(idata, os.path.join(figures_dir, "corner_plot.png"))
+    print("Generating Corner Plot...")
+    corner_plot(idata, os.path.join(figures_dir, "corner_plot.png"))
 
     # ---------------------------------------------------------
     # Plot 3: Forest Plot (Summary of intervals)
     # ---------------------------------------------------------
-    # print("Generating Forest Plot...")
-    # forest_plot(idata, os.path.join(figures_dir, "forest_plot.png"))
+    print("Generating Forest Plot...")
+    forest_plot(idata, os.path.join(figures_dir, "forest_plot.png"))
 
     # ---------------------------------------------------------
     # 4. Plot prior and posterior input responses
@@ -327,12 +319,11 @@ def plot_mcmc_results(config_path):
     # 5. Save Text Summary
     # ---------------------------------------------------------
     print("Generating Summary Table...")
-    # This calculates Mean, SD, hdi_3%, hdi_97%, and R_hat
     summary_df = az.summary(idata, hdi_prob=0.95)
     
     summary_path = os.path.join("reports", "posterior_summary.csv")
     summary_df.to_csv(summary_path)
-    
+
     print("\n--- Calibration Results ---")
     print(summary_df[['mean', 'sd', 'r_hat']])
     print(f"Full summary saved to {summary_path}")
