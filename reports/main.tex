@@ -31,7 +31,7 @@ Nuclear data is considered as the major source of uncertainty in some reactor ob
 
 \section{Background and mathematical motivation}
 
-To enable efficient sampling of the parameter space, we replace the computationally expensive high-fidelity model $f(\bm{\theta})$ with a Gaussian Process (GP) emulator. A GP defines a distribution over functions, specified by a mean function $m(\bm{\theta})$ and a covariance kernel $k(\bm{\theta}, \bm{\theta}')$.
+To enable efficient sampling of the parameter space, we replace the computationally expensive high-fidelity models $f(\bm{\theta})$ with Gaussian Process (GP) emulators. A GP defines a distribution over functions, specified by a mean function $m(\bm{\theta})$ and a covariance kernel $k(\bm{\theta}, \bm{\theta}')$.
 
 For an unknown parameter set $\bm{\theta}^*$, the GP predicts the model output as a normal distribution:
 
@@ -45,44 +45,23 @@ Where:
     \item $\Sigma_{GP}(\bm{\theta}^*)$ captures the epistemic uncertainty of the emulator itself.
 \end{itemize}
 
-In this work, the GP is trained on a set of input-output pairs generated from the high-fidelity model. For any candidate $\bm{\theta}$ proposed during MCMC, the GP prediction $\mu_{GP}(\bm{\theta})$ is used as the model response.
+In this work, the GP is trained on a set of input-output pairs generated from the high-fidelity models describing the microscopic energy dependent and integral experiments. For microscopic energy dependent experiments, the SAMMY resonance fitting tool is used to calculate a goodness-of-fit in terms of $\chi^2$. For the integral experiments, the continuous energy Monte Carlo transport code SERPENT-2 is used to obtain the calculated response. For any candidate $\bm{\theta}$ proposed during MCMC, the GP prediction $\mu_{GP}(\bm{\theta})$ is used as the model response.
 
 \section{Markov Chain Monte Carlo (MCMC) Framework}
 
-We seek the posterior distribution $P(\bm{\theta} \mid D)$ of the parameters given the experimental data $D$. According to Bayes' theorem:
+We seek the posterior distribution $P(\bm{\theta} \mid D)$ of the parameters given the experimental data $D$. According to Bayes' theorem
 
-\begin{equation}
-    P(\bm{\theta} \mid D) \propto P(D \mid \bm{\theta}) P(\bm{\theta})
+\begin{equation}\label{eq:Bayes}
+    P(\bm{\theta} \mid D) \propto P(D \mid \bm{\theta}) P(\bm{\theta}),
 \end{equation}
 
-Where:
-\begin{itemize}
-    \item $P(\bm{\theta} \mid D)$ is the \textbf{Posterior}.
-    \item $P(D \mid \bm{\theta}) = \mathcal{L}(\bm{\theta})$ is the \textbf{Likelihood} (the goodness-of-fit).
-    \item $P(\bm{\theta})$ is the \textbf{Prior} (initial beliefs about parameter bounds).
-\end{itemize}
+where $P(\bm{\theta} \mid D)$ is the posterior distribution, $P(D \mid \bm{\theta}) = \mathcal{L}(\bm{\theta})$ is the Likelihood (the goodness-of-fit) and $P(\bm{\theta})$ is the prior (initial beliefs about parameter bounds). $P(D \mid \bm{\theta})$ is evaluated using the product of al experimental combinations.
 
-We employ the Metropolis-Hastings algorithm to sample from this posterior. The acceptance ratio $\alpha$ for a proposed step $\bm{\theta}_{new}$ is defined as:
-
-\begin{equation}
-    \alpha = \min\left(1, \frac{\mathcal{L}(\bm{\theta}_{new}) P(\bm{\theta}_{new})}{\mathcal{L}(\bm{\theta}_{old}) P(\bm{\theta}_{old})} \right)
-\end{equation}
-
-Crucially, the calculations operate in \textbf{log-space} to prevent numerical underflow. The acceptance criterion becomes a comparison of log-likelihoods ($ll$):
-
-\begin{equation}
-    \ln(\alpha) = \min(0, ll_{new} + \ln(P_{new}) - ll_{old} - \ln(P_{old}))
-\end{equation}
+We employ the Emcee sampler algorithm to find the posterior distribution. The unnormalized posterior distribution is calculated using Eq. \ref{eq:Bayes}. The unnormalized posterior is transformed to the log-space to prevent numerical underflow.
 
 \section{Likelihood Formulation}
 
-The definition of the log-likelihood $\ln(\mathcal{L})$ depends on the nature of the experimental data. We distinguish between \textbf{Integral Experiments} (scalar values) and \textbf{Microscopic Experiments} (correlated vectors).
-
-% --- FIXED SECTION BELOW ---
-% Used \texorpdfstring to allow math in the body, but text in the PDF bookmarks
-\subsection{Derivation: The Relationship Between \texorpdfstring{$\chi^2$}{Chi-Squared} and Log-Likelihood}
-
-Standard Bayesian inference assumes that experimental errors follow a Gaussian (Normal) distribution. The probability density function (PDF) for a set of observations $D$ given prediction $M(\bm{\theta})$ is:
+The definition of the log-likelihood $\ln(\mathcal{L})$ depends on the nature of the experimental data. We distinguish between integral experiments (scalar values) and microscopic experiments (highly correlated data points). Under the assumption of Gaussian experimental errors, the probability density function (PDF) for an observations $d$ given prediction $M(\bm{\theta})$ is given by
 
 \begin{equation}
     P(D|\bm{\theta}) = \frac{1}{\sqrt{(2\pi)^N |\bm{\Sigma}|}} \exp\left( -\frac{1}{2} (D - M(\bm{\theta}))^T \bm{\Sigma}^{-1} (D - M(\bm{\theta})) \right)

@@ -10,6 +10,32 @@ def load_config(config_path):
     import yaml
     with open(config_path, 'r') as f:
         return yaml.safe_load(f)
+    
+class IntegralExperiment:
+    """
+    Evaluates the likelihood for an integral experiment using its specific GP.
+    """
+    def __init__(self, exp_id, exp_type, gp_path, y_meas, y_err):
+        self.id = exp_id
+        self.type = exp_type
+        self.y_meas = y_meas
+        self.y_err = y_err
+        if not os.path.exists(gp_path):
+            raise FileNotFoundError(f"GP model for {exp_id} not found at {gp_path}")
+        self.gp = joblib.load(gp_path)
+
+class MicroscopicExperiment:
+    """
+    Evaluates the likelihood for a microscopic experiment using its specific GP.
+    """
+    def __init__(self, exp_id, exp_type, gp_path):
+        self.id = exp_id
+        self.type = exp_type
+        self.y_meas = 0.0
+        self.y_err = 1.0
+        if not os.path.exists(gp_path):
+            raise FileNotFoundError(f"GP model for {exp_id} not found at {gp_path}")
+        self.gp = joblib.load(gp_path)
 
 def trace_plot(idata, project_name, save_path):
     # 'compact=False' separates variables into different subplots
@@ -96,37 +122,36 @@ def input_pdf_plot(prior_samples, posterior_samples, save_path):
     ax.legend()
     fig.savefig(save_path, dpi=300)
 
-def output_scatter_plot(exp_mean, exp_unc, prior_X_samples, prior_samples, posterior_X_samples, posterior_samples, save_path):
+def output_scatter_plot(exp, prior, posterior, save_path):
     """
     Plots the prior and posterior predictive distributions for a given experiment.
     """
     fig, ax = plt.subplots(figsize=(5, 4), layout='constrained')
     ax.axhline(
-        exp_mean,
+        exp.y_meas,
         ls='--',
-        label='Measurement Samples'
+        label='Measurement',
+        color='C0',
     )
 
-    ax.axhspan(exp_mean-2*exp_unc, exp_mean+2*exp_unc, 
+    ax.axhspan(exp.y_meas-2*exp.y_err, exp.y_meas+2*exp.y_err, 
            facecolor='C0',
            alpha=0.2,
-           label='± 2σ Region')
+    )
 
     ax.plot(
-        prior_X_samples,
-        prior_samples,
-        # bins=30,
-        # density=True,
+        prior,
+        exp.gp.predict(prior),
+        color='C1',
         alpha=0.5,
         ls='None',
         marker='.',
         label='Prior Samples'
     )
     ax.plot(
-        posterior_X_samples,
-        posterior_samples,
-        # bins=30,
-        # density=True,
+        posterior,
+        exp.gp.predict(posterior),
+        color='C2',
         ls='None',
         alpha=0.5,
         marker='.',
@@ -134,36 +159,35 @@ def output_scatter_plot(exp_mean, exp_unc, prior_X_samples, prior_samples, poste
     )
 
     ax.set(
-        title=f"Prior vs Posterior Predictive",
-        xlabel=r"$\Gamma_\gamma$, eV",
-        ylabel="Output Response",
-        # xlim=(0.9,1.1)
+        title=f"{exp.id}",
+        xlabel=r"$\Gamma_\gamma(E=4 keV)$, eV",
+        ylabel=r"$k_{\text{eff}}$" if exp.type == 'integral' else r"$\chi^2$",
     )
     ax.legend()
     fig.savefig(save_path, dpi=300)
 
-def output_pdf_plot(experiment_samples, prior_X_samples, prior_samples, posterior_X_samples, posterior_samples, save_path):
+def output_pdf_plot(exp, prior, posterior, save_path):
     """
     Plots the prior and posterior predictive distributions for a given experiment.
     """
     fig, ax = plt.subplots(figsize=(5, 4), layout='constrained')
     ax.hist(
-        experiment_samples,
-        # bins=30,
-        # density=True,
+        np.random.normal(exp.y_meas, exp.y_err, 10000),
+        bins=30,
+        density=True,
         alpha=0.5,
-        label='Measurement Samples'
+        label='Measurement'
     )
     
     ax.hist(
-        prior_samples,
+        exp.gp.predict(prior),
         bins=30,
         density=True,
         alpha=0.5,
         label='Prior Samples'
     )
     ax.hist(
-        posterior_samples,
+        exp.gp.predict(posterior),
         bins=30,
         density=True,
         alpha=0.5,
@@ -171,10 +195,9 @@ def output_pdf_plot(experiment_samples, prior_X_samples, prior_samples, posterio
     )
 
     ax.set(
-        title=f"Prior vs Posterior Predictive",
-        xlabel=r"$\Gamma_\gamma$, eV",
+        title=f"{exp.id}",
+        xlabel=r"$k_{\text{eff}}$" if exp.type == 'integral' else r"$\chi^2$",
         ylabel="Density",
-        # xlim=(0.9,1.1)
     )
     ax.legend()
     fig.savefig(save_path, dpi=300)
@@ -203,16 +226,33 @@ def plot_mcmc_results(config_path):
     print(f"Parameters found: {param_names}")
 
     # 3. Prepare Data for Plots
-    # Generate samples drawn from experimental mean and uncertainty assuming Gaussian
-    n_exp_samples = 10000
-    exp_samples = {}
+
+    # 3. Initialize Evaluators for each Experiment
+    models = []
+    
+    print("\n   Loading Experiment Models...")
     for exp in cfg['experiments']:
-        exp_id = exp['id']
-        y_meas = np.array(exp['experimental_data']['measurement']) if exp['type'] == 'integral' else 0
-        y_err = np.array(exp['experimental_data']['uncertainty']) if exp['type'] == 'integral' else 1
+        gp_path = os.path.join("models", f"{exp['id']}_gp.joblib")
         
-        samples = np.random.normal(loc=y_meas, scale=y_err, size=(n_exp_samples, 1))
-        exp_samples[exp_id] = samples
+        try:
+            if exp['type'] == "integral":
+                exp_obj = IntegralExperiment(
+                    exp_id=exp['id'],
+                    exp_type=exp['type'],
+                    gp_path=gp_path,
+                    y_meas=exp['experimental_data']['measurement'],
+                    y_err=exp['experimental_data']['uncertainty']
+                )
+            elif exp['type'] == "microscopic":
+                exp_obj = MicroscopicExperiment(
+                    exp_id=exp['id'],
+                    exp_type=exp['type'],
+                    gp_path=gp_path,
+                )
+            models.append(exp_obj)
+            print(f"    - Loaded {exp['id']}")
+        except FileNotFoundError:
+            print(f"    !! Skipping {exp['id']}: GP Model not found.")
 
     # Generate prior samples for predictive checks
     n_prior_samples = 10000
@@ -239,29 +279,6 @@ def plot_mcmc_results(config_path):
         idx = np.random.choice(posterior_all.shape[0], size=n_post_needed, replace=True)
     posterior_X_samples = posterior_all[idx]
 
-    # Predict output responses for prior and posterior samples from GPs
-    output_responses = {}
-    for exp in cfg['experiments']:
-        exp_id = exp['id']
-        gp_path = os.path.join("models", f"{exp_id}_gp.joblib")
-        scaler_path = os.path.join("models", f"{exp_id}_scaler.joblib")
-        
-        try:
-            gp = joblib.load(gp_path)
-            
-            # Prior Predictions
-            prior_preds = gp.predict(prior_X_samples)
-
-            # Posterior Predictions
-            post_preds = gp.predict(posterior_X_samples)
-            
-            output_responses[exp_id] = {
-                'prior': prior_preds,
-                'posterior': post_preds
-            }
-        except FileNotFoundError:
-            print(f"    !! Skipping predictions for {exp_id}: GP Model not found.")
-            continue
     
     # ---------------------------------------------------------
     # Plot 1: Trace Plot (Convergence Check)
@@ -291,31 +308,20 @@ def plot_mcmc_results(config_path):
     # 4. Plot prior and posterior output responses
     # ---------------------------------------------------------
     print("Generating Output Plots...")
-    for exp in cfg['experiments']:
-        exp_id = exp['id']
-        
-        if exp['type'] == 'integral':
-            output_scatter_plot(
-                exp['experimental_data']['measurement'], 
-                exp['experimental_data']['uncertainty'], 
-                prior_X_samples, 
-                output_responses[exp_id]['prior'], 
-                posterior_X_samples, 
-                output_responses[exp_id]['posterior'], 
-                os.path.join(figures_dir, f"{exp_id}_output_pdf_plot.png")
-            )
-        else:
-            output_scatter_plot(
-                0, 
-                1, 
-                prior_X_samples, 
-                output_responses[exp_id]['prior'], 
-                posterior_X_samples, 
-                output_responses[exp_id]['posterior'], 
-                os.path.join(figures_dir, f"{exp_id}_output_pdf_plot.png")
-            )
+    for exp in models:        
+        output_scatter_plot(
+            exp, 
+            prior_X_samples, 
+            posterior_X_samples,  
+            os.path.join(figures_dir, f"{exp.id}_output_scatter_plot.png")
+        )
 
-
+        output_pdf_plot(
+            exp, 
+            prior_X_samples, 
+            posterior_X_samples,  
+            os.path.join(figures_dir, f"{exp.id}_output_pdf_plot.png")
+        )
 
     # ---------------------------------------------------------
     # 5. Save Text Summary

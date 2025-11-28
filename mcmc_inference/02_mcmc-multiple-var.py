@@ -6,6 +6,7 @@ import arviz as az
 from scipy.stats import multivariate_normal, norm
 from tqdm import tqdm
 import yaml
+import argparse
 
 def load_config(config_path):
     with open(config_path, 'r') as f:
@@ -14,12 +15,14 @@ def load_config(config_path):
 class IntegralExperiment:
     """
     Evaluates the likelihood for an integral experiment using its specific GP.
+    Now supports mapping specific global parameters to GP inputs.
     """
-    def __init__(self, exp_id, gp_path, y_meas, y_err, weight=1.0):
+    def __init__(self, exp_id, gp_path, y_meas, y_err, input_indices, weight=1.0):
         self.id = exp_id
-        self.weight = 1.0
+        self.weight = weight
         self.y_meas = y_meas
         self.y_err = y_err
+        self.input_indices = input_indices # List of integers (e.g., [0, 2])
         
         # Load the surrogate model artifacts
         if not os.path.exists(gp_path):
@@ -31,9 +34,13 @@ class IntegralExperiment:
         """
         Calculates ln L(D_i | theta)
         """
-        
+        # 1. Slice the Master Vector to get only relevant parameters
+        # If theta is [p1, p2, p3] and indices are [0, 2], we get [p1, p3]
+        relevant_theta = theta[self.input_indices]
+
         # 2. GP Prediction
-        pred_mean, pred_std = self.gp.predict(theta.reshape(-1,1), return_std=True)
+        # Reshape to (1, n_features) for scikit-learn compatibility
+        pred_mean, pred_std = self.gp.predict(relevant_theta.reshape(1, -1), return_std=True)
         
         # Flatten (handle cases where predict returns shape (1,1) or (1,))
         mu_gp = pred_mean.item()
@@ -48,16 +55,23 @@ class IntegralExperiment:
 class MicroscopicExperiment:
     """
     Evaluates the likelihood for a microscopic experiment using its specific GP.
+    Now supports mapping specific global parameters to GP inputs.
     """
-    def __init__(self, exp_id, C, gp_path, weight=1.0):
+    def __init__(self, exp_id, C, gp_path, input_indices, weight=1.0):
         self.id = exp_id
         self.C = C
         self.weight = weight
+        self.input_indices = input_indices # List of integers
         self.gp = joblib.load(gp_path)
 
     def get_log_likelihood(self, theta):
-        # GP predicts the Chi-Squared value
-        chi2_val = self.gp.predict(theta.reshape(-1,1))
+        # 1. Slice the Master Vector
+        relevant_theta = theta[self.input_indices]
+
+        # 2. GP predicts the Chi-Squared value
+        # Reshape to (1, n_features)
+        chi2_val = self.gp.predict(relevant_theta.reshape(1, -1))
+        
         chi2 = max(0.0, chi2_val.item()) # Clamp to 0
         
         # Standard Likelihood = -0.5 * Chi2
@@ -106,13 +120,12 @@ def run_joint_mcmc(config_path):
     cfg = load_config(config_path)
     print(f"--- Starting Joint Inference: {cfg['project_name']} ---")
 
-    # 2. Parse Prior Information
-    prior_names = cfg['parameters']['names']
+    # 2. Parse Prior Information (The Global Parameter List)
+    global_param_names = cfg['parameters']['names'] # List of strings
     prior_means = cfg['parameters']['prior_means']
     prior_stds = cfg['parameters']['prior_stds']
 
-
-    print(f"   Calibrating {len(prior_names)} parameters: {prior_names}")
+    print(f"   Calibrating {len(global_param_names)} parameters: {global_param_names}")
 
     # 3. Initialize Evaluators for each Experiment
     models = []
@@ -121,22 +134,36 @@ def run_joint_mcmc(config_path):
     for exp in cfg['experiments']:
         gp_path = os.path.join("models", f"{exp['id']}_gp.joblib")
         
+        # --- NEW LOGIC: MAP PARAMETER NAMES TO INDICES ---
+        # Look for 'parameters' key in the experiment config. 
+        # If missing, assume it uses ALL global parameters (legacy support).
+        exp_param_names = exp.get('parameters', global_param_names)
+        
+        try:
+            # Create a list of indices, e.g., ['density'] -> [1]
+            input_indices = [global_param_names.index(name) for name in exp_param_names]
+        except ValueError as e:
+            print(f"Error in {exp['id']}: Parameter name mismatch. {e}")
+            continue
+
         try:
             if exp['type'] == "integral":
                 exp_obj = IntegralExperiment(
                     exp_id=exp['id'],
                     gp_path=gp_path,
                     y_meas=exp['experimental_data']['measurement'],
-                    y_err=exp['experimental_data']['uncertainty']
+                    y_err=exp['experimental_data']['uncertainty'],
+                    input_indices=input_indices # Pass the map
                 )
             elif exp['type'] == "microscopic":
                 exp_obj = MicroscopicExperiment(
                     exp_id=exp['id'],
-                    C = exp['training_data']['C_constant'],
+                    C=exp['training_data']['C_constant'],
                     gp_path=gp_path,
+                    input_indices=input_indices # Pass the map
                 )
             models.append(exp_obj)
-            print(f"    - Loaded {exp['id']}")
+            print(f"    - Loaded {exp['id']} (Inputs: {exp_param_names} -> Indices: {input_indices})")
         except FileNotFoundError:
             print(f"    !! Skipping {exp['id']}: GP Model not found.")
 
@@ -153,10 +180,9 @@ def run_joint_mcmc(config_path):
     ndim = len(prior_means)
 
     # Initialize walkers in a tight ball around the prior mean
-    # (Standard practice: start near the prior center)
     pos = np.random.normal(
         loc=prior_means, 
-        scale=np.array(prior_stds),
+        scale=np.array(prior_stds) * 0.1, # Tight initialization
         size=(n_walkers, ndim)
     )
 
@@ -166,12 +192,13 @@ def run_joint_mcmc(config_path):
 
     print(f"\n   Running MCMC: {n_walkers} walkers x {n_steps} steps")
     
-    sampler = emcee.EnsembleSampler(n_walkers, ndim, posterior_fn)
+    sampler = emcee.EnsembleSampler(n_walkers, ndim, posterior_fn, backend=backend)
     state_VC = sampler.run_mcmc(pos, n_steps, progress=True)
     
     # 6. Save Result as Arviz NetCDF
     print("\n   Saving results to NetCDF...")
-    idata = az.from_emcee(sampler, var_names=prior_names)
+    # Discard burn-in (e.g., first 100 steps) for cleaner processing later
+    idata = az.from_emcee(sampler, var_names=global_param_names)
     
     nc_path = os.path.join(cfg['output_dir'], "joint_posterior.nc")
     az.to_netcdf(idata, nc_path)
@@ -182,7 +209,6 @@ def run_joint_mcmc(config_path):
     print(f"   Results saved to: {nc_path}")
 
 if __name__ == "__main__":
-    import argparse
     parser = argparse.ArgumentParser()
     parser.add_argument("--config", type=str, default="configs/config.yaml")
     args = parser.parse_args()
