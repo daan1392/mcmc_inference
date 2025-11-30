@@ -12,7 +12,7 @@ defaults:
   
   mcmc:
     sampler: "emcee"
-    n_walkers: 5
+    n_walkers: 10
     n_steps: 2000
     burn_in: 1000
     random_seed: 42
@@ -21,12 +21,13 @@ defaults:
 # Prior Information
 # -----------------------------------------------------------------------------
 parameters:
-  # names: ["Cr53_Gg4keV", "Gg(E=6keV)"]
-  # prior_means: [3.08939406, 2]
-  # prior_stds: [0.05, 0.05]
   names: ["Cr53_Gg4keV"]
-  prior_means: [3.08939406]
+  # prior_means: [3.08939406]
+  prior_means: [4.14]
   prior_stds: [0.10]
+  # names: ["Gg1", "Gg2", "Gg3", "Gg4"]
+  # prior_means: [3.08939406, 0.54058761, 3.30766932, 1.68063740]
+  # prior_stds: [0.10, 0.10, 0.10, 0.10]
 
 # -----------------------------------------------------------------------------
 # Experiment Definitions
@@ -69,3 +70,15 @@ experiments:
       input_path: "data/processed/ntof/ntof_inputs_eV.csv"
       output_path: "data/processed/ntof/ntof_outputs_reduced.csv" # Using reduced chi-squared statistic
       C_constant: 10.330074020916287 # -0.5 * (np.log(2 * np.pi * df_lst['dx'].mean()**2))
+
+  # - id: "cr53_thin"
+  #   title: "nTOF Cr53 thin (2022)"
+  #   description: "Time-of-Flight measurement performed in nTOF (CERN) by Pablo Perez et at. using thin Cr-53 target"
+  #   type: "microscopic" # microscopic assumes your output is based on chi-squared
+  #   gp_override:
+  #     kernel: "Quadratic"
+      
+  #   training_data:
+  #     input_path: "data/processed/ntof-multi/ntof-multi_inputs.csv"
+  #     output_path: "data/processed/ntof-multi/ntof-multi_outputs.csv" # Using reduced chi-squared statistic
+  #     C_constant: 10.330074020916287 # -0.5 * (np.log(2 * np.pi * df_lst['dx'].mean()**2))

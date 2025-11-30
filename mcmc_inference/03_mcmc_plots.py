@@ -122,11 +122,13 @@ def input_pdf_plot(prior_samples, posterior_samples, save_path):
     ax.legend()
     fig.savefig(save_path, dpi=300)
 
-def output_scatter_plot(exp, prior, posterior, save_path):
+def output_scatter_plot(exp, prior, posterior, save_path, ax=None):
     """
     Plots the prior and posterior predictive distributions for a given experiment.
     """
-    fig, ax = plt.subplots(figsize=(5, 4), layout='constrained')
+    if not ax:
+        fig, ax = plt.subplots(figsize=(5, 4), layout='constrained')
+
     ax.axhline(
         exp.y_meas,
         ls='--',
@@ -165,7 +167,9 @@ def output_scatter_plot(exp, prior, posterior, save_path):
         ylim=(0,None) if exp.type == 'microscopic' else None,
     )
     ax.legend()
-    fig.savefig(save_path, dpi=300)
+    
+    if not ax:
+        fig.savefig(save_path, dpi=300)
 
 def output_pdf_plot(exp, prior, posterior, save_path):
     """
@@ -257,8 +261,8 @@ def plot_mcmc_results(config_path):
 
     # Generate prior samples for predictive checks
     n_prior_samples = 10000
-    prior_means = cfg['parameters']['prior_means']
-    prior_stds = cfg['parameters']['prior_stds']
+    prior_means = np.array(cfg['parameters']['prior_means'])
+    prior_stds = np.array(cfg['parameters']['prior_stds'])*prior_means
     prior_X_samples = np.random.normal(loc=prior_means, scale=prior_stds, size=(n_prior_samples, n_params))
     
     # Extract posterior samples
@@ -314,6 +318,24 @@ def plot_mcmc_results(config_path):
             posterior_X_samples,  
             os.path.join(figures_dir, f"{exp.id}_output_pdf_plot.png")
         )
+
+    # ---------------------------------------------------------
+    # 4. Plot prior and posterior output responses together
+    # ---------------------------------------------------------
+    print("Generating Combined Output Plot...")
+    fig, axs = plt.subplots(1, len(models), figsize=(3*len(models), 4), layout="constrained")
+
+    for i, exp in enumerate(models):   
+
+        output_scatter_plot(
+            exp, 
+            prior_X_samples, 
+            posterior_X_samples,  
+            None,
+            ax=axs[i]
+        )
+
+    fig.savefig(f"{figures_dir}/combined_output_scatter.png", dpi=300)
 
     # ---------------------------------------------------------
     # 5. Save Text Summary
