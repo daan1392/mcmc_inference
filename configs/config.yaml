@@ -24,7 +24,7 @@ parameters:
   names: ["Cr53_Gg4keV"]
   # prior_means: [3.08939406]
   prior_means: [4.14]
-  prior_stds: [0.10]
+  prior_stds: [0.05] #TODO Relative standard deviation!
   # names: ["Gg1", "Gg2", "Gg3", "Gg4"]
   # prior_means: [3.08939406, 0.54058761, 3.30766932, 1.68063740]
   # prior_stds: [0.10, 0.10, 0.10, 0.10]
@@ -44,7 +44,7 @@ experiments:
     
     experimental_data:
       measurement: 0.98780
-      uncertainty: 0.00230
+      uncertainty: 0.00630
 
   - id: "hmi001"
     title: "HMI001"
@@ -57,7 +57,7 @@ experiments:
       
     experimental_data:
       measurement: 0.99600
-      uncertainty: 0.00260
+      uncertainty: 0.00660
 
   - id: "cr53_thin"
     title: "nTOF Cr53 thin (2022)"
@@ -67,8 +67,8 @@ experiments:
       kernel: "Quadratic"
       
     training_data:
-      input_path: "data/processed/ntof/ntof_inputs_eV.csv"
-      output_path: "data/processed/ntof/ntof_outputs_reduced.csv" # Using reduced chi-squared statistic
+      input_path: "data/processed/ntof-jeff40/ntof_inputs.csv"
+      output_path: "data/processed/ntof-jeff40/ntof_outputs.csv" # Using reduced chi-squared statistic
       C_constant: 10.330074020916287 # -0.5 * (np.log(2 * np.pi * df_lst['dx'].mean()**2))
 
   # - id: "cr53_thin"

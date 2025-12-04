@@ -122,24 +122,27 @@ def input_pdf_plot(prior_samples, posterior_samples, save_path):
     ax.legend()
     fig.savefig(save_path, dpi=300)
 
-def output_scatter_plot(exp, prior, posterior, save_path, ax=None):
+def output_scatter_plot(exp, prior, posterior, save_path, axs=None):
     """
     Plots the prior and posterior predictive distributions for a given experiment.
     """
-    if not ax:
+    if axs is None:
         fig, ax = plt.subplots(figsize=(5, 4), layout='constrained')
+    else:
+        ax=axs
 
-    ax.axhline(
-        exp.y_meas,
-        ls='--',
-        label='Measurement',
-        color='C0',
-    )
+    if exp.type == 'integral':
+        ax.axhline(
+            exp.y_meas,
+            ls='--',
+            label='Measurement',
+            color='C0',
+        )
 
-    ax.axhspan(exp.y_meas-2*exp.y_err, exp.y_meas+2*exp.y_err, 
-        facecolor='C0',
-        alpha=0.2,
-    )
+        ax.axhspan(exp.y_meas-2*exp.y_err, exp.y_meas+2*exp.y_err, 
+            facecolor='C0',
+            alpha=0.2,
+        )
 
     ax.plot(
         prior,
@@ -164,11 +167,11 @@ def output_scatter_plot(exp, prior, posterior, save_path, ax=None):
         title=f"{exp.id}",
         xlabel=r"$\Gamma_\gamma(E=4 keV)$, eV",
         ylabel=r"$k_{\text{eff}}$" if exp.type == 'integral' else r"$\chi^2$",
-        ylim=(0,None) if exp.type == 'microscopic' else None,
+        # ylim=(0,None) if exp.type == 'microscopic' else None,
     )
     ax.legend()
     
-    if not ax:
+    if axs is None:
         fig.savefig(save_path, dpi=300)
 
 def output_pdf_plot(exp, prior, posterior, save_path):
@@ -274,7 +277,7 @@ def plot_mcmc_results(config_path):
 
     # collect parameter columns and build a (nsamples, n_params) array
     param_arrays = [posterior_stacked[param].values.reshape(-1) for param in param_names]
-    posterior_X_samples = np.vstack(param_arrays).T  # shape: (nsamples_total, n_params)
+    posterior_X_samples = np.vstack(param_arrays).T 
     
     # ---------------------------------------------------------
     # Plot 1: Trace Plot (Convergence Check)
@@ -309,7 +312,7 @@ def plot_mcmc_results(config_path):
             exp, 
             prior_X_samples, 
             posterior_X_samples,  
-            os.path.join(figures_dir, f"{exp.id}_output_scatter_plot.png")
+            os.path.join(figures_dir, f"{exp.id}_output_scatter_plot.png"),
         )
 
         output_pdf_plot(
@@ -323,7 +326,7 @@ def plot_mcmc_results(config_path):
     # 4. Plot prior and posterior output responses together
     # ---------------------------------------------------------
     print("Generating Combined Output Plot...")
-    fig, axs = plt.subplots(1, len(models), figsize=(3*len(models), 4), layout="constrained")
+    fig, axs = plt.subplots(1, len(models), figsize=(5*len(models), 4), layout="constrained")
 
     for i, exp in enumerate(models):   
 
@@ -332,7 +335,7 @@ def plot_mcmc_results(config_path):
             prior_X_samples, 
             posterior_X_samples,  
             None,
-            ax=axs[i]
+            axs[i]
         )
 
     fig.savefig(f"{figures_dir}/combined_output_scatter.png", dpi=300)
@@ -345,6 +348,9 @@ def plot_mcmc_results(config_path):
     
     summary_path = os.path.join("reports", "posterior_summary.csv")
     summary_df.to_csv(summary_path)
+
+    print("\n--- Prior information ---")
+    print(prior_means, prior_stds)
 
     print("\n--- Calibration Results ---")
     print(summary_df[['mean', 'sd', 'r_hat']])
