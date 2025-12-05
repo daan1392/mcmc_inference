@@ -30,12 +30,19 @@
 \end{abstract}
 
 \section{Introduction}
-Nuclear data is considered as the major source of uncertainty in some reactor observables, most notably effective multiplication factor (\keff). The nuclear data available in evaluated nuclear data libraries, such as JEFF-4.0, are a result of a complex fitting procedure including theoretical models, microscopic experiments, expert judgement and sometimes integral experiments. Although integral experiments are often not directly including in the fitting procedure due to the computational cost, they form an important step towards validating the nuclear data vector. In this work, a Bayesian Optimization framework is proposed which enables consolidating microscopic energy dependent measurements with integral experiments to estimate nuclear data parameters. 
+Nuclear data is considered as the major source of uncertainty in some reactor observables, most notably effective multiplication factor (\keff). The nuclear data available in evaluated nuclear data libraries, such as JEFF-4.0, are a result of a complex fitting procedure including theoretical models, microscopic experiments and expert judgement. Integral experiments are then used to assess the performance of the nuclear data. In this work, a novel Bayesian Optimization (BO) framework is proposed which enables consolidating microscopic energy dependent measurements with integral experiments to estimate nuclear data parameters. 
 
-Due to the computational cost of evaluating the performance of nuclear data in high-fidelity simulation software, most notably in integral experiments, Gaussian Processes (GPs) are trained. Subsequently, the GPs are used in a Markov Chain Monte Carlo (MCMC) algorithm in order to obtain a posterior estimate of the parameter(s) to infer. Two case studies are presented, first on the $\Gamma_\gamma$ width of \nuclide{53}{Cr} in the keV energy range using data recently published by P. Maroto et al. (2025) \cite{perez-maroto_50cr_2025}, complemented with integral experiments sensitive to \nuclide{53}{Cr}. Secondly, on a hypothetical problem in which the integral experiments are more sensitive to the input parameters.
+The BO is performed using a Markov Chain Monte Carlo method in which surrogates are used to evaluate the likelihoods. For the microscopic energy dependent measurements, the SAMMY v8.1.0 resonance fitting tool \cite{larsonUpdatedUsersGuide2008} is employed. While SERPENT v2.2.2 \cite{leppanenSerpentMonteCarlo2015}, a Monte Carlo neutron transport code, is used to quantify the integral response. Surrogates are trained by evaluating random samples drawn in the input space in the high-fidelity models. The methodology is tested on two case studies, being \nuclide{53}{Cr} and \nuclide{238}{U}. Since microscopic experiments often provide many thousands of points and integral experiments only provide a single points, care is given to analyze how different weighing factors affect the results. 
 
 \section{Background and mathematical motivation}
-\subsection{Bayes theorem}
+\subsection{Bayesian Inference setup}
+The main objective of this paper is to infer nuclear data parameter(s) from a set of both microscopic energy dependent an integral experiments. Microscopic energy dependent measurements, further noted as microscopic measurements, are measurements which return a measurement for a well defined energy. Often such measurements result from neutron Time-Of-Flight (nTOF) facilities in which the energy of the neutron is derived from the time it takes for the neutron to reach a target. Typical of these measurements is the many different points that are obtained. In contrast, integral measurements such as criticality experiments, only provide one value which is representative of a group of nuclides, reactions and energies. According to Bayes theorem, the posterior (updated) probability density finction (PDF), $P(\text{data}|\theta)$, is proportional to the likelihood of observing the data given the parameter(s) $\theta$ multiplied by the prior belief of the parameter(s):
+
+\begin{equation}
+    P(\text{data}|\theta) \propto  P(\theta|\text{data})\cdot P(\theta)
+\end{equation}
+
+
 
 \subsection{Surrogate modelling}
 

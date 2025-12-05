@@ -1,10 +1,12 @@
 \begin{thebibliography}{1}
 
-\bibitem{perez-maroto_50cr_2025}
-P.~Pérez-Maroto, C.~Guerrero, A.~Casanovas, B.~Fernández, E.~Mendoza,
-  V.~Alcayne, J.~Lerendegui-Marco, C.~Domingo-Pardo, J.~M. Quesada, R.~Capote,
-  and t.~n. Collaboration, ``{50Cr} and {53Cr} neutron capture cross sections
-  measurement at the n\_tof facility at {CERN},'' 2025.
-\newblock Version Number: 1.
+\bibitem{larsonUpdatedUsersGuide2008}
+N.~M. Larson, ``Updated {{User}}'s {{Guide}} for {{Sammy}}: {{Multilevel
+  R-Matrix Fits}} to {{Neutron Data Using Bayes}}' {{Equations}}.''
+
+\bibitem{leppanenSerpentMonteCarlo2015}
+J.~Lepp{\"a}nen, M.~Pusa, T.~Viitanen, V.~Valtavirta, and T.~Kaltiaisenaho,
+  ``The {{Serpent Monte Carlo}} code: {{Status}}, development and applications
+  in 2013,'' {\em Annals of Nuclear Energy}, vol.~82, pp.~142--150, Aug. 2015.
 
 \end{thebibliography}
