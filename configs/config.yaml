@@ -1,5 +1,6 @@
 project_name: "Nuclear_Data_Inference_2025"
 output_dir: "data/mcmc_chains/"
+figures_dir: "reports/figures/latest/"
 
 # -----------------------------------------------------------------------------
 # Global Defaults (Apply to all experiments unless overridden)

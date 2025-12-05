@@ -135,7 +135,7 @@ def train_surrogates(config_path):
     cfg = load_config(config_path)
     
     output_dir = "models"
-    figures_dir = os.path.join("reports", "figures", "validation")
+    figures_dir = cfg["figures_dir"]
     os.makedirs(output_dir, exist_ok=True)
     
     print(f"--- Training GPs (80/20 Split, No Scaling) ---")
