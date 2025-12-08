@@ -1,61 +1,48 @@
 # MCMC Inference
 
 <a target="_blank" href="https://cookiecutter-data-science.drivendata.org/">
-    <img src="https://img.shields.io/badge/CCDS-Project%20template-328F97?logo=cookiecutter" />
+    <img src="https://img.shields.io/badge/CCDS-Project%20template-328F97?logo=cookiecutter" alt="CCDS template" />
 </a>
 
-A project in which Markov Chain Monte Carlo is used to infer the nuclear data using microscopic and integral measurements. For each measurement, a surrogate model is trained using a Gaussian Process.
+Markov Chain Monte Carlo (MCMC) workflows to infer nuclear data from microscopic and integral measurements. Surrogate models are built per measurement using Gaussian Processes.
 
-## Project Organization
+## Features
+- Train Gaussian Process surrogates for measurements
+- Run MCMC inference using surrogate predictions
+- Config-driven experiments
 
-```
-├── LICENSE            <- Open-source license if one is chosen
-├── Makefile           <- Makefile with convenience commands like `make data` or `make train`
-├── README.md          <- The top-level README for developers using this project.
-├── data
-│   ├── external       <- Data from third party sources.
-│   ├── interim        <- Intermediate data that has been transformed.
-│   ├── processed      <- The final, canonical data sets for modeling.
-│   └── raw            <- The original, immutable data dump.
-│
-├── docs               <- A default mkdocs project; see www.mkdocs.org for details
-│
-├── models             <- Location where Gaussian Processes are stored
-│
-├── notebooks          <- Jupyter notebooks. Naming convention is a number (for ordering),
-│                         the creator's initials, and a short `-` delimited description, e.g.
-│                         `1.0-jqp-initial-data-exploration`.
-│
-├── pyproject.toml     <- Project configuration file with package metadata for 
-│                         mcmc_inference and configuration for tools like black
-│
-├── references         <- Data dictionaries, manuals, and all other explanatory materials.
-│
-├── reports            <- Generated analysis as HTML, PDF, LaTeX, etc.
-│   └── figures        <- Generated graphics and figures to be used in reporting
-│
-├── requirements.txt   <- The requirements file for reproducing the analysis environment, e.g.
-│                         generated with `pip freeze > requirements.txt`
-│
-├── setup.cfg          <- Configuration file for flake8
-│
-└── mcmc_inference   <- Source code for use in this project.
-    │
-    ├── __init__.py             <- Makes mcmc_inference a Python module
-    │
-    ├── config.py               <- Store useful variables and configuration
-    │
-    ├── dataset.py              <- Scripts to download or generate data
-    │
-    ├── features.py             <- Code to create features for modeling
-    │
-    ├── modeling                
-    │   ├── __init__.py 
-    │   ├── predict.py          <- Code to run model inference with trained models          
-    │   └── train.py            <- Code to train models
-    │
-    └── plots.py                <- Code to create visualizations
+## Prerequisites
+- Python 3.10+
+- Git
+- Recommended: virtual environment (venv or conda)
+
+## Installation
+Clone and install in editable mode:
+```bash
+git clone https://github.com/daan1392/mcmc_inference.git
+cd mcmc_inference
+pip install -e .
 ```
 
---------
+## Project layout (key folders)
+- data/           — raw and processed measurement & training data
+- configs/        — experiment/configuration YAML files
+- scripts/        — helper/run scripts
+- src/            — package source (models, inference, utils)
 
+## Usage
+1. Place measurement and surrogate training data in data/ (e.g. data/raw or data/inputs).
+2. Edit a config in configs/config.yaml (set experiment path, data paths, hyperparameters).
+3. Run the main script:
+```bash
+python scripts/run_complete.py --config configs/config.yaml
+```
+Or set environment variables / CLI args as supported by the script.
+
+## Tips
+- Keep each experiment in its own output directory to avoid overwriting results.
+- Use "RBF" kernel for GP to approximate semi-linear functions and the "Quadratic" kernel for quadratic functions.
+- Always very 
+
+## Contributing / Support
+Open issues or PRs on the repository for bugs, feature requests, or questions.
