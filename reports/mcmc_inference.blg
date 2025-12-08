@@ -1,0 +1,51 @@
+This is BibTeX, Version 0.99d
+Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
+The top-level auxiliary file: mcmc_inference.aux
+Reallocating 'name_of_file' (item size: 1) to 7 items.
+The style file: ieeetr.bst
+Reallocating 'name_of_file' (item size: 1) to 11 items.
+Database file #1: references.bib
+Warning--entry type for "larsonUpdatedUsersGuide2008" isn't style-file defined
+--line 67 of file references.bib
+You've used 3 entries,
+            1876 wiz_defined-function locations,
+            500 strings with 4422 characters,
+and the built_in function-call counts, 870 in all, are:
+= -- 86
+> -- 35
+< -- 0
++ -- 13
+- -- 10
+* -- 55
+:= -- 121
+add.period$ -- 2
+call.type$ -- 3
+change.case$ -- 3
+chr.to.int$ -- 0
+cite$ -- 3
+duplicate$ -- 46
+empty$ -- 72
+format.name$ -- 10
+if$ -- 213
+int.to.chr$ -- 0
+int.to.str$ -- 3
+missing$ -- 2
+newline$ -- 12
+num.names$ -- 3
+pop$ -- 8
+preamble$ -- 1
+purify$ -- 0
+quote$ -- 0
+skip$ -- 52
+stack$ -- 0
+substring$ -- 50
+swap$ -- 28
+text.length$ -- 0
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 0
+warning$ -- 0
+while$ -- 7
+width$ -- 4
+write$ -- 28
+(There was 1 warning)

@@ -30,25 +30,106 @@
 \end{abstract}
 
 \section{Introduction}
-Nuclear data is considered as the major source of uncertainty in some reactor observables, most notably effective multiplication factor (\keff). The nuclear data available in evaluated nuclear data libraries, such as JEFF-4.0, are a result of a complex fitting procedure including theoretical models, microscopic experiments and expert judgement. Integral experiments are then used to assess the performance of the nuclear data. In this work, a novel Bayesian Optimization (BO) framework is proposed which enables consolidating microscopic energy dependent measurements with integral experiments to estimate nuclear data parameters. 
+Nuclear data is considered as the major source of uncertainty in some reactor observables, most notably effective multiplication factor (\keff). The nuclear data available in evaluated nuclear data libraries, such as cross sections, neutron multiplicities, angular distributions or fission neutron energy spectrum, are a result of a complex fitting procedure including theoretical models, microscopic experiments and expert judgement. Integral experiments are then used to assess the performance of the nuclear data. In this work, a Bayesian Optimization (BO) framework is proposed which enables consolidating microscopic energy dependent measurements with integral experiments to estimate nuclear data parameters. 
 
-The BO is performed using a Markov Chain Monte Carlo method in which surrogates are used to evaluate the likelihoods. For the microscopic energy dependent measurements, the SAMMY v8.1.0 resonance fitting tool \cite{larsonUpdatedUsersGuide2008} is employed. While SERPENT v2.2.2 \cite{leppanenSerpentMonteCarlo2015}, a Monte Carlo neutron transport code, is used to quantify the integral response. Surrogates are trained by evaluating random samples drawn in the input space in the high-fidelity models. The methodology is tested on two case studies, being \nuclide{53}{Cr} and \nuclide{238}{U}. Since microscopic experiments often provide many thousands of points and integral experiments only provide a single points, care is given to analyze how different weighing factors affect the results. 
+The BO is performed using a Markov Chain Monte Carlo (MCMC) method in which surrogates are used to evaluate the likelihoods. For the microscopic energy dependent measurements, the SAMMY v8.1.0 resonance fitting tool \cite{larsonUpdatedUsersGuide2008} is employed. While SERPENT v2.2.2 \cite{leppanenSerpentMonteCarlo2015}, a Monte Carlo neutron transport code, is used to quantify the integral response. Surrogates are trained by evaluating random samples drawn in the input space in the high-fidelity models. The methodology is tested on two case studies, being \nuclide{53}{Cr} and \nuclide{238}{U}. Since microscopic experiments often provide many points and integral experiments only provide a single points, care is given to analyze how different assumptions regarding the likelihood evaluation affect the posterior. 
 
 \section{Background and mathematical motivation}
-\subsection{Bayesian Inference setup}
-The main objective of this paper is to infer nuclear data parameter(s) from a set of both microscopic energy dependent an integral experiments. Microscopic energy dependent measurements, further noted as microscopic measurements, are measurements which return a measurement for a well defined energy. Often such measurements result from neutron Time-Of-Flight (nTOF) facilities in which the energy of the neutron is derived from the time it takes for the neutron to reach a target. Typical of these measurements is the many different points that are obtained. In contrast, integral measurements such as criticality experiments, only provide one value which is representative of a group of nuclides, reactions and energies. According to Bayes theorem, the posterior (updated) probability density finction (PDF), $P(\text{data}|\theta)$, is proportional to the likelihood of observing the data given the parameter(s) $\theta$ multiplied by the prior belief of the parameter(s):
+\subsection{Bayesian Optimisation setup}
+The main objective of this paper is to infer nuclear data parameter(s) from a set of both microscopic energy dependent an integral experiments. Microscopic energy dependent measurements, further noted as microscopic measurements, are measurements of single energy neutron properties. Often such measurements result from neutron Time-Of-Flight (nTOF) facilities in which the energy of the neutron is derived from the time it takes for the neutron to reach a target. Typical of these measurements is the many measurement points that are obtained. In contrast, integral measurements such as criticality experiments, only provide one value which is representative of a group of nuclides, reactions and energies. 
+
+According to Bayes theorem, the posterior (updated) probability density finction (PDF), $P(\theta|\text{data})$, is proportional to the likelihood of observing the parameter(s) $\theta$ given the data multiplied by the prior belief of the parameter(s):
 
 \begin{equation}
-    P(\text{data}|\theta) \propto  P(\theta|\text{data})\cdot P(\theta)
+    P(\theta|\text{data}) \propto  P(\text{data}|\theta)\cdot P(\theta)
 \end{equation}
 
-
-
-\subsection{Surrogate modelling}
+For brevity, we shall refer to the likelihood as $\mathcal{L}(\theta)=P(\text{data}|\theta)$.
 
 \subsection{Markov Chain Monte Carlo (MCMC)}
+To calculate the posterior distribution, various techniques can be derived from Bayes theorem. Popular techniques include Generalized Linear Least Squares (GLLS), Bayesian Monte Carlo (BMC), MOCABA, etc. In this paper, an algorithm belonging to the family of Markov Chain Monte Carlo (MCMC) techniques is selected. As MCMC is a name for a family of techniques, first the general principle is explained, after which the Emcee algorithm used in this paper is detailed.
+
+In most MCMC algorithms, the unnormalized posterior is evaluated to generate samples:
+\begin{equation}
+    P^*(\theta | \text{data}) = \mathcal{L}(\theta) \cdot P(\theta)
+\end{equation}
+where $P^*(\theta | \text{data})$ represents the posterior up to a normalizing constant. The objective is to construct a Markov chain $\{\theta_0, \theta_1, \dots, \theta_N\}$ such that the stationary distribution of the chain converges to the posterior distribution $P(\theta|\text{data})$. Under the assumption of Normally distributed prior ($\mathcal{N}(\mathbf{\theta_0}, \mathbf{\Sigma})$) and likelihood ($\mathcal{N} (\mathbf{y_\text{true}}, \mathbf{A})$), the unnormalized posterior probability evaluated at $\theta$ can be rewritten as
+\begin{equation}
+    \begin{split}
+        P^*(\theta | \text{data}) = \frac{1}{\sqrt{(2\pi)^m\det\mathbf{A}}}\exp\left[-\frac{1}{2}(\mathbf{f(\theta)}-\mathbf{y_{\text{exp}}})^T\mathbf{A}^{-1}(\mathbf{f(\theta)}-\mathbf{y_{\text{exp}}})\right]& \times \\ \frac{1}{\sqrt{(2\pi)^n\det\mathbf{\Sigma}}}\exp\left[-\frac{1}{2}( \mathbf{\theta_{0}}-\mathbf{\theta})^T\mathbf{\Sigma}^{-1}(\mathbf{\theta_{0}}-\mathbf{\theta})\right]&
+    \end{split}
+\end{equation}
+
+in which the first term represents the probability of observing $\mathbf{\theta}$ given the measurements, with $\mathbf{y_\text{exp}}$ is the vector describing the $m$ measurement points, $\mathbf{f(\theta)}$ is the vector containing the model responses for the vector $\mathbf{\theta}$ and $\mathbf{A}$ is the covariance matrix describing the measurement points of size $(m \times m)$. The prior probability evaluated at $\mathbf{\theta}$ can then be calculated using the prior belief of the $n$ parameters $\mathbf{\theta_0}$, with covariance matrix $\mathbf{\Sigma}$ of size $(n\times n)$. 
+
+Standard algorithms, such as Metropolis-Hastings, propose a new state $\theta'$ based on a proposal distribution $q(\theta'|\theta_t)$ and accept it with probability $\alpha = \min(1, \frac{P^*(\theta')q(\theta_t|\theta')}{P^*(\theta_t)q(\theta'|\theta_t)})$. However, in high-dimensional nuclear data spaces where parameters may be highly correlated, standard proposal distributions often result in poor mixing.
+
+For ease of tuning and implementation as well as future proofing, we employ the Affine Invariant Ensemble Sampler (AIES), as implemented in the \textit{emcee} code \cite{emcee}. In this algorithm, an ensemble of $K$ "walkers" are propagated in parallel. The proposal step for a walker $\theta_k$ is based on the current position of a complementary walker $\theta_j$ from the ensemble:
+\begin{equation}
+    \theta_k' = \theta_j + Z (\theta_k - \theta_j)
+\end{equation}
+where $Z$ is a scaling variable drawn from a distribution $g(z) \propto 1/\sqrt{z}$ on the interval $[1/a, a]$. This "stretch move" allows the algorithm to efficiently sample distributions with strong correlations without requiring manual tuning of the covariance matrix of the proposal distribution, making it straightfoward to implement.
 
 \subsection{Likelihood Formulation}
+The formulation of the likelihood function $\mathcal{L}(\theta)$ is one of the main challenges when combining integral and microscopic data, as the magnitude of data points differs by orders of magnitude, hereby possibly diluting the effect of the integral measurement. To try and understand better to which extend the diluting effect of the microscopic measurements affects the useability of the integral measurements, different possibilities to approach the covariance matrix of the measurement points are analyzed. First and foremost, the correct and most rigour method is to use the real covariance matrix describing the measurement points. However, this is often seen as too complex. Especially, calculating experimental correlations between integral experiements and inbetween microscopic and integral experiments. In this regard, the first assumoption comes into play, i.e., there are no correlations between microscopic and integral experiments and no correlations between integral experiments. This assumption may not be valid when integral experiments from the same facility are used, therefore, we limit our analysis by only regarding integral experiments from different facilities. This assumption should be sufficiently valid regarding the correlations due to nuclear data will dominate. Now, it is possible to calculate the total likelihood $\mathcal{L}(\mathbf{\theta})$ for $\mathbf{\theta}$ for the set of microscopic experiments $J$ and integral experiments $I$ using 
+
+\begin{equation}
+    \begin{split}
+        \mathcal{L} (\mathbf{\theta}) = \prod_{j\in J} \frac{1}{\sqrt{(2\pi)^{m_j}\det\mathbf{A_j}}}\exp\left[-\frac{1}{2}(\mathbf{f_j(\theta)}-\mathbf{y_{j}})^T\mathbf{A_j}^{-1}(\mathbf{f_j(\theta)}-\mathbf{y_{j}})\right] & \times \\
+        \prod_{i\in I} \frac{1}{\sqrt{2\pi\sigma^2_i}}\exp\left[-\frac{(f_i(\mathbf{\theta})-y_{i})^2}{2\sigma_{i}^2}\right]
+    \end{split}
+\end{equation}
+
+As probabilities are often very small numbers, the natural logarithm is taken to preserve numerical stability. The log-likelihood $\ln\mathcal{L}(\theta)$ then becomes
+
+\begin{equation}
+    \begin{split}
+        \ln\mathcal{L} (\mathbf{\theta}) = -\frac{1}{2} \sum_{j\in J} \ln\left[(2\pi)^{m_j}\det\mathbf{A_j}\right] + -\frac{1}{2}\sum_{j\in J}\left[(\mathbf{f_j(\theta)}-\mathbf{y_{j}})^T\mathbf{A_j}^{-1}(\mathbf{f_j(\theta)}-\mathbf{y_{j}})\right] & + \\
+        -\frac{1}{2}\sum_{i\in I} \ln \left[2\pi\sigma^2_i\right] + -\frac{1}{2}\sum_{i\in I}\frac{(f_i(\mathbf{\theta})-y_{i})^2}{\sigma_{i}^2} 
+    \end{split}
+\end{equation}
+
+Now two approximations are analyzed, i.e. (1) all microscopic measurement points behave independently and (2) the correlation between all microscopic measurements points of a single experiment is 1 and there is no experimental correlation between the experiments. 
+
+\subsubsection{Independent microscopic measurement points}
+When all measurement points behave independently, each datapoint has the same weight as an integral experiment. In this sense, integral experiments will be diluted and their influence on the posterior is expected to be negligible. Nevertheless, the loglikelihood for independ microscopic experiments therefore becomes
+\begin{equation}
+    \begin{split}
+        \ln\mathcal{L}_J (\mathbf{\theta}) &= -\frac{1}{2} \sum_{j\in J}\sum_{e\in E_j} \ln\left[2\pi\sigma_{j,e}^2\right] + -\frac{1}{2}\sum_{j\in J}\sum_{e\in E_j}\left[\frac{(f_{j,e}(\mathbf{\theta})-y_{j,e})^2}{\sigma_{j,e}^2}\right] \\
+        &= C -\frac{1}{2}\sum_{j\in J}\chi^2_j
+    \end{split}
+\end{equation}
+
+in which $\chi^2=\sum\frac{(y_c-y_e)^2}{\sigma_e^2}$ is the chi-squared goodness-of-fit for the datapoints resulting from an experiment. Since the term $-\frac{1}{2} \sum_{j\in J}\sum_{e\in E_j} \ln\left[2\pi\sigma_{j,e}^2\right]$ does not depend on $\theta$, it can be calculate beforehand and replaced by a constant $C$. 
+
+\subsubsection{Fully correlated microscopic measurement points}
+Now the opposite is assumed and all microscopic measurement points are expected to be highly correlated. Then, we take the chi-squared per degree of freedom to replace
+\begin{equation}
+    \begin{split}
+        \ln\mathcal{L}_J (\mathbf{\theta}) &= -\frac{1}{2} \sum_{j\in J}\frac{1}{N}\sum_{e\in E_j} \ln\left[2\pi\sigma_{j,e}^2\right] + -\frac{1}{2}\sum_{j\in J}\frac{1}{N}\sum_{e\in E_j}\left[\frac{(f_{j,e}(\mathbf{\theta})-y_{j,e})^2}{\sigma_{j,e}^2}\right] \\
+        &= -\frac{1}{2} \sum_{j\in J} 2\pi\bar{\sigma_{j}}^2 -\frac{1}{2}\sum_{j\in J}\chi^2_j / N \\
+        &= C -\frac{1}{2}\sum_{j\in J}\chi^2_{\text{N},j}
+    \end{split}
+\end{equation}
+
+here, $\bar{\sigma_j}$ is the average experimental uncertainty and $\chi_{N,j}^2$ is the chi-squared per degree of freedom for microscopic experiment $j$. 
+
+\subsection{Surrogate modelling}
+Direct coupling of SAMMY and SERPENT within the MCMC loop is computationally prohibitive, as MCMC chains often require $10^4$ to $10^6$ evaluations to converge. Therefore, we construct Stochastic Spectral Surrogates (or Polynomial Chaos Expansions) to map the input nuclear data parameters $\theta \in \mathbb{R}^d$ to the observables of interest.
+
+Let $f(\theta)$ be the high-fidelity code response (either SAMMY or SERPENT). We approximate $f(\theta)$ by a truncated expansion:
+\begin{equation}
+    \hat{f}(\theta) = \sum_{\alpha \in \mathcal{A}} c_\alpha \Psi_\alpha(\theta)
+\end{equation}
+where $\Psi_\alpha$ are multivariate orthogonal polynomials (e.g., Legendre polynomials for uniform priors) corresponding to the multi-index $\alpha$, and $c_\alpha$ are the coefficients determined via regression on a training set.
+
+The training set $\{\theta^{(i)}, f(\theta^{(i)})\}_{i=1}^{N_{train}}$ is generated using Latin Hypercube Sampling (LHS) to ensure optimal space-filling properties. The total uncertainty matrix used in the likelihood evaluation, $\mathbf{C}_{tot}$, is then updated to include the interpolation error of the surrogate:
+\begin{equation}
+    \mathbf{C}_{tot} = \mathbf{C}_{exp} + \mathbf{C}_{code} + \mathbf{C}_{surrogate}
+\end{equation}
+This ensures that the loss of precision due to the surrogate model is propagated into the final posterior width of the nuclear data parameters.
+
+
 
 \section{Results}
 \subsection{Chromium-53}

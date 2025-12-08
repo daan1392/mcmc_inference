@@ -9,4 +9,9 @@ J.~Lepp{\"a}nen, M.~Pusa, T.~Viitanen, V.~Valtavirta, and T.~Kaltiaisenaho,
   ``The {{Serpent Monte Carlo}} code: {{Status}}, development and applications
   in 2013,'' {\em Annals of Nuclear Energy}, vol.~82, pp.~142--150, Aug. 2015.
 
+\bibitem{emcee}
+D.~Foreman-Mackey, D.~W. Hogg, D.~Lang, and J.~Goodman, ``<tt>emcee</tt>: The
+  mcmc hammer,'' {\em Publications of the Astronomical Society of the Pacific},
+  vol.~125, p.~306–312, Mar. 2013.
+
 \end{thebibliography}
