@@ -112,6 +112,8 @@ INPUT C:\Users\dhouben\AppData\Roaming\MiKTeX\tex\latex\microtype\microtype-pdft
 INPUT C:\Users\dhouben\AppData\Roaming\MiKTeX\tex\latex\microtype\microtype.cfg
 INPUT C:\Users\dhouben\AppData\Roaming\MiKTeX\tex\latex\microtype\microtype.cfg
 INPUT C:\Users\dhouben\AppData\Roaming\MiKTeX\tex\latex\microtype\microtype.cfg
+INPUT C:\Users\dhouben\AppData\Roaming\MiKTeX\tex\latex\parskip\parskip.sty
+INPUT C:\Users\dhouben\AppData\Roaming\MiKTeX\tex\latex\parskip\parskip.sty
 INPUT C:\Program Files\MiKTeX\tex\latex\l3backend\l3backend-pdftex.def
 INPUT C:\Program Files\MiKTeX\tex\latex\l3backend\l3backend-pdftex.def
 INPUT .\mcmc_inference.aux
@@ -228,5 +230,3 @@ INPUT C:\Program Files\MiKTeX\fonts\type1\public\amsfonts\cm\cmsy8.pfb
 INPUT C:\Program Files\MiKTeX\fonts\type1\public\amsfonts\cm\cmsy8.pfb
 INPUT C:\Program Files\MiKTeX\fonts\type1\public\amsfonts\cm\cmti10.pfb
 INPUT C:\Program Files\MiKTeX\fonts\type1\public\amsfonts\cm\cmti10.pfb
-INPUT C:\Program Files\MiKTeX\fonts\type1\public\amsfonts\symbols\msbm10.pfb
-INPUT C:\Program Files\MiKTeX\fonts\type1\public\amsfonts\symbols\msbm10.pfb

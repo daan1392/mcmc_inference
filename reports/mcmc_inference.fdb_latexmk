@@ -1,13 +1,13 @@
 # Fdb version 4
-["bibtex mcmc_inference"] 1765212174.9443 "mcmc_inference.aux" "mcmc_inference.bbl" "mcmc_inference" 1765212177.83939 0
-  "./references.bib" 1765199837 3469 b7f4294a156e1b71357acfb8b079ecba ""
+["bibtex mcmc_inference"] 1765291689.46748 "mcmc_inference.aux" "mcmc_inference.bbl" "mcmc_inference" 1765291692.25711 0
+  "./references.bib" 1765289662 4510 7ab73779d6a6ec78fadfaaa97269f4b2 ""
   "C:/Program Files/MiKTeX/bibtex/bst/bibtex/ieeetr.bst" 1291864344 18361 1a00e58565e7f19bf2b3e1bfb82254ae ""
-  "mcmc_inference.aux" 1765212176 2066 adae8dbf7fb6166a67b0fb20041fbbba "pdflatex"
+  "mcmc_inference.aux" 1765291691 2549 0a841376a2797ceb2971facc59488a94 "pdflatex"
   (generated)
   "mcmc_inference.bbl"
   "mcmc_inference.blg"
   (rewritten before read)
-["pdflatex"] 1765212175.92661 "c:/Users/dhouben/OneDrive - Studiecentrum voor Kernenergie/Documents/Internships/EPFL-2025/mcmc_inference/reports/mcmc_inference.tex" "mcmc_inference.pdf" "mcmc_inference" 1765212177.84009 0
+["pdflatex"] 1765291690.3258 "c:/Users/dhouben/OneDrive - Studiecentrum voor Kernenergie/Documents/Internships/EPFL-2025/mcmc_inference/reports/mcmc_inference.tex" "mcmc_inference.pdf" "mcmc_inference" 1765291692.25788 0
   "C:/Program Files/MiKTeX/fonts/tfm/public/amsfonts/cmextra/cmbsy6.tfm" 1233951848 1124 14ccf5552bc7f77ca02a8a402bea8bfb ""
   "C:/Program Files/MiKTeX/fonts/tfm/public/amsfonts/cmextra/cmbsy8.tfm" 1233951848 1120 200be8b775682cdf80acad4be5ef57e4 ""
   "C:/Program Files/MiKTeX/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm" 1233951848 1004 54797486969f23fa377b128694d548df ""
@@ -54,7 +54,6 @@
   "C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy6.pfb" 1247596667 32587 65067f817f408bc71a7312f3d9828a9b ""
   "C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy8.pfb" 1247596667 32626 5abc8bb2f28aa647d4c70f8ea38cc0d3 ""
   "C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmti10.pfb" 1247596667 37944 359e864bd06cde3b1cf57bb20757fb06 ""
-  "C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/symbols/msbm10.pfb" 1247596673 34694 870c211f62cb72718a00e353f14f254d ""
   "C:/Program Files/MiKTeX/tex/context/base/mkii/supp-pdf.mkii" 1580390158 71627 94eb9990bed73c364d7f53f960cc8c5b ""
   "C:/Program Files/MiKTeX/tex/generic/atbegshi/atbegshi.sty" 1575571100 24708 5584a51a7101caf7e6bbf1fc27d8f7b1 ""
   "C:/Program Files/MiKTeX/tex/generic/iftex/iftex.sty" 1734114575 7984 7dbb9280f03c0a315425f1b4f35d43ee ""
@@ -92,7 +91,7 @@
   "C:/Program Files/MiKTeX/tex/latex/l3backend/l3backend-pdftex.def" 1716480499 29785 9f93ab201fe5dd053afcc6c1bcf7d266 ""
   "C:/Program Files/MiKTeX/tex/latex/tools/bm.sty" 1730400552 13236 1aba485b47e3c79a47dc0906cc971820 ""
   "C:/Program Files/MiKTeX/tex/latex/url/url.sty" 1388490452 12796 8edb7d69a20b857904dd0ea757c14ec9 ""
-  "C:/Users/dhouben/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map" 1764854795 279613 fe62a258ff6d99cc2243c3a2d16aa767 ""
+  "C:/Users/dhouben/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map" 1765286315 279613 fe62a258ff6d99cc2243c3a2d16aa767 ""
   "C:/Users/dhouben/AppData/Local/MiKTeX/miktex/data/le/pdftex/pdflatex.fmt" 1741247210 12026068 aeb4367c321f1f6f9fafbaf8f0fc1e0c ""
   "C:/Users/dhouben/AppData/Roaming/MiKTeX/tex/generic/bigintcalc/bigintcalc.sty" 1576433602 40635 c40361e206be584d448876bba8a64a3b ""
   "C:/Users/dhouben/AppData/Roaming/MiKTeX/tex/generic/bitset/bitset.sty" 1575926576 33961 6b5c75130e435b2bfdb9f480a09a39f9 ""
@@ -115,13 +114,14 @@
   "C:/Users/dhouben/AppData/Roaming/MiKTeX/tex/latex/microtype/mt-cmr.cfg" 1752015111 22906 b0be544692bb405a84d147a96af5d777 ""
   "C:/Users/dhouben/AppData/Roaming/MiKTeX/tex/latex/microtype/mt-msa.cfg" 1752015111 5929 11976688d7d8ed4d0d05efd1b3d5a7e9 ""
   "C:/Users/dhouben/AppData/Roaming/MiKTeX/tex/latex/microtype/mt-msb.cfg" 1752015111 5594 d52d5015abe666fae752ed7674c2dd73 ""
+  "C:/Users/dhouben/AppData/Roaming/MiKTeX/tex/latex/parskip/parskip.sty" 1615976160 4288 94714aa7f535440f33181fec52a31963 ""
   "C:/Users/dhouben/AppData/Roaming/MiKTeX/tex/latex/refcount/refcount.sty" 1576433952 9878 9e94e8fa600d95f9c7731bb21dfb67a4 ""
   "C:/Users/dhouben/AppData/Roaming/MiKTeX/tex/latex/rerunfilecheck/rerunfilecheck.sty" 1657800696 9714 ba3194bd52c8499b3f1e3eb91d409670 ""
-  "c:/Users/dhouben/OneDrive - Studiecentrum voor Kernenergie/Documents/Internships/EPFL-2025/mcmc_inference/reports/mcmc_inference.tex" 1765212172 13550 40e3aac6fe0d97bf7d8c533c091d75f5 ""
-  "mcmc_inference.aux" 1765212176 2066 adae8dbf7fb6166a67b0fb20041fbbba "pdflatex"
-  "mcmc_inference.bbl" 1765212175 734 3db25536ad3161c94c9356405ac12ece "bibtex mcmc_inference"
-  "mcmc_inference.out" 1765212176 2284 d6e5e63ff27613456d4c47ce233059d3 "pdflatex"
-  "mcmc_inference.tex" 1765212172 13550 40e3aac6fe0d97bf7d8c533c091d75f5 ""
+  "c:/Users/dhouben/OneDrive - Studiecentrum voor Kernenergie/Documents/Internships/EPFL-2025/mcmc_inference/reports/mcmc_inference.tex" 1765291685 17389 d8ea05241c4299e064f9c16e55755f8f ""
+  "mcmc_inference.aux" 1765291691 2549 0a841376a2797ceb2971facc59488a94 "pdflatex"
+  "mcmc_inference.bbl" 1765291690 1230 79249a4c980887851f0c5584f68fc5c2 "bibtex mcmc_inference"
+  "mcmc_inference.out" 1765291691 2553 4d2e9ccbe7cefa9529f5c343e4f4c542 "pdflatex"
+  "mcmc_inference.tex" 1765291685 17389 d8ea05241c4299e064f9c16e55755f8f ""
   (generated)
   "mcmc_inference.aux"
   "mcmc_inference.log"

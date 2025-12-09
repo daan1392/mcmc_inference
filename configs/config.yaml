@@ -1,6 +1,6 @@
 project_name: "Nuclear_Data_Inference_2025"
 output_dir: "data/mcmc_chains/"
-figures_dir: "reports/figures/latest/"
+figures_dir: "reports/figures/cr_53_5r_int/"
 
 # -----------------------------------------------------------------------------
 # Global Defaults (Apply to all experiments unless overridden)
@@ -16,7 +16,7 @@ defaults:
     n_walkers: 10
     n_steps: 2000
     burn_in: 1000
-    random_seed: 42
+    random_seed: 102
 
 # -----------------------------------------------------------------------------
 # Prior Information
@@ -60,17 +60,17 @@ experiments:
       measurement: 0.99600
       uncertainty: 0.00660
 
-  - id: "cr53_thin"
-    title: "nTOF Cr53 thin (2022)"
-    description: "Time-of-Flight measurement performed in nTOF (CERN) by Pablo Perez et at. using thin Cr-53 target"
-    type: "microscopic" # microscopic assumes your output is based on chi-squared
-    gp_override:
-      kernel: "Quadratic"
+  # - id: "cr53_thin"
+  #   title: "nTOF Cr53 thin (2022)"
+  #   description: "Time-of-Flight measurement performed in nTOF (CERN) by Pablo Perez et at. using thin Cr-53 target"
+  #   type: "microscopic" # microscopic assumes your output is based on chi-squared
+  #   gp_override:
+  #     kernel: "Quadratic"
       
-    training_data:
-      input_path: "data/processed/ntof-jeff40/ntof_inputs.csv"
-      output_path: "data/processed/ntof-jeff40/ntof_outputs.csv" # Using reduced chi-squared statistic
-      C_constant: 10.330074020916287 # -0.5 * (np.log(2 * np.pi * df_lst['dx'].mean()**2))
+  #   training_data:
+  #     input_path: "data/processed/ntof-jeff40/ntof_inputs.csv"
+  #     output_path: "data/processed/ntof-jeff40/ntof_outputs.csv" # Using reduced chi-squared statistic
+  #     C_constant: 10.330074020916287 # -0.5 * (np.log(2 * np.pi * df_lst['dx'].mean()**2))
 
   # - id: "cr53_thin"
   #   title: "nTOF Cr53 thin (2022)"

@@ -14,4 +14,14 @@ D.~Foreman-Mackey, D.~W. Hogg, D.~Lang, and J.~Goodman, ``<tt>emcee</tt>: The
   mcmc hammer,'' {\em Publications of the Astronomical Society of the Pacific},
   vol.~125, p.~306–312, Mar. 2013.
 
+\bibitem{trkovSensitivitySelectedBenchmarks}
+A.~Trkov, O.~Cabellos, and R.~Capote, ``Sensitivity of selected benchmarks to
+  {{Cr-53}} and {{Cr-50}} capture,''
+
+\bibitem{nobreNewlyEvaluatedNeutron2021}
+G.~Nobre, M.~Pigni, D.~Brown, R.~Capote, A.~Trkov, K.~Guber, R.~Arcilla,
+  J.~Gutierrez, A.~Cuadra, G.~Arbanas, B.~Kos, D.~Bernard, and P.~Leconte,
+  ``Newly {{Evaluated Neutron Reaction Data}} on {{Chromium Isotopes}},'' {\em
+  Nuclear Data Sheets}, vol.~173, pp.~1--41, Mar. 2021.
+
 \end{thebibliography}

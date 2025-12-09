@@ -52,7 +52,7 @@ def plot_diagnostics(y_true, y_pred, y_std, title, save_dir, exp_id):
     plt.legend()
     plt.grid(True, alpha=0.3)
     plt.tight_layout()
-    plt.savefig(os.path.join(save_dir, f"{exp_id}_parity.png"), dpi=300)
+    plt.savefig(os.path.join(save_dir, f"validation/{exp_id}_parity.png"), dpi=300)
     plt.close()
 
     # 2. Residual Plot
@@ -72,7 +72,7 @@ def plot_diagnostics(y_true, y_pred, y_std, title, save_dir, exp_id):
     plt.title("Residual Distribution")
     
     plt.tight_layout()
-    plt.savefig(os.path.join(save_dir, f"{exp_id}_residuals.png"), dpi=300)
+    plt.savefig(os.path.join(save_dir, f"validation/{exp_id}_residuals.png"), dpi=300)
     plt.close()
 
 def plot_gp_slices(gp, X_train, y_train, feature_names, save_dir, exp_id):
@@ -128,7 +128,7 @@ def plot_gp_slices(gp, X_train, y_train, feature_names, save_dir, exp_id):
         axes[j].axis('off')
         
     plt.tight_layout()
-    plt.savefig(os.path.join(save_dir, f"{exp_id}_slices.png"), dpi=300)
+    plt.savefig(os.path.join(save_dir, f"validation/{exp_id}_slices.png"), dpi=300)
     plt.close()
 
 def train_surrogates(config_path):
@@ -137,6 +137,8 @@ def train_surrogates(config_path):
     output_dir = "models"
     figures_dir = cfg["figures_dir"]
     os.makedirs(output_dir, exist_ok=True)
+    os.makedirs(os.path.join(figures_dir, "validation/"), exist_ok=True)
+
     
     print(f"--- Training GPs (80/20 Split, No Scaling) ---")
 
