@@ -114,6 +114,12 @@ INPUT C:\Users\dhouben\AppData\Roaming\MiKTeX\tex\latex\microtype\microtype.cfg
 INPUT C:\Users\dhouben\AppData\Roaming\MiKTeX\tex\latex\microtype\microtype.cfg
 INPUT C:\Users\dhouben\AppData\Roaming\MiKTeX\tex\latex\parskip\parskip.sty
 INPUT C:\Users\dhouben\AppData\Roaming\MiKTeX\tex\latex\parskip\parskip.sty
+INPUT C:\Users\dhouben\AppData\Roaming\MiKTeX\tex\latex\caption\subcaption.sty
+INPUT C:\Users\dhouben\AppData\Roaming\MiKTeX\tex\latex\caption\subcaption.sty
+INPUT C:\Users\dhouben\AppData\Roaming\MiKTeX\tex\latex\caption\caption.sty
+INPUT C:\Users\dhouben\AppData\Roaming\MiKTeX\tex\latex\caption\caption.sty
+INPUT C:\Users\dhouben\AppData\Roaming\MiKTeX\tex\latex\caption\caption3.sty
+INPUT C:\Users\dhouben\AppData\Roaming\MiKTeX\tex\latex\caption\caption3.sty
 INPUT C:\Program Files\MiKTeX\tex\latex\l3backend\l3backend-pdftex.def
 INPUT C:\Program Files\MiKTeX\tex\latex\l3backend\l3backend-pdftex.def
 INPUT .\mcmc_inference.aux
@@ -192,6 +198,62 @@ INPUT C:\Program Files\MiKTeX\fonts\tfm\public\cm\cmmib10.tfm
 INPUT C:\Program Files\MiKTeX\fonts\tfm\public\cm\cmbsy10.tfm
 INPUT C:\Users\dhouben\AppData\Local\MiKTeX\fonts\map\pdftex\pdftex.map
 INPUT C:\Program Files\MiKTeX\fonts\tfm\public\cm\cmti10.tfm
+INPUT .\figures\cr_53_10r_all\validation\cr53_thin_slices.png
+INPUT .\figures\cr_53_10r_all\validation\cr53_thin_slices.png
+INPUT .\figures\cr_53_10r_all\validation\cr53_thin_slices.png
+INPUT .\figures\cr_53_10r_all\validation\cr53_thin_slices.png
+INPUT .\figures\cr_53_10r_all\validation\cr53_thin_slices.png
+INPUT .\figures\cr_53_10r_all\validation\cr53_thin_slices.png
+INPUT .\figures\cr_53_10r_all\validation\cr53_thin_slices.png
+INPUT .\figures\cr_53_10r_all\validation\pmi002_slices.png
+INPUT .\figures\cr_53_10r_all\validation\pmi002_slices.png
+INPUT .\figures\cr_53_10r_all\validation\pmi002_slices.png
+INPUT .\figures\cr_53_10r_all\validation\pmi002_slices.png
+INPUT .\figures\cr_53_10r_all\validation\pmi002_slices.png
+INPUT .\figures\cr_53_10r_all\validation\pmi002_slices.png
+INPUT .\figures\cr_53_10r_all\validation\pmi002_slices.png
+INPUT .\figures\cr_53_5r_all\cr53_thin_output_scatterpdf_plot.png
+INPUT .\figures\cr_53_5r_all\cr53_thin_output_scatterpdf_plot.png
+INPUT .\figures\cr_53_5r_all\cr53_thin_output_scatterpdf_plot.png
+INPUT .\figures\cr_53_5r_all\cr53_thin_output_scatterpdf_plot.png
+INPUT .\figures\cr_53_5r_all\cr53_thin_output_scatterpdf_plot.png
+INPUT .\figures\cr_53_5r_all\cr53_thin_output_scatterpdf_plot.png
+INPUT .\figures\cr_53_5r_all\cr53_thin_output_scatterpdf_plot.png
+INPUT .\figures\cr_53_5r_all\hmi001_output_scatterpdf_plot.png
+INPUT .\figures\cr_53_5r_all\hmi001_output_scatterpdf_plot.png
+INPUT .\figures\cr_53_5r_all\hmi001_output_scatterpdf_plot.png
+INPUT .\figures\cr_53_5r_all\hmi001_output_scatterpdf_plot.png
+INPUT .\figures\cr_53_5r_all\hmi001_output_scatterpdf_plot.png
+INPUT .\figures\cr_53_5r_all\hmi001_output_scatterpdf_plot.png
+INPUT .\figures\cr_53_5r_all\hmi001_output_scatterpdf_plot.png
+INPUT .\figures\cr_53_5r_all\pmi002_output_scatterpdf_plot.png
+INPUT .\figures\cr_53_5r_all\pmi002_output_scatterpdf_plot.png
+INPUT .\figures\cr_53_5r_all\pmi002_output_scatterpdf_plot.png
+INPUT .\figures\cr_53_5r_all\pmi002_output_scatterpdf_plot.png
+INPUT .\figures\cr_53_5r_all\pmi002_output_scatterpdf_plot.png
+INPUT .\figures\cr_53_5r_all\pmi002_output_scatterpdf_plot.png
+INPUT .\figures\cr_53_5r_all\pmi002_output_scatterpdf_plot.png
+INPUT .\figures\cr_53_5r_all_independent\cr53_thin_output_scatterpdf_plot.png
+INPUT .\figures\cr_53_5r_all_independent\cr53_thin_output_scatterpdf_plot.png
+INPUT .\figures\cr_53_5r_all_independent\cr53_thin_output_scatterpdf_plot.png
+INPUT .\figures\cr_53_5r_all_independent\cr53_thin_output_scatterpdf_plot.png
+INPUT .\figures\cr_53_5r_all_independent\cr53_thin_output_scatterpdf_plot.png
+INPUT .\figures\cr_53_5r_all_independent\cr53_thin_output_scatterpdf_plot.png
+INPUT .\figures\cr_53_5r_all_independent\cr53_thin_output_scatterpdf_plot.png
+INPUT .\figures\cr_53_5r_all_independent\hmi001_output_scatterpdf_plot.png
+INPUT .\figures\cr_53_5r_all_independent\hmi001_output_scatterpdf_plot.png
+INPUT .\figures\cr_53_5r_all_independent\hmi001_output_scatterpdf_plot.png
+INPUT .\figures\cr_53_5r_all_independent\hmi001_output_scatterpdf_plot.png
+INPUT .\figures\cr_53_5r_all_independent\hmi001_output_scatterpdf_plot.png
+INPUT .\figures\cr_53_5r_all_independent\hmi001_output_scatterpdf_plot.png
+INPUT .\figures\cr_53_5r_all_independent\hmi001_output_scatterpdf_plot.png
+INPUT .\figures\cr_53_5r_all_independent\pmi002_output_scatterpdf_plot.png
+INPUT .\figures\cr_53_5r_all_independent\pmi002_output_scatterpdf_plot.png
+INPUT .\figures\cr_53_5r_all_independent\pmi002_output_scatterpdf_plot.png
+INPUT .\figures\cr_53_5r_all_independent\pmi002_output_scatterpdf_plot.png
+INPUT .\figures\cr_53_5r_all_independent\pmi002_output_scatterpdf_plot.png
+INPUT .\figures\cr_53_5r_all_independent\pmi002_output_scatterpdf_plot.png
+INPUT .\figures\cr_53_5r_all_independent\pmi002_output_scatterpdf_plot.png
 INPUT .\mcmc_inference.bbl
 INPUT .\mcmc_inference.bbl
 INPUT mcmc_inference.bbl
@@ -230,3 +292,5 @@ INPUT C:\Program Files\MiKTeX\fonts\type1\public\amsfonts\cm\cmsy8.pfb
 INPUT C:\Program Files\MiKTeX\fonts\type1\public\amsfonts\cm\cmsy8.pfb
 INPUT C:\Program Files\MiKTeX\fonts\type1\public\amsfonts\cm\cmti10.pfb
 INPUT C:\Program Files\MiKTeX\fonts\type1\public\amsfonts\cm\cmti10.pfb
+INPUT C:\Program Files\MiKTeX\fonts\type1\public\amsfonts\symbols\msam10.pfb
+INPUT C:\Program Files\MiKTeX\fonts\type1\public\amsfonts\symbols\msam10.pfb

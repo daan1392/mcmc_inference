@@ -3,6 +3,13 @@ import argparse
 import joblib
 import arviz as az
 import matplotlib.pyplot as plt
+plt.rcParams.update({
+    "text.usetex": False,            # Disable external LaTeX compiler
+    "font.family": "STIXGeneral",          # Use serif fonts (like Times or CM)
+    "mathtext.fontset": "cm",        # Use Computer Modern for math
+    "axes.formatter.use_mathtext": True # Force scientific notation to use MathText
+})
+
 import yaml
 import numpy as np
 
@@ -277,9 +284,9 @@ def output_scatterpdf_plot(exp, prior, posterior, save_path):
         ylim=ax.get_ylim()
     )
 
-    fig.suptitle(
-        f"{exp.id}"
-    )
+    # fig.suptitle(
+    #     f"{exp.id}"
+    # )
 
     fig.savefig(save_path, dpi=300)
 
@@ -582,6 +589,9 @@ def plot_mcmc_results(config_path):
 
     print("\n--- Prior information ---")
     print(prior_means, prior_stds)
+
+    print("\n--- Prior information ---")
+    print(summary_df['mean'], summary_df['sd']/summary_df['mean'])
 
     print("\n--- Calibration Results ---")
     print(summary_df[['mean', 'sd', 'r_hat']])

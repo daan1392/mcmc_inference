@@ -1,13 +1,13 @@
 # Fdb version 4
-["bibtex mcmc_inference"] 1765291689.46748 "mcmc_inference.aux" "mcmc_inference.bbl" "mcmc_inference" 1765291692.25711 0
-  "./references.bib" 1765289662 4510 7ab73779d6a6ec78fadfaaa97269f4b2 ""
+["bibtex mcmc_inference"] 1765296070.8925 "mcmc_inference.aux" "mcmc_inference.bbl" "mcmc_inference" 1765297470.70235 0
+  "./references.bib" 1765294717 4501 f7d5cc4c30be0d8bee7519ba5307e24f ""
   "C:/Program Files/MiKTeX/bibtex/bst/bibtex/ieeetr.bst" 1291864344 18361 1a00e58565e7f19bf2b3e1bfb82254ae ""
-  "mcmc_inference.aux" 1765291691 2549 0a841376a2797ceb2971facc59488a94 "pdflatex"
+  "mcmc_inference.aux" 1765297469 5130 79d235498063a63d390069bf40c9f024 "pdflatex"
   (generated)
   "mcmc_inference.bbl"
   "mcmc_inference.blg"
   (rewritten before read)
-["pdflatex"] 1765291690.3258 "c:/Users/dhouben/OneDrive - Studiecentrum voor Kernenergie/Documents/Internships/EPFL-2025/mcmc_inference/reports/mcmc_inference.tex" "mcmc_inference.pdf" "mcmc_inference" 1765291692.25788 0
+["pdflatex"] 1765297467.53821 "c:/Users/dhouben/OneDrive - Studiecentrum voor Kernenergie/Documents/Internships/EPFL-2025/mcmc_inference/reports/mcmc_inference.tex" "mcmc_inference.pdf" "mcmc_inference" 1765297470.70311 0
   "C:/Program Files/MiKTeX/fonts/tfm/public/amsfonts/cmextra/cmbsy6.tfm" 1233951848 1124 14ccf5552bc7f77ca02a8a402bea8bfb ""
   "C:/Program Files/MiKTeX/fonts/tfm/public/amsfonts/cmextra/cmbsy8.tfm" 1233951848 1120 200be8b775682cdf80acad4be5ef57e4 ""
   "C:/Program Files/MiKTeX/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm" 1233951848 1004 54797486969f23fa377b128694d548df ""
@@ -54,6 +54,7 @@
   "C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy6.pfb" 1247596667 32587 65067f817f408bc71a7312f3d9828a9b ""
   "C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy8.pfb" 1247596667 32626 5abc8bb2f28aa647d4c70f8ea38cc0d3 ""
   "C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmti10.pfb" 1247596667 37944 359e864bd06cde3b1cf57bb20757fb06 ""
+  "C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/symbols/msam10.pfb" 1247596673 31764 459c573c03a4949a528c2cc7f557e217 ""
   "C:/Program Files/MiKTeX/tex/context/base/mkii/supp-pdf.mkii" 1580390158 71627 94eb9990bed73c364d7f53f960cc8c5b ""
   "C:/Program Files/MiKTeX/tex/generic/atbegshi/atbegshi.sty" 1575571100 24708 5584a51a7101caf7e6bbf1fc27d8f7b1 ""
   "C:/Program Files/MiKTeX/tex/generic/iftex/iftex.sty" 1734114575 7984 7dbb9280f03c0a315425f1b4f35d43ee ""
@@ -103,6 +104,9 @@
   "C:/Users/dhouben/AppData/Roaming/MiKTeX/tex/generic/pdfescape/pdfescape.sty" 1575926700 19007 15924f7228aca6c6d184b115f4baa231 ""
   "C:/Users/dhouben/AppData/Roaming/MiKTeX/tex/generic/stringenc/stringenc.sty" 1575105840 21514 b7557edcee22835ef6b03ede1802dad4 ""
   "C:/Users/dhouben/AppData/Roaming/MiKTeX/tex/generic/uniquecounter/uniquecounter.sty" 1576434012 7008 f92eaa0a3872ed622bbf538217cd2ab7 ""
+  "C:/Users/dhouben/AppData/Roaming/MiKTeX/tex/latex/caption/caption.sty" 1696169587 56128 c2ccf1a29d78c33bc553880402e4fb9a ""
+  "C:/Users/dhouben/AppData/Roaming/MiKTeX/tex/latex/caption/caption3.sty" 1696169587 72619 ee90b6612147680fd73c3b1406a74245 ""
+  "C:/Users/dhouben/AppData/Roaming/MiKTeX/tex/latex/caption/subcaption.sty" 1696169587 12494 0c0cdb824278a4d51cefeb2e79901315 ""
   "C:/Users/dhouben/AppData/Roaming/MiKTeX/tex/latex/geometry/geometry.cfg" 1578053545 1104 7ac475a4e3466b0b43e138e9356bda83 ""
   "C:/Users/dhouben/AppData/Roaming/MiKTeX/tex/latex/geometry/geometry.sty" 1578053545 42759 9cf6c5257b1bc7af01a58859749dd37a ""
   "C:/Users/dhouben/AppData/Roaming/MiKTeX/tex/latex/hycolor/hycolor.sty" 1580380792 18571 4c28a13fc3d975e6e81c9bea1d697276 ""
@@ -117,11 +121,19 @@
   "C:/Users/dhouben/AppData/Roaming/MiKTeX/tex/latex/parskip/parskip.sty" 1615976160 4288 94714aa7f535440f33181fec52a31963 ""
   "C:/Users/dhouben/AppData/Roaming/MiKTeX/tex/latex/refcount/refcount.sty" 1576433952 9878 9e94e8fa600d95f9c7731bb21dfb67a4 ""
   "C:/Users/dhouben/AppData/Roaming/MiKTeX/tex/latex/rerunfilecheck/rerunfilecheck.sty" 1657800696 9714 ba3194bd52c8499b3f1e3eb91d409670 ""
-  "c:/Users/dhouben/OneDrive - Studiecentrum voor Kernenergie/Documents/Internships/EPFL-2025/mcmc_inference/reports/mcmc_inference.tex" 1765291685 17389 d8ea05241c4299e064f9c16e55755f8f ""
-  "mcmc_inference.aux" 1765291691 2549 0a841376a2797ceb2971facc59488a94 "pdflatex"
-  "mcmc_inference.bbl" 1765291690 1230 79249a4c980887851f0c5584f68fc5c2 "bibtex mcmc_inference"
-  "mcmc_inference.out" 1765291691 2553 4d2e9ccbe7cefa9529f5c343e4f4c542 "pdflatex"
-  "mcmc_inference.tex" 1765291685 17389 d8ea05241c4299e064f9c16e55755f8f ""
+  "c:/Users/dhouben/OneDrive - Studiecentrum voor Kernenergie/Documents/Internships/EPFL-2025/mcmc_inference/reports/mcmc_inference.tex" 1765297466 20960 87e135a1ba2fd7ba11bd8f875224c6d3 ""
+  "figures/cr_53_10r_all/validation/cr53_thin_slices.png" 1765288126 107366 5c1b23aa736142c4469a4559af8e1ba8 ""
+  "figures/cr_53_10r_all/validation/pmi002_slices.png" 1765288124 155586 7fe60538aa9f446d7c052f7b28a38e1a ""
+  "figures/cr_53_5r_all/cr53_thin_output_scatterpdf_plot.png" 1765295575 65792 778a384a6861ee906b98f56d05b5ba7a ""
+  "figures/cr_53_5r_all/hmi001_output_scatterpdf_plot.png" 1765295571 68106 c2d03d916baa0386f2b74c4e524ee595 ""
+  "figures/cr_53_5r_all/pmi002_output_scatterpdf_plot.png" 1765295566 72321 14c7bcf1c2fe31e1134929cfd5bd040d ""
+  "figures/cr_53_5r_all_independent/cr53_thin_output_scatterpdf_plot.png" 1765295939 65108 27376674fd5d298db879d440c8cc3401 ""
+  "figures/cr_53_5r_all_independent/hmi001_output_scatterpdf_plot.png" 1765295935 68650 01a00f31b8946c0e7232f514cf27734b ""
+  "figures/cr_53_5r_all_independent/pmi002_output_scatterpdf_plot.png" 1765295932 72771 503ce15b1db6ecb1a0af10f95e6eaf10 ""
+  "mcmc_inference.aux" 1765297469 5130 79d235498063a63d390069bf40c9f024 "pdflatex"
+  "mcmc_inference.bbl" 1765296071 1221 e21d0a066c0304a2e1c36a4a2af735ac "bibtex mcmc_inference"
+  "mcmc_inference.out" 1765297469 2553 4d2e9ccbe7cefa9529f5c343e4f4c542 "pdflatex"
+  "mcmc_inference.tex" 1765297466 20960 87e135a1ba2fd7ba11bd8f875224c6d3 ""
   (generated)
   "mcmc_inference.aux"
   "mcmc_inference.log"

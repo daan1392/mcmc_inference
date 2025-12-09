@@ -10,6 +10,7 @@
 \usepackage{bm} 
 \usepackage{microtype}
 \usepackage[parfill]{parskip}
+\usepackage{subcaption}
 
 \newcommand{\keff}{$k_\text{eff}$}
 \newcommand{\nuclide}[2]{$^{#1}$#2}
@@ -87,7 +88,7 @@ Now two approximations are analyzed, i.e. (1) all microscopic measurement points
 
 \subsubsection{Independent microscopic measurement points}
 When all measurement points behave independently, each datapoint has the same weight as an integral experiment. In this sense, integral experiments will be diluted and their influence on the posterior is expected to be negligible. Nevertheless, the loglikelihood for independ microscopic experiments from Eq. \ref{eq:loglikelihood} therefore becomes
-\begin{equation}
+\begin{equation}\label{eq:independent}
     \begin{split}
         \ln\mathcal{L}_J (\mathbf{\theta}) &= -\frac{1}{2} \sum_{j\in J}\sum_{e\in E_j} \ln\left[2\pi\sigma_{j,e}^2\right] + -\frac{1}{2}\sum_{j\in J}\sum_{e\in E_j}\left[\frac{(f_{j,e}(\mathbf{\theta})-y_{j,e})^2}{\sigma_{j,e}^2}\right] \\
         &= C -\frac{1}{2}\sum_{j\in J}\chi^2_j
@@ -96,8 +97,8 @@ When all measurement points behave independently, each datapoint has the same we
 in which $\chi^2=\sum\frac{(y_c-y_e)^2}{\sigma_e^2}$ is the chi-squared goodness-of-fit for the datapoints resulting from an experiment. Since the term $-\frac{1}{2} \sum_{j\in J}\sum_{e\in E_j} \ln\left[2\pi\sigma_{j,e}^2\right]$ does not depend on $\theta$, it can be calculate beforehand and replaced by a constant $C$. 
 
 \subsubsection{Fully correlated microscopic measurement points}
-Now the opposite is assumed and all microscopic measurement points are expected to be highly correlated. Then, we take the chi-squared per degree of freedom, so Eq. \ref{eq:likelihood} becomes
-\begin{equation}
+Now the opposite is assumed and all microscopic measurement points are expected to be highly correlated. Then, we take the chi-squared per degree of freedom, so Eq. \ref{eq:loglikelihood} becomes
+\begin{equation}\label{eq:correlated}
     \begin{split}
         \ln\mathcal{L}_J (\mathbf{\theta}) &= -\frac{1}{2} \sum_{j\in J}\frac{1}{N}\sum_{e\in E_j} \ln\left[2\pi\sigma_{j,e}^2\right] + -\frac{1}{2}\sum_{j\in J}\frac{1}{N}\sum_{e\in E_j}\left[\frac{(f_{j,e}(\mathbf{\theta})-y_{j,e})^2}{\sigma_{j,e}^2}\right] \\
         &= -\frac{1}{2} \sum_{j\in J} 2\pi\bar{\sigma_{j}}^2 -\frac{1}{2}\sum_{j\in J}\chi^2_j / N \\
@@ -127,7 +128,90 @@ Chromium is an isotope that is used frequently in nuclear reactors, more specifi
 Several integral experiments were previously identified as candidates, see \cite{nobreNewlyEvaluatedNeutron2021}, however, in this paper the criticality experiments PMI-002 and HMI-001 were selected due to their significantly higher sensitivity in the 1-10 keV range. In this paper, only the $\Gamma_\gamma$ at 4 keV was infered due to this being the most sensitive $\Gamma_\gamma$-width affecting criticality. The $E_r$ and $\Gamma_n$ were not perturbed as they are more easily derived from transmission measurements. In this sense, this inference problem is quite trivial since we are only inferring a single parameter and the criticality experiments behave linearly with respect to changes in $\Gamma_\gamma$, however this is taken as a case study.
 \section{Results}
 \subsection{Chromium-53}
-In Figure x, the validation of the Gaussian Process is shown for (a) the microscopic expeirment and (b) an integral experiment. It can be seen that the 
+In Figure \ref{fig:GPslice}, the validation of the Gaussian Process is shown for (a) the microscopic expeirment and (b) an integral experiment.
+\begin{figure}
+\centering
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=\linewidth]{figures/cr_53_10r_all/validation/cr53_thin_slices.png}
+  \caption{Microscopic}
+  \label{fig:GPmicro}
+\end{subfigure}%
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=\linewidth]{figures/cr_53_10r_all/validation/pmi002_slices.png}
+  \caption{Integral}
+  \label{fig:GPinter}
+\end{subfigure}
+\caption{GPs for microscopic (A) and integral (B) experiment.}
+\label{fig:GPslice}
+\end{figure}
+
+Several possibilities are now identified, being the case in which only the integral experiments are included, then only microscopic experiment, then both microscopic and integral in which the microscopic experiment is included as in Eq. \ref{eq:independent} and as in Eq. \ref{eq:correlated}. The results are shown in Table \ref{tab:cr53mcmc}.
+\begin{table}[]
+\caption{Overview of posterior mean and uncertainty for different combinations of experiments included.}\label{tab:cr53mcmc}
+\centering
+\begin{tabular}{lcccll}
+Case    & PMI002    & HMI001        & ntof (ind.)   & mean  & uncertainty (\%)  \\ \hline
+1       &           &               &               & 4.14  & 5.0               \\
+2       & \checkmark& \checkmark    &               & 4.16  & 4.9               \\
+3       &           &               & \checkmark    & 3.59  & 4.1               \\ 
+4       & \checkmark& \checkmark    & \checkmark    & 3.60  & 4.0               \\
+5(ind.) & \checkmark& \checkmark    & \checkmark    & 3.09  & 2.3              \\
+ \hline
+\end{tabular}
+\end{table}
+
+In Figure x, the prior and posterior distribution can be found for case 4 in which the Figure \ref{fig:mcmcall}. It is important to note that in these.
+\begin{figure}
+\centering
+\begin{subfigure}{.3\textwidth}
+  \centering
+  \includegraphics[width=\linewidth]{figures/cr_53_5r_all/cr53_thin_output_scatterpdf_plot.png}
+  \caption{nTOF}
+  \label{fig:MCMCntof}
+\end{subfigure}%
+\begin{subfigure}{.3\textwidth}
+  \centering
+  \includegraphics[width=\linewidth]{figures/cr_53_5r_all/hmi001_output_scatterpdf_plot.png}
+  \caption{Integral - HMI001}
+  \label{fig:MCMChmi1}
+\end{subfigure}
+\begin{subfigure}{.3\textwidth}
+  \centering
+  \includegraphics[width=\linewidth]{figures/cr_53_5r_all/pmi002_output_scatterpdf_plot.png}
+  \caption{Integral - PMI002}
+  \label{fig:MCMCpmi2}
+\end{subfigure}
+\caption{GPs for microscopic (A) and integral (B) and (C) experiments.}
+\label{fig:mcmcall}
+\end{figure}
+
+In contrast, when the datapoints are considered independent from each other, the weight of the microscopic datapoints increases heavily. This can be seen in Fig.
+\begin{figure}
+\centering
+\begin{subfigure}{.3\textwidth}
+  \centering
+  \includegraphics[width=\linewidth]{figures/cr_53_5r_all_independent/cr53_thin_output_scatterpdf_plot.png}
+  \caption{nTOF}
+  \label{fig:MCMCntofind}
+\end{subfigure}%
+\begin{subfigure}{.3\textwidth}
+  \centering
+  \includegraphics[width=\linewidth]{figures/cr_53_5r_all_independent/hmi001_output_scatterpdf_plot.png}
+  \caption{Integral - HMI001}
+  \label{fig:MCMChmi1ind}
+\end{subfigure}
+\begin{subfigure}{.3\textwidth}
+  \centering
+  \includegraphics[width=\linewidth]{figures/cr_53_5r_all_independent/pmi002_output_scatterpdf_plot.png}
+  \caption{Integral - PMI002}
+  \label{fig:MCMCpmi2ind}
+\end{subfigure}
+\caption{GPs for microscopic (A) and integral (B) and (C) experiments.}
+\label{fig:mcmcallind}
+\end{figure}
+
 \section{Discussion}
 
 \section{Conclusions and future work}
