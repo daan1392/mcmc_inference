@@ -128,9 +128,32 @@ When performing a Bayesian Optimization, uncertainties of other nuclides should 
 in which $\Sigma_k$ is the covariance matrix on \keff{} for the nuclear systems under consideration. The nuclear data which is not being adjusted is not included in the covariance matrix or sensitivity profiles and therefore, only the remaining nuclear data uncertainties are propagated. The remaining variance is then added to the experiemental variance. This ensures the nuclear data adjustment is not correcting for bias in other nuclear data. However, it also makes the integral experiments less informative since they are heavily subjected to nuclear data coming from fuel materials. 
 \section{Description of cases}
 \subsection{Chromium-53}
-Chromium is an isotope that is used frequently in nuclear reactors, more specifically in stainless steel in order to increase its corrosion resistance (11-26\%). This, together with the scattering and capture cross sections being significant, makes it an element important for criticality safety in some nuclear systems \cite{trkovSensitivitySelectedBenchmarks}. A major nuclide of chromium with a relatively poor estimation of the cross section is \nuclide{53}{Cr} in the 1-10 keV range. Several microscopic measurements exist which measure the capture yield, most notably Guber (2011) and Stieglitz (19xx). However, these experiments are not very consistent with the data available in evaluated nuclear data libraries. In a recent study by Perez-Maroto et al. (2025), new capture yield measurements were performed with a thin sample. It is seen as a possibility to see whether integral experiments sensitive to Cr-53 in the 1-10 keV range can be used in a Bayesian framework to increase the confidence in the nuclear data of \nuclide{53}{Cr}. 
+Chromium is an isotope that is used frequently in nuclear reactors, more specifically in stainless steel in order to increase its corrosion resistance (11-26\%). This, together with the scattering and capture cross sections being significant, makes it an element important for criticality safety in some nuclear systems \cite{trkovSensitivitySelectedBenchmarks}. A major nuclide of chromium with a relatively poor estimation of the cross section is \nuclide{53}{Cr} in the 1-10 keV range. Several microscopic measurements exist which measure the capture yield, most notably Guber (2011) and Stieglitz (19xx). However, these experiments are not very consistent with the data available in evaluated nuclear data libraries. In a recent study by Perez-Maroto et al. (2025), new capture yield measurements were performed with a thin sample. It is seen as a possibility to observe whether integral experiments sensitive to Cr-53 in the 1-10 keV range can be used in a Bayesian framework to increase the confidence in the nuclear data of \nuclide{53}{Cr}. 
 
-Several integral experiments were previously identified as candidates, see \cite{nobreNewlyEvaluatedNeutron2021}, however, in this paper the criticality experiments PMI-002 and HMI-001 were selected due to their significant sensitivity in the 1-10 keV range. In this paper, only the $\Gamma_\gamma$ at 4 keV was infered due to this being the most sensitive $\Gamma_\gamma$-width affecting criticality. The $E_r$ and $\Gamma_n$ were not perturbed as they are more easily derived from transmission measurements. In this sense, this inference problem is quite trivial since we are only inferring a single parameter and the criticality experiments behave linearly with respect to changes in $\Gamma_\gamma$, however this is taken as a case study.
+Several integral experiments were previously identified as candidates, see \cite{nobreNewlyEvaluatedNeutron2021}, however, in this paper the criticality experiments PMI-002 and HMI-001 were selected due to their significant sensitivity in the 1-10 keV range, as can be seen in Figure \ref{fig:sensint} in which the calculated sensitivity to Cr-53 capture is shown for PMI-002 and HMI-001. 
+\begin{figure}
+  \centering
+  \includegraphics[width=0.4\linewidth]{figures/sensitivity_hmi001+pmi002_Cr53.png}
+  \caption{Sensitivity profiles for two criticality experiments sensitive to Cr-53 (n,$\gamma$)}\label{fig:sensint}
+\end{figure}
+
+In this paper, only the $\Gamma_\gamma$ at 4 keV was infered due to this being the most sensitive $\Gamma_\gamma$-width affecting criticality. The $E_r$ and $\Gamma_n$ were not perturbed as they are more easily derived from transmission measurements. In this sense, this inference problem is quite trivial since we are only inferring a single parameter and the criticality experiments behave linearly with respect to changes in $\Gamma_\gamma$, however this is taken as a case study. The perturbation of first $\Gamma_\gamma$-width can be seen in Figure \ref{fig:trainingsamples} for (a) the capture yield and (b) the cross section. 
+\begin{figure}
+\centering
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=\linewidth]{figures/latest/XS_fit_nTOF.png}
+  \caption{Capture yield}
+\end{subfigure}%
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=\linewidth]{figures/cr53_capture_xs_samples.png}
+  \caption{Cross section}
+\end{subfigure}
+\caption{Random samples for capture yield (A) and cross section (B).}
+\label{fig:trainingsamples}
+\end{figure}
+
 \section{Results and discussions}
 \subsection{Chromium-53}
 In Figure \ref{fig:GPslice}, the validation of the Gaussian Process is shown for (a) the microscopic expeirment and (b) an integral experiment.
@@ -192,7 +215,7 @@ In Figure x, the prior and posterior distribution can be found for case 4 in whi
 \label{fig:mcmcall}
 \end{figure}
 
-In contrast, when the datapoints are considered independent from each other, the weight of the microscopic datapoints increases heavily. This can be seen in Fig.
+In contrast, when the datapoints are considered independent from each other, the weight of the microscopic datapoints increases heavily. This can be seen in Fig. \ref{fig:mcmcall}.
 \begin{figure}
 \centering
 \begin{subfigure}{.3\textwidth}

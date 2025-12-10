@@ -80,7 +80,7 @@ class MicroscopicExperiment:
         chi2 = max(0.0, chi2_val.item())  # Clamp to 0
 
         # Standard Likelihood = -0.5 * Chi2
-        ll = self.C - 0.5 * chi2 * 256
+        ll = self.C - 0.5 * chi2
 
         # adjust ll with weight if needed
         return self.weight * ll

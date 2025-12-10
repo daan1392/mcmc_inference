@@ -1,6 +1,6 @@
 project_name: "Nuclear_Data_Inference_2025"
 output_dir: "data/mcmc_chains/"
-figures_dir: "reports/figures/cr_53_5r_all_independent/"
+figures_dir: "reports/figures/cr_53_20r_int_1000pcm/"
 
 # -----------------------------------------------------------------------------
 # Global Defaults (Apply to all experiments unless overridden)
@@ -25,10 +25,7 @@ parameters:
   names: ["Cr53_Gg4keV"]
   # prior_means: [3.08939406]
   prior_means: [4.14]
-  prior_stds: [0.05] #TODO Relative standard deviation!
-  # names: ["Gg1", "Gg2", "Gg3", "Gg4"]
-  # prior_means: [3.08939406, 0.54058761, 3.30766932, 1.68063740]
-  # prior_stds: [0.10, 0.10, 0.10, 0.10]
+  prior_stds: [0.20]
 
 # -----------------------------------------------------------------------------
 # Experiment Definitions
@@ -45,7 +42,7 @@ experiments:
     
     experimental_data:
       measurement: 0.98780
-      uncertainty: 0.00630
+      uncertainty: 0.01230
 
   - id: "hmi001"
     title: "HMI001"
@@ -58,7 +55,7 @@ experiments:
       
     experimental_data:
       measurement: 0.99600
-      uncertainty: 0.00660
+      uncertainty: 0.01260
 
   - id: "cr53_thin"
     title: "nTOF Cr53 thin (2022)"
@@ -71,16 +68,4 @@ experiments:
       input_path: "data/processed/ntof-jeff40/ntof_inputs.csv"
       output_path: "data/processed/ntof-jeff40/ntof_outputs.csv" # Using reduced chi-squared statistic
       C_constant: 10.330074020916287 # -0.5 * (np.log(2 * np.pi * df_lst['dx'].mean()**2))
-      C_constant: 2644.498949354568
-
-  # - id: "cr53_thin"
-  #   title: "nTOF Cr53 thin (2022)"
-  #   description: "Time-of-Flight measurement performed in nTOF (CERN) by Pablo Perez et at. using thin Cr-53 target"
-  #   type: "microscopic" # microscopic assumes your output is based on chi-squared
-  #   gp_override:
-  #     kernel: "Quadratic"
-      
-  #   training_data:
-  #     input_path: "data/processed/ntof-multi/ntof-multi_inputs.csv"
-  #     output_path: "data/processed/ntof-multi/ntof-multi_outputs.csv" # Using reduced chi-squared statistic
-  #     C_constant: 10.330074020916287 # -0.5 * (np.log(2 * np.pi * df_lst['dx'].mean()**2))
+      # C_constant: 2644.498949354568
