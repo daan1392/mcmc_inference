@@ -14,6 +14,28 @@ D.~Foreman-Mackey, D.~W. Hogg, D.~Lang, and J.~Goodman, ``emcee: The mcmc
   hammer,'' {\em Publications of the Astronomical Society of the Pacific},
   vol.~125, p.~306–312, Mar. 2013.
 
+\bibitem{aufieroCollisionHistorybasedApproach2015}
+M.~Aufiero, A.~Bidaud, M.~Hursin, J.~Lepp{\"a}nen, G.~Palmiotti, S.~Pelloni,
+  and P.~Rubiolo, ``A collision history-based approach to
+  sensitivity/perturbation calculations in the continuous energy {{Monte
+  Carlo}} code {{SERPENT}},'' {\em Annals of Nuclear Energy}, vol.~85,
+  pp.~245--258, Nov. 2015.
+
+\bibitem{fioritoJEFF33CovarianceApplication2019}
+L.~Fiorito, J.~Dyrda, and M.~Fleming, ``{{JEFF-3}}.3 covariance application to
+  {{ICSBEP}} using {{SANDY}} and {{NDAST}},'' {\em EPJ Web of Conferences},
+  vol.~211, p.~07003, 2019.
+
+\bibitem{muirNJOYNuclearData}
+D.~W. Muir, R.~M. Boicourt, A.~C. Kahler, J.~L. Conlin, and W.~Haeck, ``The
+  {{NJOY Nuclear Data Processing System}}, {{Version}} 2016,''
+
+\bibitem{broadheadSensitivityUncertaintyBasedCriticality2004}
+B.~L. Broadhead, B.~T. Rearden, C.~M. Hopper, J.~J. Wagschal, and C.~V. Parks,
+  ``Sensitivity- and {{Uncertainty-Based Criticality Safety Validation
+  Techniques}},'' {\em Nuclear Science and Engineering}, vol.~146,
+  pp.~340--366, Mar. 2004.
+
 \bibitem{trkovSensitivitySelectedBenchmarks}
 A.~Trkov, O.~Cabellos, and R.~Capote, ``Sensitivity of selected benchmarks to
   {{Cr-53}} and {{Cr-50}} capture,''
