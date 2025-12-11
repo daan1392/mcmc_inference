@@ -10,6 +10,7 @@ plt.rcParams.update(
         "font.family": "STIXGeneral",  # Use serif fonts (like Times or CM)
         "mathtext.fontset": "cm",  # Use Computer Modern for math
         "axes.formatter.use_mathtext": True,  # Force scientific notation to use MathText
+        "font.size": 16,
     }
 )
 
@@ -566,14 +567,14 @@ def plot_mcmc_results(config_path):
     print("Generating Summary Table...")
     summary_df = az.summary(idata, hdi_prob=0.95)
 
-    summary_path = os.path.join("reports", "posterior_summary.csv")
+    summary_path = os.path.join(figures_dir, "posterior_summary.csv")
     summary_df.to_csv(summary_path)
 
     print("\n--- Prior information ---")
     print(prior_means, prior_stds)
 
-    print("\n--- Prior information ---")
-    print(summary_df["mean"], summary_df["sd"] / summary_df["mean"])
+    print("\n--- Posterior information ---")
+    print(summary_df["mean"].values[0], (summary_df["sd"] / summary_df["mean"]).values[0])
 
     print("\n--- Calibration Results ---")
     print(summary_df[["mean", "sd", "r_hat"]])

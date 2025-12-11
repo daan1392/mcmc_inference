@@ -16,6 +16,16 @@ from sklearn.gaussian_process.kernels import (
     DotProduct,
 )
 
+plt.rcParams.update(
+    {
+        "text.usetex": False,  # Disable external LaTeX compiler
+        "font.family": "STIXGeneral",  # Use serif fonts (like Times or CM)
+        "mathtext.fontset": "cm",  # Use Computer Modern for math
+        "axes.formatter.use_mathtext": True,  # Force scientific notation to use MathText
+        "font.size": 14,
+    }
+)
+
 
 def load_config(config_path):
     with open(config_path, "r") as f:
@@ -94,7 +104,7 @@ def plot_diagnostics(y_true, y_pred, y_std, title, save_dir, exp_id):
     plt.close()
 
 
-def plot_gp_slices(gp, X_train, y_train, feature_names, save_dir, exp_id):
+def plot_gp_slices(gp, X_train, y_train, feature_names, save_dir, exp_id, exp_type):
     """
     Plots the GP behavior by varying one feature at a time across 1000 points.
     Other features are held at their mean.
@@ -143,10 +153,11 @@ def plot_gp_slices(gp, X_train, y_train, feature_names, save_dir, exp_id):
         # Overlay Training Data (Projected onto this dimension)
         ax.scatter(X_train[:, i], y_train, c="k", s=10, alpha=0.3, label="Training Data")
 
-        ax.set_title(exp_id + f" - Varying: {fname}")
+        # ax.set_title(exp_id + f" - Varying: {fname}")
         ax.set_xlabel(r"$\Gamma_\gamma(E=4 keV)$, eV")
-        ax.set_ylabel("Output")
-        ax.grid(True, alpha=0.3)
+        ax.set_ylabel(r"$k_{\text{eff}}$" if exp_type == "integral" else r"$\chi^2$")
+        # ax.grid(True, alpha=0.3)
+        ax.spines[["right", "top"]].set_visible(False)
         if i == 0:
             ax.legend()
 
@@ -226,7 +237,7 @@ def train_surrogates(config_path):
         plot_diagnostics(y_val, y_pred, y_std, exp.get("title"), figures_dir, exp_id)
 
         # 2. Slice Plots (using Training data range + 1000 predicted points)
-        plot_gp_slices(gp, X_train, y_train, feature_names, figures_dir, exp_id)
+        plot_gp_slices(gp, X_train, y_train, feature_names, figures_dir, exp_id, exp["type"])
 
         # Save
         joblib.dump(gp, os.path.join(output_dir, f"{exp_id}_gp.joblib"))

@@ -1,6 +1,6 @@
 project_name: "Nuclear_Data_Inference_2025"
 output_dir: "data/mcmc_chains/"
-figures_dir: "reports/figures/cr_53_20r_int_1000pcm/"
+figures_dir: "reports/figures/cr53_20r_all_0pcm/"
 
 # -----------------------------------------------------------------------------
 # Global Defaults (Apply to all experiments unless overridden)
@@ -14,7 +14,7 @@ defaults:
   mcmc:
     sampler: "emcee"
     n_walkers: 10
-    n_steps: 5000
+    n_steps: 2000
     burn_in: 1000
     random_seed: 102
 
@@ -35,27 +35,29 @@ experiments:
     title: "PMI002"
     description: "PU-MET-INTER-002 using stainless steel reflector"
     type: "integral"
-    
+
     training_data:
       input_path: "data/processed/pmi002/pmi002_inputs.csv"
       output_path: "data/processed/pmi002/pmi002_outputs.csv"
     
     experimental_data:
       measurement: 0.98780
-      uncertainty: 0.01230
+      # uncertainty: 0.00010
+      uncertainty: 0.00230
 
   - id: "hmi001"
     title: "HMI001"
     description: "Stainless steel reflector"
     type: "integral"
-      
+  
     training_data:
       input_path: "data/processed/hmi001/hmi001_inputs.csv"
       output_path: "data/processed/hmi001/hmi001_outputs.csv"
       
     experimental_data:
       measurement: 0.99600
-      uncertainty: 0.01260
+      # uncertainty: 0.00010
+      uncertainty: 0.00260
 
   - id: "cr53_thin"
     title: "nTOF Cr53 thin (2022)"
