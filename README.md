@@ -1,15 +1,10 @@
 # MCMC Inference
-Markov Chain Monte Carlo (MCMC) workflow to infer nuclear data from both microscopic energy dependent and integral measurements. Surrogate models are built per experiment using Gaussian Processes with the 80/20 rule for testing. The emcee sampler is used 
+Markov Chain Monte Carlo (MCMC) framework to infer nuclear data from both microscopic energy dependent and integral experiments. Surrogate models are built per experiment using Gaussian Processes with the 80/20 rule for testing. This work was build upon scripts from @Sarah Maccario. Microscopic experiments could be included due to the help of Pablo Pérez-Maroto. 
 
 ## Features
-- Train Gaussian Process surrogates for measurements
-- Run MCMC inference using surrogate predictions
-- Config-driven experiments
-
-## Prerequisites
-- Python 3.10+
-- Git
-- Recommended: virtual environment (venv or conda)
+- Train Gaussian Process (GP) surrogates for each experiment included
+- Run MCMC inference using the GPs
+- Plot prior and posterior responses
 
 ## Installation
 Clone and install in editable mode:

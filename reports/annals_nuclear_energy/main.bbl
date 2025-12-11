@@ -1,0 +1,96 @@
+\begin{thebibliography}{10}
+\expandafter\ifx\csname url\endcsname\relax
+  \def\url#1{\texttt{#1}}\fi
+\expandafter\ifx\csname urlprefix\endcsname\relax\def\urlprefix{URL }\fi
+\expandafter\ifx\csname href\endcsname\relax
+  \def\href#1#2{#2} \def\path#1{#1}\fi
+
+\bibitem{larsonUpdatedUsersGuide2008}
+N.~M. Larson, \href{http://www.osti.gov/servlets/purl/941054-BqQIHy/}{Updated
+  {{User}}'s {{Guide}} for {{Sammy}}: {{Multilevel R-Matrix Fits}} to {{Neutron
+  Data Using Bayes}}' {{Equations}}}.
+\newblock \href {https://doi.org/10.2172/941054} {\path{doi:10.2172/941054}}.
+\newline\urlprefix\url{http://www.osti.gov/servlets/purl/941054-BqQIHy/}
+
+\bibitem{leppanenSerpentMonteCarlo2015}
+J.~Lepp{\"a}nen, M.~Pusa, T.~Viitanen, V.~Valtavirta, T.~Kaltiaisenaho, The
+  {{Serpent Monte Carlo}} code: {{Status}}, development and applications in
+  2013, Annals of Nuclear Energy 82 (2015) 142--150.
+\newblock \href {https://doi.org/10.1016/j.anucene.2014.08.024}
+  {\path{doi:10.1016/j.anucene.2014.08.024}}.
+
+\bibitem{hoeferLimitationsGeneralizedLinear}
+A.~Hoefer, O.~Buss, J.~C. Neuber, Limitations of the {{Generalized Linear Least
+  Squares Methodology}} for {{Bias Estimation}} in {{Criticality Safety
+  Analysis}}.
+
+\bibitem{rochmanMonteCarloNuclear2018a}
+D.~Rochman, E.~Bauge, A.~Vasiliev, H.~Ferroukhi, S.~Pelloni, A.~J. Koning,
+  J.~{\relax Ch}. Sublet, Monte {{Carlo}} nuclear data adjustment via integral
+  information, The European Physical Journal Plus 133~(12) (2018) 537.
+\newblock \href {https://doi.org/10.1140/epjp/i2018-12361-x}
+  {\path{doi:10.1140/epjp/i2018-12361-x}}.
+
+\bibitem{hoeferMOCABAGeneralMonte2015}
+A.~Hoefer, O.~Buss, M.~Hennebach, M.~Schmid, D.~Porsch, {{MOCABA}}: {{A}}
+  general {{Monte Carlo}}--{{Bayes}} procedure for improved predictions of
+  integral functions of nuclear data, Annals of Nuclear Energy 77 (2015)
+  514--521.
+\newblock \href {https://doi.org/10.1016/j.anucene.2014.11.038}
+  {\path{doi:10.1016/j.anucene.2014.11.038}}.
+
+\bibitem{emcee}
+D.~Foreman-Mackey, D.~W. Hogg, D.~Lang, J.~Goodman,
+  \href{http://dx.doi.org/10.1086/670067}{emcee: The mcmc hammer}, Publications
+  of the Astronomical Society of the Pacific 125~(925) (2013) 306–312.
+\newblock \href {https://doi.org/10.1086/670067} {\path{doi:10.1086/670067}}.
+\newline\urlprefix\url{http://dx.doi.org/10.1086/670067}
+
+\bibitem{aufieroCollisionHistorybasedApproach2015}
+M.~Aufiero, A.~Bidaud, M.~Hursin, J.~Lepp{\"a}nen, G.~Palmiotti, S.~Pelloni,
+  P.~Rubiolo, A collision history-based approach to sensitivity/perturbation
+  calculations in the continuous energy {{Monte Carlo}} code {{SERPENT}},
+  Annals of Nuclear Energy 85 (2015) 245--258.
+\newblock \href {https://doi.org/10.1016/j.anucene.2015.05.008}
+  {\path{doi:10.1016/j.anucene.2015.05.008}}.
+
+\bibitem{fioritoJEFF33CovarianceApplication2019}
+L.~Fiorito, J.~Dyrda, M.~Fleming, {{JEFF-3}}.3 covariance application to
+  {{ICSBEP}} using {{SANDY}} and {{NDAST}}, EPJ Web of Conferences 211 (2019)
+  07003.
+\newblock \href {https://doi.org/10.1051/epjconf/201921107003}
+  {\path{doi:10.1051/epjconf/201921107003}}.
+
+\bibitem{muirNJOYNuclearData}
+D.~W. Muir, R.~M. Boicourt, A.~C. Kahler, J.~L. Conlin, W.~Haeck, The {{NJOY
+  Nuclear Data Processing System}}, {{Version}} 2016.
+
+\bibitem{broadheadSensitivityUncertaintyBasedCriticality2004}
+B.~L. Broadhead, B.~T. Rearden, C.~M. Hopper, J.~J. Wagschal, C.~V. Parks,
+  Sensitivity- and {{Uncertainty-Based Criticality Safety Validation
+  Techniques}}, Nuclear Science and Engineering 146~(3) (2004) 340--366.
+\newblock \href {https://doi.org/10.13182/NSE03-2}
+  {\path{doi:10.13182/NSE03-2}}.
+
+\bibitem{trkovSensitivitySelectedBenchmarks}
+A.~Trkov, O.~Cabellos, R.~Capote, Sensitivity of selected benchmarks to
+  {{Cr-53}} and {{Cr-50}} capture.
+
+\bibitem{guberNeutronCrossSectionMeasurements2011}
+K.~H. Guber, P.~E. Koehler, D.~E. Wiarda, J.~A. Harvey, Neutron {{Cross-Section
+  Measurements}} on {{Structural Materials}} at {{ORELA}}, Journal of the
+  Korean Physical Society 59~(2(3)) (2011) 1685--1688.
+\newblock \href {https://doi.org/10.3938/jkps.59.1685}
+  {\path{doi:10.3938/jkps.59.1685}}.
+
+\bibitem{stieglitz1971kev}
+R.~Stieglitz, R.~Hockenbury, R.~Block, kev neutron capture and transmission
+  measurements on 50cr, 52cr, 53cr, 54cr, 60ni and v, Nuclear Physics A 163~(2)
+  (1971) 592--624.
+
+\bibitem{internationalcriticalitysafetybenchmarkevaluationprojecticsbepInternationalHandbookEvaluated2024}
+{International Criticality Safety Benchmark Evaluation Project (ICSBEP)},
+  International {{Handbook}} of {{Evaluated Criticality Safety Benchmark
+  Experiments}}, OECD Nuclear Energy Agency (NEA), 2024.
+
+\end{thebibliography}

@@ -1,3 +1,11 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+Created on Tue Dec 11 17:04:22 2025
+
+@author: Daan Houben
+"""
+
 import os
 import joblib
 import numpy as np
@@ -190,7 +198,6 @@ def run_joint_mcmc(config_path):
     n_steps = cfg["defaults"]["mcmc"]["n_steps"]
     ndim = len(prior_means)
 
-    # Initialize walkers in a tight ball around the prior mean
     pos = np.random.normal(
         loc=prior_means,
         scale=np.array(prior_stds) * 0.1,  # Tight initialization

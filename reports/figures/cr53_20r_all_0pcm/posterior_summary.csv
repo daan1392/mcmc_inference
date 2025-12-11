@@ -1,0 +1,2 @@
+,mean,sd,hdi_2.5%,hdi_97.5%,mcse_mean,mcse_sd,ess_bulk,ess_tail,r_hat
+Cr53_Gg4keV,3.261,0.21,2.862,3.635,0.008,0.007,694.0,1399.0,1.02

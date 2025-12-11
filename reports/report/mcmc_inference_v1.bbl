@@ -1,0 +1,77 @@
+\begin{thebibliography}{10}
+
+\bibitem{larsonUpdatedUsersGuide2008}
+N.~M. Larson, ``Updated {{User}}'s {{Guide}} for {{Sammy}}: {{Multilevel
+  R-Matrix Fits}} to {{Neutron Data Using Bayes}}' {{Equations}}.''
+
+\bibitem{leppanenSerpentMonteCarlo2015}
+J.~Lepp{\"a}nen, M.~Pusa, T.~Viitanen, V.~Valtavirta, and T.~Kaltiaisenaho,
+  ``The {{Serpent Monte Carlo}} code: {{Status}}, development and applications
+  in 2013,'' {\em Annals of Nuclear Energy}, vol.~82, pp.~142--150, Aug. 2015.
+
+\bibitem{hoeferLimitationsGeneralizedLinear}
+A.~Hoefer, O.~Buss, and J.~C. Neuber, ``Limitations of the {{Generalized Linear
+  Least Squares Methodology}} for {{Bias Estimation}} in {{Criticality Safety
+  Analysis}},''
+
+\bibitem{rochmanMonteCarloNuclear2018a}
+D.~Rochman, E.~Bauge, A.~Vasiliev, H.~Ferroukhi, S.~Pelloni, A.~J. Koning, and
+  J.~{\relax Ch}. Sublet, ``Monte {{Carlo}} nuclear data adjustment via
+  integral information,'' {\em The European Physical Journal Plus}, vol.~133,
+  p.~537, Dec. 2018.
+
+\bibitem{hoeferMOCABAGeneralMonte2015}
+A.~Hoefer, O.~Buss, M.~Hennebach, M.~Schmid, and D.~Porsch, ``{{MOCABA}}: {{A}}
+  general {{Monte Carlo}}--{{Bayes}} procedure for improved predictions of
+  integral functions of nuclear data,'' {\em Annals of Nuclear Energy},
+  vol.~77, pp.~514--521, Mar. 2015.
+
+\bibitem{emcee}
+D.~Foreman-Mackey, D.~W. Hogg, D.~Lang, and J.~Goodman, ``emcee: The mcmc
+  hammer,'' {\em Publications of the Astronomical Society of the Pacific},
+  vol.~125, p.~306–312, Mar. 2013.
+
+\bibitem{aufieroCollisionHistorybasedApproach2015}
+M.~Aufiero, A.~Bidaud, M.~Hursin, J.~Lepp{\"a}nen, G.~Palmiotti, S.~Pelloni,
+  and P.~Rubiolo, ``A collision history-based approach to
+  sensitivity/perturbation calculations in the continuous energy {{Monte
+  Carlo}} code {{SERPENT}},'' {\em Annals of Nuclear Energy}, vol.~85,
+  pp.~245--258, Nov. 2015.
+
+\bibitem{fioritoJEFF33CovarianceApplication2019}
+L.~Fiorito, J.~Dyrda, and M.~Fleming, ``{{JEFF-3}}.3 covariance application to
+  {{ICSBEP}} using {{SANDY}} and {{NDAST}},'' {\em EPJ Web of Conferences},
+  vol.~211, p.~07003, 2019.
+
+\bibitem{muirNJOYNuclearData}
+D.~W. Muir, R.~M. Boicourt, A.~C. Kahler, J.~L. Conlin, and W.~Haeck, ``The
+  {{NJOY Nuclear Data Processing System}}, {{Version}} 2016,''
+
+\bibitem{broadheadSensitivityUncertaintyBasedCriticality2004}
+B.~L. Broadhead, B.~T. Rearden, C.~M. Hopper, J.~J. Wagschal, and C.~V. Parks,
+  ``Sensitivity- and {{Uncertainty-Based Criticality Safety Validation
+  Techniques}},'' {\em Nuclear Science and Engineering}, vol.~146,
+  pp.~340--366, Mar. 2004.
+
+\bibitem{trkovSensitivitySelectedBenchmarks}
+A.~Trkov, O.~Cabellos, and R.~Capote, ``Sensitivity of selected benchmarks to
+  {{Cr-53}} and {{Cr-50}} capture,''
+
+\bibitem{guberNeutronCrossSectionMeasurements2011}
+K.~H. Guber, P.~E. Koehler, D.~E. Wiarda, and J.~A. Harvey, ``Neutron
+  {{Cross-Section Measurements}} on {{Structural Materials}} at {{ORELA}},''
+  {\em Journal of the Korean Physical Society}, vol.~59, pp.~1685--1688, Aug.
+  2011.
+
+\bibitem{stieglitz1971kev}
+R.~Stieglitz, R.~Hockenbury, and R.~Block, ``kev neutron capture and
+  transmission measurements on 50cr, 52cr, 53cr, 54cr, 60ni and v,'' {\em
+  Nuclear Physics A}, vol.~163, no.~2, pp.~592--624, 1971.
+
+\bibitem{internationalcriticalitysafetybenchmarkevaluationprojecticsbepInternationalHandbookEvaluated2024}
+{International Criticality Safety Benchmark Evaluation Project (ICSBEP)}, {\em
+  International {{Handbook}} of {{Evaluated Criticality Safety Benchmark
+  Experiments}}}.
+\newblock OECD Nuclear Energy Agency (NEA), Nov. 2024.
+
+\end{thebibliography}

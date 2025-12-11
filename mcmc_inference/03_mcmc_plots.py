@@ -1,3 +1,11 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+Created on Tue Dec 11 17:04:22 2025
+
+@author: Daan Houben
+"""
+
 import os
 import argparse
 import joblib
@@ -526,14 +534,14 @@ def plot_mcmc_results(config_path):
             exp,
             prior_X_samples,
             posterior_X_samples,
-            os.path.join(figures_dir, f"{exp.id}_output_scatter_plot.png"),
+            os.path.join(figures_dir, f"{exp.id}_output_scatter_plot.svg"),
         )
 
         output_scatterpdf_plot(
             exp,
             prior_X_samples,
             posterior_X_samples,
-            os.path.join(figures_dir, f"{exp.id}_output_scatterpdf_plot.png"),
+            os.path.join(figures_dir, f"{exp.id}_output_scatterpdf_plot.pdf"),
         )
 
         output_twinscatterpdf_plot(
