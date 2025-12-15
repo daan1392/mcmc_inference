@@ -4,8 +4,8 @@ import os
 import sys
 
 MODULE_SEQUENCE = [
-    # "mcmc_inference.01_gp_train",
-    # "mcmc_inference.02_mcmc",
+    "mcmc_inference.01_gp_train",
+    "mcmc_inference.02_mcmc",
     "mcmc_inference.03_mcmc_plots"
 ]
 

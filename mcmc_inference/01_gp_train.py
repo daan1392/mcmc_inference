@@ -6,7 +6,7 @@ import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 from sklearn.model_selection import train_test_split
-from sklearn.metrics import mean_squared_error, r2_score
+from sklearn.metrics import mean_squared_error
 from sklearn.gaussian_process import GaussianProcessRegressor
 from sklearn.gaussian_process.kernels import (
     RBF,
@@ -128,7 +128,6 @@ def plot_gp_slices(gp, X_train, y_train, feature_names, save_dir, exp_id, exp_ty
         # 1. Create Grid (Min to Max of training data)
         x_min, x_max = X_train[:, i].min(), X_train[:, i].max()
         span = x_max - x_min
-        # Add small buffer to view edges clearly
         x_grid = np.linspace(x_min - 0.05 * span, x_max + 0.05 * span, 1000)
 
         # 2. Create Design Matrix (1000 samples, n_features)

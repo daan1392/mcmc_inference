@@ -1,18 +1,9 @@
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
-"""
-Created on Tue Dec 11 17:04:22 2025
-
-@author: Daan Houben
-"""
-
 import os
 import joblib
 import numpy as np
 import emcee
 import arviz as az
 from scipy.stats import multivariate_normal, norm
-from tqdm import tqdm
 import yaml
 import argparse
 
