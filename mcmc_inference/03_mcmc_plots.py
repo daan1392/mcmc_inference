@@ -251,13 +251,14 @@ def output_scatterpdf_plot(exp, prior, posterior, save_path):
         marker=".",
         label="Posterior Samples",
     )
-
+    weight = np.ones_like(posterior) / posterior.max()
     axs["histx"].hist(
         posterior,
         bins=30,
         density=True,
         alpha=0.5,
         color="C2",
+        weights=weight
     )
 
     axs["histy"].hist(
@@ -502,61 +503,61 @@ def plot_mcmc_results(config_path):
     # ---------------------------------------------------------
     # Plot 1: Trace Plot (Convergence Check)
     # ---------------------------------------------------------
-    print("Generating Trace Plot...")
-    trace_plot(idata, cfg["project_name"], os.path.join(figures_dir, "trace_plot.png"))
+    # print("Generating Trace Plot...")
+    # trace_plot(idata, cfg["project_name"], os.path.join(figures_dir, "trace_plot.png"))
 
-    # ---------------------------------------------------------
-    # Plot 2: Corner Plot (Posterior Correlations)
-    # ---------------------------------------------------------
-    print("Generating Corner Plot...")
-    corner_plot(idata, os.path.join(figures_dir, "corner_plot.png"))
+    # # ---------------------------------------------------------
+    # # Plot 2: Corner Plot (Posterior Correlations)
+    # # ---------------------------------------------------------
+    # print("Generating Corner Plot...")
+    # corner_plot(idata, os.path.join(figures_dir, "corner_plot.png"))
 
-    # ---------------------------------------------------------
-    # Plot 3: Forest Plot (Summary of intervals)
-    # ---------------------------------------------------------
-    print("Generating Forest Plot...")
-    forest_plot(idata, os.path.join(figures_dir, "forest_plot.png"))
+    # # ---------------------------------------------------------
+    # # Plot 3: Forest Plot (Summary of intervals)
+    # # ---------------------------------------------------------
+    # print("Generating Forest Plot...")
+    # forest_plot(idata, os.path.join(figures_dir, "forest_plot.png"))
 
-    # ---------------------------------------------------------
-    # 4. Plot prior and posterior input responses
-    # ---------------------------------------------------------
-    print("Generating Input Plots...")
-    input_pdf_plot(
-        prior_X_samples, posterior_X_samples, os.path.join(figures_dir, "input_pdf_plot.png")
-    )
+    # # ---------------------------------------------------------
+    # # 4. Plot prior and posterior input responses
+    # # ---------------------------------------------------------
+    # print("Generating Input Plots...")
+    # input_pdf_plot(
+    #     prior_X_samples, posterior_X_samples, os.path.join(figures_dir, "input_pdf_plot.png")
+    # )
 
     # ---------------------------------------------------------
     # 4. Plot prior and posterior output responses
     # ---------------------------------------------------------
     print("Generating Output Plots...")
     for exp in models:
-        output_scatter_plot(
-            exp,
-            prior_X_samples,
-            posterior_X_samples,
-            os.path.join(figures_dir, f"{exp.id}_output_scatter_plot.svg"),
-        )
+        # output_scatter_plot(
+        #     exp,
+        #     prior_X_samples,
+        #     posterior_X_samples,
+        #     os.path.join(figures_dir, f"{exp.id}_output_scatter_plot.svg"),
+        # )
 
         output_scatterpdf_plot(
             exp,
             prior_X_samples,
             posterior_X_samples,
-            os.path.join(figures_dir, f"{exp.id}_output_scatterpdf_plot.pdf"),
+            os.path.join(figures_dir, f"{exp.id}_output_scatterpdf_plot.png"),
         )
 
-        output_twinscatterpdf_plot(
-            exp,
-            prior_X_samples,
-            posterior_X_samples,
-            os.path.join(figures_dir, f"{exp.id}_output_twinscatterpdf_plot.png"),
-        )
+        # output_twinscatterpdf_plot(
+        #     exp,
+        #     prior_X_samples,
+        #     posterior_X_samples,
+        #     os.path.join(figures_dir, f"{exp.id}_output_twinscatterpdf_plot.png"),
+        # )
 
-        output_pdf_plot(
-            exp,
-            prior_X_samples,
-            posterior_X_samples,
-            os.path.join(figures_dir, f"{exp.id}_output_pdf_plot.png"),
-        )
+        # output_pdf_plot(
+        #     exp,
+        #     prior_X_samples,
+        #     posterior_X_samples,
+        #     os.path.join(figures_dir, f"{exp.id}_output_pdf_plot.png"),
+        # )
 
     # ---------------------------------------------------------
     # 4. Plot prior and posterior output responses together

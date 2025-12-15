@@ -33,7 +33,7 @@ class IntegralExperiment:
         self.weight = weight
         self.y_meas = y_meas
         self.y_err = y_err
-        self.input_indices = input_indices  # List of integers (e.g., [0, 2])
+        self.input_indices = input_indices
 
         # Load the surrogate model artifacts
         if not os.path.exists(gp_path):
@@ -45,23 +45,13 @@ class IntegralExperiment:
         """
         Calculates ln L(D_i | theta)
         """
-        # 1. Slice the Master Vector to get only relevant parameters
-        # If theta is [p1, p2, p3] and indices are [0, 2], we get [p1, p3]
         relevant_theta = theta[self.input_indices]
 
-        # 2. GP Prediction
-        # Reshape to (1, n_features) for scikit-learn compatibility
         pred_mean, pred_std = self.gp.predict(relevant_theta.reshape(1, -1), return_std=True)
 
-        # Flatten (handle cases where predict returns shape (1,1) or (1,))
-        mu_gp = pred_mean.item()
-        sigma_gp = pred_std.item()
+        sigma_total = np.sqrt(self.y_err**2) + pred_std.item()**2)
 
-        # 3. Combine Uncertainties (Experiment + Emulator)
-        sigma_total = np.sqrt(self.y_err**2 + sigma_gp**2)
-
-        # 4. Compute Log Likelihood (Gaussian)
-        return norm.logpdf(self.y_meas, loc=mu_gp, scale=sigma_total)
+        return norm.logpdf(self.y_meas, loc=pred_mean.item(), scale=sigma_total)
 
 
 class MicroscopicExperiment:
@@ -74,23 +64,18 @@ class MicroscopicExperiment:
         self.id = exp_id
         self.C = C
         self.weight = weight
-        self.input_indices = input_indices  # List of integers
+        self.input_indices = input_indices 
         self.gp = joblib.load(gp_path)
 
     def get_log_likelihood(self, theta):
-        # 1. Slice the Master Vector
         relevant_theta = theta[self.input_indices]
 
-        # 2. GP predicts the Chi-Squared value
-        # Reshape to (1, n_features)
         chi2_val = self.gp.predict(relevant_theta.reshape(1, -1))
 
-        chi2 = max(0.0, chi2_val.item())  # Clamp to 0
+        chi2 = max(0.0, chi2_val.item())
 
-        # Standard Likelihood = -0.5 * Chi2
         ll = self.C - 0.5 * chi2
 
-        # adjust ll with weight if needed
         return self.weight * ll
 
 
@@ -116,48 +101,41 @@ class JointPosterior:
         This is the function called by Emcee.
         Returns: ln P(theta | All Data)
         """
-        # 1. Evaluate Prior
         lp = self.log_prior(theta)
         if not np.isfinite(lp):
             return -np.inf
 
-        # 2. Sum Likelihoods across ALL experiments
         total_ll = 0.0
         for exp in self.experiments:
             ll = exp.get_log_likelihood(theta)
             total_ll += ll
 
-        # 3. Return Joint Posterior
         return lp + total_ll
 
 
 def run_joint_mcmc(config_path):
-    # 1. Load Configuration
+    # 1. Load configuration
     cfg = load_config(config_path)
     print(f"--- Starting Joint Inference: {cfg['project_name']} ---")
 
-    # 2. Parse Prior Information (The Global Parameter List)
-    global_param_names = cfg["parameters"]["names"]  # List of strings
+    # 2. Parse prior information
+    global_param_names = cfg["parameters"]["names"]
     prior_means = np.array(cfg["parameters"]["prior_means"])
     print(prior_means)
     prior_stds = np.array(cfg["parameters"]["prior_stds"]) * prior_means
 
     print(f"   Calibrating {len(global_param_names)} parameters: {global_param_names}")
 
-    # 3. Initialize Evaluators for each Experiment
+    # 3. Initialize each experiment
     models = []
 
     print("\n   Loading Experiment Models...")
     for exp in cfg["experiments"]:
         gp_path = os.path.join("models", f"{exp['id']}_gp.joblib")
 
-        # --- NEW LOGIC: MAP PARAMETER NAMES TO INDICES ---
-        # Look for 'parameters' key in the experiment config.
-        # If missing, assume it uses ALL global parameters (legacy support).
         exp_param_names = exp.get("parameters", global_param_names)
 
         try:
-            # Create a list of indices, e.g., ['density'] -> [1]
             input_indices = [global_param_names.index(name) for name in exp_param_names]
         except ValueError as e:
             print(f"Error in {exp['id']}: Parameter name mismatch. {e}")
@@ -170,14 +148,14 @@ def run_joint_mcmc(config_path):
                     gp_path=gp_path,
                     y_meas=exp["experimental_data"]["measurement"],
                     y_err=exp["experimental_data"]["uncertainty"],
-                    input_indices=input_indices,  # Pass the map
+                    input_indices=input_indices,
                 )
             elif exp["type"] == "microscopic":
                 exp_obj = MicroscopicExperiment(
                     exp_id=exp["id"],
                     C=exp["training_data"]["C_constant"],
                     gp_path=gp_path,
-                    input_indices=input_indices,  # Pass the map
+                    input_indices=input_indices,
                 )
             models.append(exp_obj)
             print(
@@ -190,7 +168,7 @@ def run_joint_mcmc(config_path):
         print("No valid experiments found. Exiting.")
         return
 
-    # 4. Construct the Joint Posterior
+    # 4. Calculate the joint posterior
     posterior_fn = JointPosterior(prior_means, prior_stds, models)
 
     # 5. Setup MCMC (Emcee)
@@ -200,7 +178,7 @@ def run_joint_mcmc(config_path):
 
     pos = np.random.normal(
         loc=prior_means,
-        scale=np.array(prior_stds) * 0.1,  # Tight initialization
+        scale=np.array(prior_stds) * 0.1,
         size=(n_walkers, ndim),
     )
 
@@ -215,13 +193,13 @@ def run_joint_mcmc(config_path):
 
     # 6. Save Result as Arviz NetCDF
     print("\n   Saving results to NetCDF...")
-    # Discard burn-in (e.g., first 100 steps) for cleaner processing later
     idata = az.from_emcee(sampler, var_names=global_param_names)
 
     nc_path = os.path.join(cfg["output_dir"], "joint_posterior.nc")
     az.to_netcdf(idata, nc_path)
 
-    # 7. Quick Diagnostics
+    # 7. Print summary statistics
+    summary = az.summary(idata, round_to=4)
     rhat = az.rhat(idata)
     print(f"   Max R-hat: {float(rhat.to_array().max()):.4f}")
     print(f"   Results saved to: {nc_path}")

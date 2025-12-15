@@ -18,13 +18,12 @@ INPUT C:\Program Files\MiKTeX\tex\latex\l3packages\xparse\xparse.sty
 INPUT C:\Program Files\MiKTeX\tex\latex\etoolbox\etoolbox.sty
 INPUT C:\Program Files\MiKTeX\tex\latex\etoolbox\etoolbox.sty
 INPUT C:\Program Files\MiKTeX\tex\latex\etoolbox\etoolbox.sty
-INPUT C:\Users\dhouben\AppData\Roaming\MiKTeX\tex\latex\txfonts\txfonts.sty
-INPUT C:\Users\dhouben\AppData\Roaming\MiKTeX\tex\latex\txfonts\txfonts.sty
 INPUT C:\Program Files\MiKTeX\tex\latex\base\article.cls
 INPUT C:\Program Files\MiKTeX\tex\latex\base\article.cls
-INPUT C:\Program Files\MiKTeX\tex\latex\base\size10.clo
-INPUT C:\Program Files\MiKTeX\tex\latex\base\size10.clo
-INPUT C:\Program Files\MiKTeX\tex\latex\base\size10.clo
+INPUT C:\Program Files\MiKTeX\tex\latex\base\size12.clo
+INPUT C:\Program Files\MiKTeX\tex\latex\base\size12.clo
+INPUT C:\Program Files\MiKTeX\tex\latex\base\size12.clo
+INPUT C:\Program Files\MiKTeX\fonts\tfm\jknappen\ec\ecrm1200.tfm
 INPUT C:\Program Files\MiKTeX\tex\latex\graphics\graphicx.sty
 INPUT C:\Program Files\MiKTeX\tex\latex\graphics\graphicx.sty
 INPUT C:\Program Files\MiKTeX\tex\latex\graphics\keyval.sty
@@ -45,16 +44,6 @@ INPUT main.spl
 INPUT C:\Users\dhouben\AppData\Roaming\MiKTeX\tex\latex\natbib\natbib.sty
 INPUT C:\Users\dhouben\AppData\Roaming\MiKTeX\tex\latex\natbib\natbib.sty
 OUTPUT main.spl
-INPUT C:\Users\dhouben\AppData\Roaming\MiKTeX\tex\latex\geometry\geometry.sty
-INPUT C:\Users\dhouben\AppData\Roaming\MiKTeX\tex\latex\geometry\geometry.sty
-INPUT C:\Program Files\MiKTeX\tex\generic\iftex\ifvtex.sty
-INPUT C:\Program Files\MiKTeX\tex\generic\iftex\ifvtex.sty
-INPUT C:\Program Files\MiKTeX\tex\generic\iftex\iftex.sty
-INPUT C:\Program Files\MiKTeX\tex\generic\iftex\iftex.sty
-INPUT C:\Users\dhouben\AppData\Roaming\MiKTeX\tex\latex\geometry\geometry.cfg
-INPUT C:\Users\dhouben\AppData\Roaming\MiKTeX\tex\latex\geometry\geometry.cfg
-INPUT C:\Users\dhouben\AppData\Roaming\MiKTeX\tex\latex\geometry\geometry.cfg
-INPUT C:\Users\dhouben\AppData\Roaming\MiKTeX\tex\latex\txfonts\txfonts.sty
 INPUT C:\Program Files\MiKTeX\tex\latex\amsfonts\amssymb.sty
 INPUT C:\Program Files\MiKTeX\tex\latex\amsfonts\amssymb.sty
 INPUT C:\Program Files\MiKTeX\tex\latex\amsfonts\amsfonts.sty
@@ -80,6 +69,8 @@ INPUT C:\Users\dhouben\AppData\Roaming\MiKTeX\tex\latex\caption\caption-elsartic
 INPUT C:\Users\dhouben\AppData\Roaming\MiKTeX\tex\latex\caption\caption-elsarticle.sto
 INPUT C:\Program Files\MiKTeX\tex\latex\hyperref\hyperref.sty
 INPUT C:\Program Files\MiKTeX\tex\latex\hyperref\hyperref.sty
+INPUT C:\Program Files\MiKTeX\tex\generic\iftex\iftex.sty
+INPUT C:\Program Files\MiKTeX\tex\generic\iftex\iftex.sty
 INPUT C:\Users\dhouben\AppData\Roaming\MiKTeX\tex\latex\kvsetkeys\kvsetkeys.sty
 INPUT C:\Users\dhouben\AppData\Roaming\MiKTeX\tex\latex\kvsetkeys\kvsetkeys.sty
 INPUT C:\Users\dhouben\AppData\Roaming\MiKTeX\tex\generic\kvdefinekeys\kvdefinekeys.sty
@@ -133,26 +124,10 @@ INPUT C:\Users\dhouben\AppData\Roaming\MiKTeX\tex\generic\uniquecounter\uniqueco
 INPUT C:\Users\dhouben\AppData\Roaming\MiKTeX\tex\generic\uniquecounter\uniquecounter.sty
 INPUT C:\Users\dhouben\AppData\Roaming\MiKTeX\tex\latex\lineno\lineno.sty
 INPUT C:\Users\dhouben\AppData\Roaming\MiKTeX\tex\latex\lineno\lineno.sty
-INPUT C:\Users\dhouben\AppData\Roaming\MiKTeX\tex\latex\txfonts\t1txr.fd
-INPUT C:\Users\dhouben\AppData\Roaming\MiKTeX\tex\latex\txfonts\t1txr.fd
-INPUT C:\Users\dhouben\AppData\Roaming\MiKTeX\tex\latex\txfonts\t1txr.fd
-INPUT C:\Users\dhouben\AppData\Roaming\MiKTeX\fonts\tfm\public\txfonts\t1xr.tfm
 INPUT .\main.aux
 INPUT .\main.aux
 INPUT main.aux
 OUTPUT main.aux
-INPUT C:\Users\dhouben\AppData\Roaming\MiKTeX\tex\latex\txfonts\omltxmi.fd
-INPUT C:\Users\dhouben\AppData\Roaming\MiKTeX\tex\latex\txfonts\omltxmi.fd
-INPUT C:\Users\dhouben\AppData\Roaming\MiKTeX\tex\latex\txfonts\omltxmi.fd
-INPUT C:\Users\dhouben\AppData\Roaming\MiKTeX\tex\latex\txfonts\omstxsy.fd
-INPUT C:\Users\dhouben\AppData\Roaming\MiKTeX\tex\latex\txfonts\omstxsy.fd
-INPUT C:\Users\dhouben\AppData\Roaming\MiKTeX\tex\latex\txfonts\omstxsy.fd
-INPUT C:\Users\dhouben\AppData\Roaming\MiKTeX\tex\latex\txfonts\omxtxex.fd
-INPUT C:\Users\dhouben\AppData\Roaming\MiKTeX\tex\latex\txfonts\omxtxex.fd
-INPUT C:\Users\dhouben\AppData\Roaming\MiKTeX\tex\latex\txfonts\omxtxex.fd
-INPUT C:\Users\dhouben\AppData\Roaming\MiKTeX\tex\latex\txfonts\utxexa.fd
-INPUT C:\Users\dhouben\AppData\Roaming\MiKTeX\tex\latex\txfonts\utxexa.fd
-INPUT C:\Users\dhouben\AppData\Roaming\MiKTeX\tex\latex\txfonts\utxexa.fd
 INPUT C:\Program Files\MiKTeX\tex\context\base\mkii\supp-pdf.mkii
 INPUT C:\Program Files\MiKTeX\tex\context\base\mkii\supp-pdf.mkii
 INPUT C:\Program Files\MiKTeX\tex\context\base\mkii\supp-pdf.mkii
@@ -169,50 +144,15 @@ OUTPUT main.pdf
 INPUT .\main.out
 INPUT .\main.out
 OUTPUT main.out
-INPUT C:\Users\dhouben\AppData\Roaming\MiKTeX\fonts\tfm\public\txfonts\t1xb.tfm
-INPUT C:\Users\dhouben\AppData\Roaming\MiKTeX\fonts\tfm\public\txfonts\t1xr.tfm
-INPUT C:\Users\dhouben\AppData\Roaming\MiKTeX\tex\latex\txfonts\ts1txr.fd
-INPUT C:\Users\dhouben\AppData\Roaming\MiKTeX\tex\latex\txfonts\ts1txr.fd
-INPUT C:\Users\dhouben\AppData\Roaming\MiKTeX\tex\latex\txfonts\ts1txr.fd
-INPUT C:\Users\dhouben\AppData\Roaming\MiKTeX\fonts\tfm\public\txfonts\tcxr.tfm
-INPUT C:\Users\dhouben\AppData\Roaming\MiKTeX\fonts\tfm\public\txfonts\t1xi.tfm
-INPUT C:\Users\dhouben\AppData\Roaming\MiKTeX\fonts\vf\public\txfonts\t1xr.vf
-INPUT C:\Users\dhouben\AppData\Roaming\MiKTeX\fonts\tfm\public\txfonts\rtxptmr.tfm
-INPUT C:\Users\dhouben\AppData\Roaming\MiKTeX\fonts\tfm\public\txfonts\rtxr.tfm
+INPUT C:\Program Files\MiKTeX\fonts\tfm\jknappen\ec\ecbx1200.tfm
+INPUT C:\Program Files\MiKTeX\fonts\tfm\jknappen\ec\ecrm1728.tfm
+INPUT C:\Program Files\MiKTeX\fonts\tfm\jknappen\ec\tcrm1200.tfm
+INPUT C:\Program Files\MiKTeX\fonts\tfm\jknappen\ec\ecti1200.tfm
 INPUT C:\Users\dhouben\AppData\Local\MiKTeX\fonts\map\pdftex\pdftex.map
-INPUT C:\Program Files\MiKTeX\fonts\enc\dvips\base\8r.enc
-INPUT C:\Users\dhouben\AppData\Roaming\MiKTeX\fonts\vf\public\txfonts\t1xr.vf
-INPUT C:\Users\dhouben\AppData\Roaming\MiKTeX\fonts\tfm\public\txfonts\rtxptmr.tfm
-INPUT C:\Users\dhouben\AppData\Roaming\MiKTeX\fonts\tfm\public\txfonts\rtxr.tfm
-INPUT C:\Users\dhouben\AppData\Roaming\MiKTeX\fonts\vf\public\txfonts\t1xb.vf
-INPUT C:\Users\dhouben\AppData\Roaming\MiKTeX\fonts\tfm\public\txfonts\rtxptmb.tfm
-INPUT C:\Users\dhouben\AppData\Roaming\MiKTeX\fonts\tfm\public\txfonts\rtxb.tfm
-INPUT C:\Users\dhouben\AppData\Roaming\MiKTeX\fonts\vf\public\txfonts\tcxr.vf
-INPUT C:\Users\dhouben\AppData\Roaming\MiKTeX\fonts\tfm\public\txfonts\rtcxr.tfm
-INPUT C:\Users\dhouben\AppData\Roaming\MiKTeX\tex\latex\txfonts\ot1txr.fd
-INPUT C:\Users\dhouben\AppData\Roaming\MiKTeX\tex\latex\txfonts\ot1txr.fd
-INPUT C:\Users\dhouben\AppData\Roaming\MiKTeX\tex\latex\txfonts\ot1txr.fd
-INPUT C:\Users\dhouben\AppData\Roaming\MiKTeX\fonts\tfm\public\txfonts\txr.tfm
-INPUT C:\Users\dhouben\AppData\Roaming\MiKTeX\fonts\tfm\public\txfonts\txr.tfm
-INPUT C:\Users\dhouben\AppData\Roaming\MiKTeX\fonts\tfm\public\txfonts\txr.tfm
-INPUT C:\Users\dhouben\AppData\Roaming\MiKTeX\fonts\tfm\public\txfonts\txmi.tfm
-INPUT C:\Users\dhouben\AppData\Roaming\MiKTeX\fonts\tfm\public\txfonts\txmi.tfm
-INPUT C:\Users\dhouben\AppData\Roaming\MiKTeX\fonts\tfm\public\txfonts\txmi.tfm
-INPUT C:\Users\dhouben\AppData\Roaming\MiKTeX\fonts\tfm\public\txfonts\txsy.tfm
-INPUT C:\Users\dhouben\AppData\Roaming\MiKTeX\fonts\tfm\public\txfonts\txsy.tfm
-INPUT C:\Users\dhouben\AppData\Roaming\MiKTeX\fonts\tfm\public\txfonts\txsy.tfm
-INPUT C:\Users\dhouben\AppData\Roaming\MiKTeX\fonts\tfm\public\txfonts\txex.tfm
-INPUT C:\Users\dhouben\AppData\Roaming\MiKTeX\fonts\tfm\public\txfonts\txex.tfm
-INPUT C:\Users\dhouben\AppData\Roaming\MiKTeX\fonts\tfm\public\txfonts\txex.tfm
-INPUT C:\Users\dhouben\AppData\Roaming\MiKTeX\fonts\tfm\public\txfonts\txi.tfm
-INPUT C:\Users\dhouben\AppData\Roaming\MiKTeX\fonts\tfm\public\txfonts\txi.tfm
-INPUT C:\Users\dhouben\AppData\Roaming\MiKTeX\fonts\tfm\public\txfonts\txi.tfm
-INPUT C:\Users\dhouben\AppData\Roaming\MiKTeX\tex\latex\txfonts\utxmia.fd
-INPUT C:\Users\dhouben\AppData\Roaming\MiKTeX\tex\latex\txfonts\utxmia.fd
-INPUT C:\Users\dhouben\AppData\Roaming\MiKTeX\tex\latex\txfonts\utxmia.fd
-INPUT C:\Users\dhouben\AppData\Roaming\MiKTeX\fonts\tfm\public\txfonts\txmia.tfm
-INPUT C:\Users\dhouben\AppData\Roaming\MiKTeX\fonts\tfm\public\txfonts\txmia.tfm
-INPUT C:\Users\dhouben\AppData\Roaming\MiKTeX\fonts\tfm\public\txfonts\txmia.tfm
+INPUT C:\Users\dhouben\AppData\Roaming\MiKTeX\fonts\enc\dvips\cm-super\cm-super-t1.enc
+INPUT C:\Users\dhouben\AppData\Roaming\MiKTeX\fonts\enc\dvips\cm-super\cm-super-ts1.enc
+INPUT C:\Program Files\MiKTeX\fonts\tfm\public\amsfonts\cmextra\cmex7.tfm
+INPUT C:\Program Files\MiKTeX\fonts\tfm\public\amsfonts\cmextra\cmex7.tfm
 INPUT C:\Program Files\MiKTeX\tex\latex\amsfonts\umsa.fd
 INPUT C:\Program Files\MiKTeX\tex\latex\amsfonts\umsa.fd
 INPUT C:\Program Files\MiKTeX\tex\latex\amsfonts\umsa.fd
@@ -225,82 +165,34 @@ INPUT C:\Program Files\MiKTeX\tex\latex\amsfonts\umsb.fd
 INPUT C:\Program Files\MiKTeX\fonts\tfm\public\amsfonts\symbols\msbm10.tfm
 INPUT C:\Program Files\MiKTeX\fonts\tfm\public\amsfonts\symbols\msbm7.tfm
 INPUT C:\Program Files\MiKTeX\fonts\tfm\public\amsfonts\symbols\msbm5.tfm
-INPUT C:\Users\dhouben\AppData\Roaming\MiKTeX\tex\latex\txfonts\utxsyc.fd
-INPUT C:\Users\dhouben\AppData\Roaming\MiKTeX\tex\latex\txfonts\utxsyc.fd
-INPUT C:\Users\dhouben\AppData\Roaming\MiKTeX\tex\latex\txfonts\utxsyc.fd
-INPUT C:\Users\dhouben\AppData\Roaming\MiKTeX\fonts\tfm\public\txfonts\txsyc.tfm
-INPUT C:\Users\dhouben\AppData\Roaming\MiKTeX\fonts\tfm\public\txfonts\txsyc.tfm
-INPUT C:\Users\dhouben\AppData\Roaming\MiKTeX\fonts\tfm\public\txfonts\txsyc.tfm
-INPUT C:\Users\dhouben\AppData\Roaming\MiKTeX\fonts\tfm\public\txfonts\txexa.tfm
-INPUT C:\Users\dhouben\AppData\Roaming\MiKTeX\fonts\tfm\public\txfonts\txexa.tfm
-INPUT C:\Users\dhouben\AppData\Roaming\MiKTeX\fonts\tfm\public\txfonts\txexa.tfm
-INPUT C:\Users\dhouben\AppData\Roaming\MiKTeX\fonts\tfm\public\txfonts\t1xr.tfm
-INPUT C:\Users\dhouben\AppData\Roaming\MiKTeX\fonts\tfm\public\txfonts\t1xr.tfm
-INPUT C:\Users\dhouben\AppData\Roaming\MiKTeX\fonts\tfm\public\txfonts\t1xi.tfm
-INPUT C:\Users\dhouben\AppData\Roaming\MiKTeX\fonts\tfm\public\txfonts\txr.tfm
-INPUT C:\Users\dhouben\AppData\Roaming\MiKTeX\fonts\tfm\public\txfonts\txr.tfm
-INPUT C:\Users\dhouben\AppData\Roaming\MiKTeX\fonts\tfm\public\txfonts\txmi.tfm
-INPUT C:\Users\dhouben\AppData\Roaming\MiKTeX\fonts\tfm\public\txfonts\txmi.tfm
-INPUT C:\Users\dhouben\AppData\Roaming\MiKTeX\fonts\tfm\public\txfonts\txsy.tfm
-INPUT C:\Users\dhouben\AppData\Roaming\MiKTeX\fonts\tfm\public\txfonts\txsy.tfm
-INPUT C:\Users\dhouben\AppData\Roaming\MiKTeX\fonts\tfm\public\txfonts\txex.tfm
-INPUT C:\Users\dhouben\AppData\Roaming\MiKTeX\fonts\tfm\public\txfonts\txex.tfm
-INPUT C:\Users\dhouben\AppData\Roaming\MiKTeX\fonts\tfm\public\txfonts\txi.tfm
-INPUT C:\Users\dhouben\AppData\Roaming\MiKTeX\fonts\tfm\public\txfonts\txi.tfm
-INPUT C:\Users\dhouben\AppData\Roaming\MiKTeX\fonts\tfm\public\txfonts\txmia.tfm
-INPUT C:\Users\dhouben\AppData\Roaming\MiKTeX\fonts\tfm\public\txfonts\txmia.tfm
+INPUT C:\Program Files\MiKTeX\fonts\tfm\jknappen\ec\ecrm0700.tfm
+INPUT C:\Program Files\MiKTeX\fonts\tfm\jknappen\ec\ecti1000.tfm
+INPUT C:\Program Files\MiKTeX\fonts\tfm\jknappen\ec\ectt1000.tfm
+INPUT C:\Program Files\MiKTeX\fonts\tfm\public\cm\cmr12.tfm
+INPUT C:\Program Files\MiKTeX\fonts\tfm\public\cm\cmr8.tfm
+INPUT C:\Program Files\MiKTeX\fonts\tfm\public\cm\cmr6.tfm
+INPUT C:\Program Files\MiKTeX\fonts\tfm\public\cm\cmmi12.tfm
+INPUT C:\Program Files\MiKTeX\fonts\tfm\public\cm\cmmi8.tfm
+INPUT C:\Program Files\MiKTeX\fonts\tfm\public\cm\cmmi6.tfm
+INPUT C:\Program Files\MiKTeX\fonts\tfm\public\cm\cmsy10.tfm
+INPUT C:\Program Files\MiKTeX\fonts\tfm\public\cm\cmsy8.tfm
+INPUT C:\Program Files\MiKTeX\fonts\tfm\public\cm\cmsy6.tfm
+INPUT C:\Program Files\MiKTeX\fonts\tfm\public\cm\cmex10.tfm
+INPUT C:\Program Files\MiKTeX\fonts\tfm\public\amsfonts\cmextra\cmex8.tfm
+INPUT C:\Program Files\MiKTeX\fonts\tfm\public\amsfonts\cmextra\cmex7.tfm
+INPUT C:\Program Files\MiKTeX\fonts\tfm\public\amsfonts\symbols\msam10.tfm
 INPUT C:\Program Files\MiKTeX\fonts\tfm\public\amsfonts\symbols\msam10.tfm
 INPUT C:\Program Files\MiKTeX\fonts\tfm\public\amsfonts\symbols\msam7.tfm
 INPUT C:\Program Files\MiKTeX\fonts\tfm\public\amsfonts\symbols\msbm10.tfm
+INPUT C:\Program Files\MiKTeX\fonts\tfm\public\amsfonts\symbols\msbm10.tfm
 INPUT C:\Program Files\MiKTeX\fonts\tfm\public\amsfonts\symbols\msbm7.tfm
-INPUT C:\Users\dhouben\AppData\Roaming\MiKTeX\fonts\tfm\public\txfonts\txsyc.tfm
-INPUT C:\Users\dhouben\AppData\Roaming\MiKTeX\fonts\tfm\public\txfonts\txsyc.tfm
-INPUT C:\Users\dhouben\AppData\Roaming\MiKTeX\fonts\tfm\public\txfonts\txexa.tfm
-INPUT C:\Users\dhouben\AppData\Roaming\MiKTeX\fonts\tfm\public\txfonts\txexa.tfm
-INPUT C:\Users\dhouben\AppData\Roaming\MiKTeX\fonts\tfm\public\txfonts\t1xi.tfm
-INPUT C:\Users\dhouben\AppData\Roaming\MiKTeX\fonts\tfm\public\txfonts\t1xr.tfm
-INPUT C:\Program Files\MiKTeX\fonts\tfm\jknappen\ec\ectt0800.tfm
-INPUT C:\Users\dhouben\AppData\Roaming\MiKTeX\fonts\tfm\public\txfonts\t1xr.tfm
-INPUT C:\Users\dhouben\AppData\Roaming\MiKTeX\tex\latex\txfonts\t1txss.fd
-INPUT C:\Users\dhouben\AppData\Roaming\MiKTeX\tex\latex\txfonts\t1txss.fd
-INPUT C:\Users\dhouben\AppData\Roaming\MiKTeX\tex\latex\txfonts\t1txss.fd
-INPUT C:\Users\dhouben\AppData\Roaming\MiKTeX\fonts\tfm\public\txfonts\t1xss.tfm
-INPUT C:\Users\dhouben\AppData\Roaming\MiKTeX\fonts\vf\public\txfonts\t1xr.vf
-INPUT C:\Users\dhouben\AppData\Roaming\MiKTeX\fonts\tfm\public\txfonts\rtxptmr.tfm
-INPUT C:\Users\dhouben\AppData\Roaming\MiKTeX\fonts\tfm\public\txfonts\rtxr.tfm
-INPUT C:\Users\dhouben\AppData\Roaming\MiKTeX\fonts\vf\public\txfonts\t1xi.vf
-INPUT C:\Users\dhouben\AppData\Roaming\MiKTeX\fonts\tfm\public\txfonts\rtxptmri.tfm
-INPUT C:\Users\dhouben\AppData\Roaming\MiKTeX\fonts\tfm\public\txfonts\rtxi.tfm
-INPUT C:\Users\dhouben\AppData\Roaming\MiKTeX\fonts\vf\public\txfonts\t1xi.vf
-INPUT C:\Users\dhouben\AppData\Roaming\MiKTeX\fonts\tfm\public\txfonts\rtxptmri.tfm
-INPUT C:\Users\dhouben\AppData\Roaming\MiKTeX\fonts\tfm\public\txfonts\rtxi.tfm
-INPUT C:\Users\dhouben\AppData\Roaming\MiKTeX\fonts\vf\public\txfonts\t1xi.vf
-INPUT C:\Users\dhouben\AppData\Roaming\MiKTeX\fonts\tfm\public\txfonts\rtxptmri.tfm
-INPUT C:\Users\dhouben\AppData\Roaming\MiKTeX\fonts\tfm\public\txfonts\rtxi.tfm
-INPUT C:\Users\dhouben\AppData\Roaming\MiKTeX\fonts\vf\public\txfonts\t1xss.vf
-INPUT C:\Users\dhouben\AppData\Roaming\MiKTeX\fonts\tfm\public\txfonts\rtxphvr.tfm
-INPUT C:\Users\dhouben\AppData\Roaming\MiKTeX\fonts\tfm\public\txfonts\rtxss.tfm
-INPUT C:\Users\dhouben\AppData\Roaming\MiKTeX\fonts\vf\public\txfonts\txmi.vf
-INPUT C:\Users\dhouben\AppData\Roaming\MiKTeX\fonts\tfm\public\txfonts\rtxmi.tfm
-INPUT C:\Users\dhouben\AppData\Roaming\MiKTeX\fonts\vf\public\txfonts\txr.vf
-INPUT C:\Users\dhouben\AppData\Roaming\MiKTeX\fonts\vf\public\txfonts\txr.vf
-INPUT C:\Users\dhouben\AppData\Roaming\MiKTeX\fonts\enc\dvips\cm-super\cm-super-t1.enc
-INPUT C:\Users\dhouben\AppData\Roaming\MiKTeX\fonts\vf\public\txfonts\t1xr.vf
-INPUT C:\Users\dhouben\AppData\Roaming\MiKTeX\fonts\tfm\public\txfonts\rtxptmr.tfm
-INPUT C:\Users\dhouben\AppData\Roaming\MiKTeX\fonts\tfm\public\txfonts\rtxr.tfm
-INPUT C:\Users\dhouben\AppData\Roaming\MiKTeX\fonts\tfm\public\txfonts\txb.tfm
-INPUT C:\Users\dhouben\AppData\Roaming\MiKTeX\fonts\tfm\public\txfonts\txb.tfm
-INPUT C:\Users\dhouben\AppData\Roaming\MiKTeX\fonts\tfm\public\txfonts\txb.tfm
-INPUT C:\Users\dhouben\AppData\Roaming\MiKTeX\fonts\vf\public\txfonts\txmi.vf
-INPUT C:\Users\dhouben\AppData\Roaming\MiKTeX\fonts\tfm\public\txfonts\rtxmi.tfm
-INPUT C:\Users\dhouben\AppData\Roaming\MiKTeX\fonts\tfm\public\txfonts\rtxptmri.tfm
-INPUT C:\Users\dhouben\AppData\Roaming\MiKTeX\fonts\vf\public\txfonts\txb.vf
-INPUT C:\Users\dhouben\AppData\Roaming\MiKTeX\fonts\tfm\public\txfonts\rtxptmb.tfm
-INPUT C:\Users\dhouben\AppData\Roaming\MiKTeX\fonts\tfm\public\txfonts\rtxb.tfm
-INPUT C:\Users\dhouben\AppData\Roaming\MiKTeX\fonts\vf\public\txfonts\txb.vf
-INPUT C:\Users\dhouben\AppData\Roaming\MiKTeX\fonts\vf\public\txfonts\txmi.vf
-INPUT C:\Users\dhouben\AppData\Roaming\MiKTeX\fonts\tfm\public\txfonts\rtxmi.tfm
-INPUT C:\Users\dhouben\AppData\Roaming\MiKTeX\fonts\tfm\public\txfonts\rtxptmri.tfm
+INPUT C:\Program Files\MiKTeX\fonts\tfm\jknappen\ec\ecrm0800.tfm
+INPUT C:\Program Files\MiKTeX\fonts\tfm\jknappen\ec\ecti0700.tfm
+INPUT C:\Program Files\MiKTeX\fonts\tfm\jknappen\ec\ecrm0600.tfm
+INPUT C:\Program Files\MiKTeX\fonts\tfm\jknappen\ec\ecss0800.tfm
+INPUT C:\Program Files\MiKTeX\fonts\tfm\public\cm\cmbx12.tfm
+INPUT C:\Program Files\MiKTeX\fonts\tfm\public\cm\cmbx8.tfm
+INPUT C:\Program Files\MiKTeX\fonts\tfm\public\cm\cmbx6.tfm
 INPUT ..\figures\sensitivity_hmi001+pmi002_Cr53.png
 INPUT ..\figures\sensitivity_hmi001+pmi002_Cr53.png
 INPUT ..\figures\sensitivity_hmi001+pmi002_Cr53.png
@@ -308,24 +200,23 @@ INPUT ..\figures\sensitivity_hmi001+pmi002_Cr53.png
 INPUT ..\figures\sensitivity_hmi001+pmi002_Cr53.png
 INPUT ..\figures\sensitivity_hmi001+pmi002_Cr53.png
 INPUT ..\figures\sensitivity_hmi001+pmi002_Cr53.png
-INPUT C:\Users\dhouben\AppData\Roaming\MiKTeX\fonts\tfm\public\txfonts\txb.tfm
-INPUT C:\Users\dhouben\AppData\Roaming\MiKTeX\fonts\tfm\public\txfonts\txb.tfm
-INPUT ..\figures\latest\XS_fit_nTOF.png
-INPUT ..\figures\latest\XS_fit_nTOF.png
-INPUT ..\figures\latest\XS_fit_nTOF.png
-INPUT ..\figures\latest\XS_fit_nTOF.png
-INPUT ..\figures\latest\XS_fit_nTOF.png
-INPUT ..\figures\latest\XS_fit_nTOF.png
-INPUT ..\figures\latest\XS_fit_nTOF.png
-INPUT ..\figures\cr53_capture_xs_samples.png
-INPUT ..\figures\cr53_capture_xs_samples.png
-INPUT ..\figures\cr53_capture_xs_samples.png
-INPUT ..\figures\cr53_capture_xs_samples.png
-INPUT ..\figures\cr53_capture_xs_samples.png
-INPUT ..\figures\cr53_capture_xs_samples.png
-INPUT ..\figures\cr53_capture_xs_samples.png
-INPUT C:\Users\dhouben\AppData\Roaming\MiKTeX\fonts\vf\public\txfonts\txmi.vf
-INPUT C:\Users\dhouben\AppData\Roaming\MiKTeX\fonts\tfm\public\txfonts\rtxmi.tfm
+INPUT C:\Program Files\MiKTeX\fonts\tfm\public\cm\cmbx10.tfm
+INPUT C:\Program Files\MiKTeX\fonts\tfm\public\cm\cmbx7.tfm
+INPUT C:\Program Files\MiKTeX\fonts\tfm\public\cm\cmbx5.tfm
+INPUT ..\figures\XS_fit_nTOF1.png
+INPUT ..\figures\XS_fit_nTOF1.png
+INPUT ..\figures\XS_fit_nTOF1.png
+INPUT ..\figures\XS_fit_nTOF1.png
+INPUT ..\figures\XS_fit_nTOF1.png
+INPUT ..\figures\XS_fit_nTOF1.png
+INPUT ..\figures\XS_fit_nTOF1.png
+INPUT ..\figures\cr53_capture_xs_samples1.png
+INPUT ..\figures\cr53_capture_xs_samples1.png
+INPUT ..\figures\cr53_capture_xs_samples1.png
+INPUT ..\figures\cr53_capture_xs_samples1.png
+INPUT ..\figures\cr53_capture_xs_samples1.png
+INPUT ..\figures\cr53_capture_xs_samples1.png
+INPUT ..\figures\cr53_capture_xs_samples1.png
 INPUT ..\figures\latest\validation\cr53_thin_slices.png
 INPUT ..\figures\latest\validation\cr53_thin_slices.png
 INPUT ..\figures\latest\validation\cr53_thin_slices.png
@@ -403,33 +294,53 @@ INPUT ..\figures\cr53_20r_10pcm_all\pmi002_output_scatterpdf_plot.png
 INPUT .\main.bbl
 INPUT .\main.bbl
 INPUT main.bbl
-INPUT C:\Program Files\MiKTeX\fonts\tfm\jknappen\ec\ectt1000.tfm
+INPUT C:\Program Files\MiKTeX\fonts\tfm\jknappen\ec\ectt1200.tfm
 INPUT main.aux
 INPUT .\main.out
 INPUT .\main.out
+INPUT C:\Program Files\MiKTeX\fonts\type1\public\amsfonts\cm\cmbx12.pfb
+INPUT C:\Program Files\MiKTeX\fonts\type1\public\amsfonts\cm\cmbx12.pfb
+INPUT C:\Program Files\MiKTeX\fonts\type1\public\amsfonts\cm\cmbx8.pfb
+INPUT C:\Program Files\MiKTeX\fonts\type1\public\amsfonts\cm\cmbx8.pfb
+INPUT C:\Program Files\MiKTeX\fonts\type1\public\amsfonts\cm\cmex10.pfb
+INPUT C:\Program Files\MiKTeX\fonts\type1\public\amsfonts\cm\cmex10.pfb
+INPUT C:\Program Files\MiKTeX\fonts\type1\public\amsfonts\cm\cmmi10.pfb
+INPUT C:\Program Files\MiKTeX\fonts\type1\public\amsfonts\cm\cmmi10.pfb
+INPUT C:\Program Files\MiKTeX\fonts\type1\public\amsfonts\cm\cmmi12.pfb
+INPUT C:\Program Files\MiKTeX\fonts\type1\public\amsfonts\cm\cmmi12.pfb
+INPUT C:\Program Files\MiKTeX\fonts\type1\public\amsfonts\cm\cmmi6.pfb
+INPUT C:\Program Files\MiKTeX\fonts\type1\public\amsfonts\cm\cmmi6.pfb
+INPUT C:\Program Files\MiKTeX\fonts\type1\public\amsfonts\cm\cmmi8.pfb
+INPUT C:\Program Files\MiKTeX\fonts\type1\public\amsfonts\cm\cmmi8.pfb
+INPUT C:\Program Files\MiKTeX\fonts\type1\public\amsfonts\cm\cmr12.pfb
+INPUT C:\Program Files\MiKTeX\fonts\type1\public\amsfonts\cm\cmr12.pfb
+INPUT C:\Program Files\MiKTeX\fonts\type1\public\amsfonts\cm\cmr8.pfb
+INPUT C:\Program Files\MiKTeX\fonts\type1\public\amsfonts\cm\cmr8.pfb
+INPUT C:\Program Files\MiKTeX\fonts\type1\public\amsfonts\cm\cmsy10.pfb
+INPUT C:\Program Files\MiKTeX\fonts\type1\public\amsfonts\cm\cmsy10.pfb
+INPUT C:\Program Files\MiKTeX\fonts\type1\public\amsfonts\cm\cmsy8.pfb
+INPUT C:\Program Files\MiKTeX\fonts\type1\public\amsfonts\cm\cmsy8.pfb
 INPUT C:\Program Files\MiKTeX\fonts\type1\public\amsfonts\symbols\msam10.pfb
 INPUT C:\Program Files\MiKTeX\fonts\type1\public\amsfonts\symbols\msam10.pfb
-INPUT C:\Users\dhouben\AppData\Roaming\MiKTeX\fonts\type1\public\txfonts\rtcxr.pfb
-INPUT C:\Users\dhouben\AppData\Roaming\MiKTeX\fonts\type1\public\txfonts\rtcxr.pfb
-INPUT C:\Users\dhouben\AppData\Roaming\MiKTeX\fonts\type1\public\txfonts\rtxb.pfb
-INPUT C:\Users\dhouben\AppData\Roaming\MiKTeX\fonts\type1\public\txfonts\rtxb.pfb
-INPUT C:\Users\dhouben\AppData\Roaming\MiKTeX\fonts\type1\public\txfonts\rtxmi.pfb
-INPUT C:\Users\dhouben\AppData\Roaming\MiKTeX\fonts\type1\public\txfonts\rtxmi.pfb
-INPUT C:\Users\dhouben\AppData\Roaming\MiKTeX\fonts\type1\public\txfonts\rtxr.pfb
-INPUT C:\Users\dhouben\AppData\Roaming\MiKTeX\fonts\type1\public\txfonts\rtxr.pfb
-INPUT C:\Users\dhouben\AppData\Roaming\MiKTeX\fonts\type1\public\cm-super\sftt0800.pfb
-INPUT C:\Users\dhouben\AppData\Roaming\MiKTeX\fonts\type1\public\cm-super\sftt0800.pfb
+INPUT C:\Users\dhouben\AppData\Roaming\MiKTeX\fonts\type1\public\cm-super\sfbx1200.pfb
+INPUT C:\Users\dhouben\AppData\Roaming\MiKTeX\fonts\type1\public\cm-super\sfbx1200.pfb
+INPUT C:\Users\dhouben\AppData\Roaming\MiKTeX\fonts\type1\public\cm-super\sfrm0800.pfb
+INPUT C:\Users\dhouben\AppData\Roaming\MiKTeX\fonts\type1\public\cm-super\sfrm0800.pfb
+INPUT C:\Users\dhouben\AppData\Roaming\MiKTeX\fonts\type1\public\cm-super\sfrm1000.pfb
+INPUT C:\Users\dhouben\AppData\Roaming\MiKTeX\fonts\type1\public\cm-super\sfrm1000.pfb
+INPUT C:\Users\dhouben\AppData\Roaming\MiKTeX\fonts\type1\public\cm-super\sfrm1200.pfb
+INPUT C:\Users\dhouben\AppData\Roaming\MiKTeX\fonts\type1\public\cm-super\sfrm1200.pfb
+INPUT C:\Users\dhouben\AppData\Roaming\MiKTeX\fonts\type1\public\cm-super\sfrm1728.pfb
+INPUT C:\Users\dhouben\AppData\Roaming\MiKTeX\fonts\type1\public\cm-super\sfrm1728.pfb
+INPUT C:\Users\dhouben\AppData\Roaming\MiKTeX\fonts\type1\public\cm-super\sfss0800.pfb
+INPUT C:\Users\dhouben\AppData\Roaming\MiKTeX\fonts\type1\public\cm-super\sfss0800.pfb
+INPUT C:\Users\dhouben\AppData\Roaming\MiKTeX\fonts\type1\public\cm-super\sfti0700.pfb
+INPUT C:\Users\dhouben\AppData\Roaming\MiKTeX\fonts\type1\public\cm-super\sfti0700.pfb
+INPUT C:\Users\dhouben\AppData\Roaming\MiKTeX\fonts\type1\public\cm-super\sfti1000.pfb
+INPUT C:\Users\dhouben\AppData\Roaming\MiKTeX\fonts\type1\public\cm-super\sfti1000.pfb
+INPUT C:\Users\dhouben\AppData\Roaming\MiKTeX\fonts\type1\public\cm-super\sfti1200.pfb
+INPUT C:\Users\dhouben\AppData\Roaming\MiKTeX\fonts\type1\public\cm-super\sfti1200.pfb
 INPUT C:\Users\dhouben\AppData\Roaming\MiKTeX\fonts\type1\public\cm-super\sftt1000.pfb
 INPUT C:\Users\dhouben\AppData\Roaming\MiKTeX\fonts\type1\public\cm-super\sftt1000.pfb
-INPUT C:\Users\dhouben\AppData\Roaming\MiKTeX\fonts\type1\public\txfonts\txex.pfb
-INPUT C:\Users\dhouben\AppData\Roaming\MiKTeX\fonts\type1\public\txfonts\txex.pfb
-INPUT C:\Users\dhouben\AppData\Roaming\MiKTeX\fonts\type1\public\txfonts\txsy.pfb
-INPUT C:\Users\dhouben\AppData\Roaming\MiKTeX\fonts\type1\public\txfonts\txsy.pfb
-INPUT C:\Program Files\MiKTeX\fonts\type1\urw\helvetic\uhvr8a.pfb
-INPUT C:\Program Files\MiKTeX\fonts\type1\urw\helvetic\uhvr8a.pfb
-INPUT C:\Program Files\MiKTeX\fonts\type1\urw\times\utmb8a.pfb
-INPUT C:\Program Files\MiKTeX\fonts\type1\urw\times\utmb8a.pfb
-INPUT C:\Program Files\MiKTeX\fonts\type1\urw\times\utmr8a.pfb
-INPUT C:\Program Files\MiKTeX\fonts\type1\urw\times\utmr8a.pfb
-INPUT C:\Program Files\MiKTeX\fonts\type1\urw\times\utmri8a.pfb
-INPUT C:\Program Files\MiKTeX\fonts\type1\urw\times\utmri8a.pfb
+INPUT C:\Users\dhouben\AppData\Roaming\MiKTeX\fonts\type1\public\cm-super\sftt1200.pfb
+INPUT C:\Users\dhouben\AppData\Roaming\MiKTeX\fonts\type1\public\cm-super\sftt1200.pfb

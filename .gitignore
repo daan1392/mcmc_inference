@@ -189,5 +189,3 @@ cython_debug/
 
 # PyPI configuration file
 .pypirc
-
-# reports/

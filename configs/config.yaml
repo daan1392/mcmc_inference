@@ -1,6 +1,6 @@
 project_name: "Nuclear_Data_Inference_2025"
 output_dir: "data/mcmc_chains/"
-figures_dir: "reports/figures/cr53_20r_all_1000pcm/"
+figures_dir: "reports/figures/cr53_20r_all_0pcm/"
 
 # -----------------------------------------------------------------------------
 # Global Defaults (Apply to all experiments unless overridden)
@@ -41,7 +41,7 @@ experiments:
     
     experimental_data:
       measurement: 0.98780
-      uncertainty: 0.01230
+      uncertainty: 0.00230
 
   - id: "hmi001"
     title: "HMI001"
@@ -54,7 +54,7 @@ experiments:
       
     experimental_data:
       measurement: 0.99600
-      uncertainty: 0.01260
+      uncertainty: 0.00260
 
   - id: "cr53_thin"
     title: "nTOF Cr53 thin (2022)"
