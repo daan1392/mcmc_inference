@@ -425,7 +425,7 @@ def plot_mcmc_results(config_path):
     n_params = len(param_names)
     print(f"Parameters found: {param_names}")
 
-    # 3. Initialize Evaluators for each Experiment
+    # 3. Initialize evaluators for each experiment
     models = []
 
     print("\n   Loading Experiment Models...")

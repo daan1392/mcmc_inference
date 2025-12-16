@@ -18,10 +18,10 @@ from sklearn.gaussian_process.kernels import (
 
 plt.rcParams.update(
     {
-        "text.usetex": False,  # Disable external LaTeX compiler
-        "font.family": "STIXGeneral",  # Use serif fonts (like Times or CM)
-        "mathtext.fontset": "cm",  # Use Computer Modern for math
-        "axes.formatter.use_mathtext": True,  # Force scientific notation to use MathText
+        "text.usetex": False,
+        "font.family": "STIXGeneral",
+        "mathtext.fontset": "cm",
+        "axes.formatter.use_mathtext": True,
         "font.size": 14,
     }
 )
@@ -33,7 +33,6 @@ def load_config(config_path):
 
 
 def get_kernel(kernel_type, n_features):
-    # Base: Constant (Vertical Scale) + White (Noise/Jitter)
     base = C(1.0, (1e-10, 1e15)) + WhiteKernel(noise_level=1e-5, noise_level_bounds=(1e-10, 1e-1))
 
     if kernel_type == "RBF":
@@ -112,10 +111,8 @@ def plot_gp_slices(gp, X_train, y_train, feature_names, save_dir, exp_id, exp_ty
     os.makedirs(save_dir, exist_ok=True)
     n_features = X_train.shape[1]
 
-    # Calculate the 'Reference Point' (Mean of all inputs)
     mean_inputs = np.mean(X_train, axis=0)
 
-    # Setup subplots
     cols = 1
     rows = int(np.ceil(n_features / cols))
     fig, axes = plt.subplots(rows, cols, figsize=(5, 4 * rows))
@@ -125,12 +122,12 @@ def plot_gp_slices(gp, X_train, y_train, feature_names, save_dir, exp_id, exp_ty
         ax = axes[i]
         fname = feature_names[i]
 
-        # 1. Create Grid (Min to Max of training data)
+        # 1. Create Grid
         x_min, x_max = X_train[:, i].min(), X_train[:, i].max()
         span = x_max - x_min
         x_grid = np.linspace(x_min - 0.05 * span, x_max + 0.05 * span, 1000)
 
-        # 2. Create Design Matrix (1000 samples, n_features)
+        # 2. Create Design Matrix
         X_design = np.tile(mean_inputs, (1000, 1))
         X_design[:, i] = x_grid
 
@@ -149,18 +146,15 @@ def plot_gp_slices(gp, X_train, y_train, feature_names, save_dir, exp_id, exp_ty
             label="95% CI",
         )
 
-        # Overlay Training Data (Projected onto this dimension)
+        # Overlay Training Data
         ax.scatter(X_train[:, i], y_train, c="k", s=10, alpha=0.3, label="Training Data")
 
-        # ax.set_title(exp_id + f" - Varying: {fname}")
         ax.set_xlabel(r"$\Gamma_\gamma(E=4 keV)$, eV")
         ax.set_ylabel(r"$k_{\text{eff}}$" if exp_type == "integral" else r"$\chi^2$")
-        # ax.grid(True, alpha=0.3)
         ax.spines[["right", "top"]].set_visible(False)
         if i == 0:
             ax.legend()
 
-    # Hide empty subplots
     for j in range(i + 1, len(axes)):
         axes[j].axis("off")
 
@@ -231,7 +225,6 @@ def train_surrogates(config_path):
         within_2sigma = np.mean(np.abs(y_val - y_pred) <= 2 * y_std)
         print(f"   -> Val RMSE: {rmse:.5f} | Coverage: {within_2sigma * 100:.1f}%")
 
-        # --- PLOTTING ---
         # 1. Parity and Residuals (using Validation data)
         plot_diagnostics(y_val, y_pred, y_std, exp.get("title"), figures_dir, exp_id)
 
