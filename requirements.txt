@@ -1,10 +1,6 @@
-loguru
-mkdocs
 pip
-python-dotenv
 ruff
 tqdm
-typer
 -e .
 numpy
 pandas
@@ -12,3 +8,4 @@ matplotlib
 emcee
 sklearn
 scipy
+serpentTools

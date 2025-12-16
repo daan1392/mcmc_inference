@@ -1,7 +1,8 @@
 # MCMC Inference
-Markov Chain Monte Carlo (MCMC) framework to infer nuclear data from both microscopic energy dependent and integral experiments. Surrogate models are built per experiment using Gaussian Processes with the 80/20 rule for testing. This work was build upon scripts from @Sarah Maccario. Microscopic experiments could be included due to the help of Pablo Pérez-Maroto. 
+Markov Chain Monte Carlo (MCMC) framework to infer nuclear data from both microscopic energy dependent and integral experiments. Surrogate models are built per experiment using Gaussian Processes with the 80/20 rule for testing. This work was build upon scripts from a PhD student at EPFL, Sarah Maccario. Microscopic experiments could be included due to the help of Pablo Pérez-Maroto. 
 
 ## Features
+- Generate training data (perturbed ACE files, )
 - Train Gaussian Process (GP) surrogates for each experiment included
 - Run MCMC inference using the GPs
 - Plot prior and posterior responses
@@ -14,18 +15,19 @@ cd mcmc_inference
 pip install -e .
 ```
 
-## Project layout (key folders)
-- data/           — raw and processed measurement & training data
-- configs/        — experiment/configuration YAML files
-- scripts/        — helper/run scripts
-- src/            — package source (models, inference, utils)
+## Project layout
+- data/           (experiment data, training data)
+- configs/        (configuration file to specify inference settings)
+- scripts/        (scripts to run specific workflows)
+- mcmc_inference/ (python functions and code)
+- reports/        (figures and written reports)
 
 ## Usage
 1. Place measurement and surrogate training data in data/ (e.g. data/processed).
 2. Edit a config in configs/config.yaml (set experiment path, data paths, measurement data etc.).
 3. Run the main script:
 ```bash
-python scripts/run_complete.py --config configs/config.yaml
+python scripts/run_inference.py --config configs/config.yaml
 ```
 
 ## Tips

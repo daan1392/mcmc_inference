@@ -1,20 +1,20 @@
 # Fdb version 4
-["bibtex main"] 1765553720.46906 "main.aux" "main.bbl" "main" 1765553725.2998 0
+["bibtex main"] 0 "main.aux" "main.bbl" "main" 0 -1
   "./references.bib" 1765465674 16296 80cbb446a360207d1bf4a715c92fc31f ""
   "C:/Users/dhouben/AppData/Roaming/MiKTeX/bibtex/bst/elsarticle/elsarticle-num.bst" 1737286288 29462 3b2a1af2ce1e224a3b46ee048ffd4b98 ""
-  "main.aux" 1765553724 7714 0d4fff49326c12d025032aacb2588719 "pdflatex"
+  "main.aux" 1765881889 7714 a3358fb7c635a4c4f2bfd99387872c1e "pdflatex"
   (generated)
   "main.bbl"
   "main.blg"
   (rewritten before read)
-["pdflatex"] 1765553721.40447 "c:/Users/dhouben/OneDrive - Studiecentrum voor Kernenergie/Documents/Internships/EPFL-2025/mcmc_inference/reports/annals_nuclear_energy/main.tex" "main.pdf" "main" 1765553725.30077 0
+["pdflatex"] 1765881887.1496 "c:/Users/dhouben/OneDrive - Studiecentrum voor Kernenergie/Documents/Internships/EPFL-2025/mcmc_inference/reports/annals_nuclear_energy/main.tex" "main.pdf" "main" 1765881890.57112 2
   "../figures/XS_fit_nTOF1.png" 1765552950 91317 fb8d6e90c30e39d35a4ebbe711378c70 ""
   "../figures/cr53_20r_10pcm_all/cr53_thin_output_scatterpdf_plot.png" 1765376711 85150 58347cc37c9b4212b6e34ca2fe9222ce ""
   "../figures/cr53_20r_10pcm_all/hmi001_output_scatterpdf_plot.png" 1765376709 99002 b65e0928105a87f98a1a551029e94425 ""
   "../figures/cr53_20r_10pcm_all/pmi002_output_scatterpdf_plot.png" 1765376706 89021 2e88708f0ad8a30be1c507d7410e3bf1 ""
-  "../figures/cr53_20r_all_1000pcm/cr53_thin_output_scatterpdf_plot.pdf" 1765470699 625567 efa71088f9f6df298f6f050c935e6761 ""
-  "../figures/cr53_20r_all_1000pcm/hmi001_output_scatterpdf_plot.pdf" 1765470696 621653 5e6a23c935d1d3035b2193f754dff311 ""
-  "../figures/cr53_20r_all_1000pcm/pmi002_output_scatterpdf_plot.pdf" 1765470693 627512 1dbbb02a7dd0f76e645b1dc3a1c38a20 ""
+  "../figures/cr53_20r_all_1000pcm/cr53_thin_output_scatterpdf_plot.png" 0 -1 0 ""
+  "../figures/cr53_20r_all_1000pcm/hmi001_output_scatterpdf_plot.png" 0 -1 0 ""
+  "../figures/cr53_20r_all_1000pcm/pmi002_output_scatterpdf_plot.png" 0 -1 0 ""
   "../figures/cr53_capture_xs_samples1.png" 1765552239 558635 f7dfea489684d5598fbbab4a85e12b1e ""
   "../figures/cr_53_20r_all_ind_1000pcm/cr53_thin_output_scatterpdf_plot.png" 1765375133 88713 636aad1711778bff72c20790ea8198c4 ""
   "../figures/cr_53_20r_all_ind_1000pcm/hmi001_output_scatterpdf_plot.png" 1765375130 98049 3b00dc1c9edcac258ef6f57b61972344 ""
@@ -24,7 +24,6 @@
   "../figures/sensitivity_hmi001+pmi002_Cr53.png" 1765553662 116136 35cd8c82ab9f0c5d81be7629b1ca6e43 ""
   "C:/Program Files/MiKTeX/fonts/tfm/jknappen/ec/ecbx1200.tfm" 993061958 3200 b8d69bc738e5ef3e08cefeef3109ff56 ""
   "C:/Program Files/MiKTeX/fonts/tfm/jknappen/ec/ecrm0600.tfm" 993062116 3160 116e21835795bb29209ae8bb4682382f ""
-  "C:/Program Files/MiKTeX/fonts/tfm/jknappen/ec/ecrm0700.tfm" 993062116 3168 c739b83da3134ef1007979877c1089cf ""
   "C:/Program Files/MiKTeX/fonts/tfm/jknappen/ec/ecrm0800.tfm" 993062118 3152 11ecf5aad6aacf00ff18f394ab23a8b5 ""
   "C:/Program Files/MiKTeX/fonts/tfm/jknappen/ec/ecrm1000.tfm" 993062122 3148 7e594c8240c71e432203f65ab5f95a51 ""
   "C:/Program Files/MiKTeX/fonts/tfm/jknappen/ec/ecrm1200.tfm" 993062126 3152 4850ff0163852b7fab34bd55e1197f28 ""
@@ -33,7 +32,6 @@
   "C:/Program Files/MiKTeX/fonts/tfm/jknappen/ec/ecti0700.tfm" 993062314 2844 4ce33120ad42fff47ba8c63fe5d7f767 ""
   "C:/Program Files/MiKTeX/fonts/tfm/jknappen/ec/ecti1000.tfm" 993062320 2840 5606e1a681c23005308de9d61c09a8ff ""
   "C:/Program Files/MiKTeX/fonts/tfm/jknappen/ec/ecti1200.tfm" 993062324 2832 28bbd97ca29f46e76c87a158a9915203 ""
-  "C:/Program Files/MiKTeX/fonts/tfm/jknappen/ec/ectt1000.tfm" 993062340 1348 d70ddf2d5d512b838e50a335e385e919 ""
   "C:/Program Files/MiKTeX/fonts/tfm/jknappen/ec/ectt1200.tfm" 993062344 1348 c48a0620e07683860afba1730adf9e53 ""
   "C:/Program Files/MiKTeX/fonts/tfm/jknappen/ec/tcrm1200.tfm" 993062508 1444 95ffe0f19b974d50849790c8225c7ef7 ""
   "C:/Program Files/MiKTeX/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm" 1233951848 1004 54797486969f23fa377b128694d548df ""
@@ -122,7 +120,6 @@
   "C:/Users/dhouben/AppData/Roaming/MiKTeX/fonts/type1/public/cm-super/sfti0700.pfb" 1215618300 184338 c11b1280164b3c4f4840550e728400b6 ""
   "C:/Users/dhouben/AppData/Roaming/MiKTeX/fonts/type1/public/cm-super/sfti1000.pfb" 1215618300 186554 2eb6bd25fc5e008c37b6575e4923fdc7 ""
   "C:/Users/dhouben/AppData/Roaming/MiKTeX/fonts/type1/public/cm-super/sfti1200.pfb" 1215618300 198221 29e050730bc4b56b13a53cd149c0a42c ""
-  "C:/Users/dhouben/AppData/Roaming/MiKTeX/fonts/type1/public/cm-super/sftt1000.pfb" 1215618300 169201 651a6333c3213b38091f54d2ab2d2cd6 ""
   "C:/Users/dhouben/AppData/Roaming/MiKTeX/fonts/type1/public/cm-super/sftt1200.pfb" 1215618300 167085 3b331a8ed51d2a40eb9422e52a3bcab8 ""
   "C:/Users/dhouben/AppData/Roaming/MiKTeX/tex/generic/bigintcalc/bigintcalc.sty" 1576433602 40635 c40361e206be584d448876bba8a64a3b ""
   "C:/Users/dhouben/AppData/Roaming/MiKTeX/tex/generic/bitset/bitset.sty" 1575926576 33961 6b5c75130e435b2bfdb9f480a09a39f9 ""
@@ -146,12 +143,12 @@
   "C:/Users/dhouben/AppData/Roaming/MiKTeX/tex/latex/natbib/natbib.sty" 1292249081 46712 1c8843383c0bd05870c45fa0ebea6cc2 ""
   "C:/Users/dhouben/AppData/Roaming/MiKTeX/tex/latex/refcount/refcount.sty" 1576433952 9878 9e94e8fa600d95f9c7731bb21dfb67a4 ""
   "C:/Users/dhouben/AppData/Roaming/MiKTeX/tex/latex/rerunfilecheck/rerunfilecheck.sty" 1657800696 9714 ba3194bd52c8499b3f1e3eb91d409670 ""
-  "c:/Users/dhouben/OneDrive - Studiecentrum voor Kernenergie/Documents/Internships/EPFL-2025/mcmc_inference/reports/annals_nuclear_energy/main.tex" 1765553715 32482 d01c1268d1429f8f638ddcf4d0b59e69 ""
-  "main.aux" 1765553724 7714 0d4fff49326c12d025032aacb2588719 "pdflatex"
+  "c:/Users/dhouben/OneDrive - Studiecentrum voor Kernenergie/Documents/Internships/EPFL-2025/mcmc_inference/reports/annals_nuclear_energy/main.tex" 1765881812 32482 bb8ed60d7c5d6ff5d0ec2e18326b8082 ""
+  "main.aux" 1765881889 7714 a3358fb7c635a4c4f2bfd99387872c1e "pdflatex"
   "main.bbl" 1765553721 4744 cd15b3533cb82c4b15b5fabca1bbf769 "bibtex main"
-  "main.out" 1765553724 2820 3a666732a6879953c785079f75a4a7bf "pdflatex"
-  "main.spl" 1765553721 0 d41d8cd98f00b204e9800998ecf8427e "pdflatex"
-  "main.tex" 1765553715 32482 d01c1268d1429f8f638ddcf4d0b59e69 ""
+  "main.out" 1765881889 2820 3a666732a6879953c785079f75a4a7bf "pdflatex"
+  "main.spl" 1765881887 0 d41d8cd98f00b204e9800998ecf8427e "pdflatex"
+  "main.tex" 1765881812 32482 bb8ed60d7c5d6ff5d0ec2e18326b8082 ""
   (generated)
   "main.aux"
   "main.log"

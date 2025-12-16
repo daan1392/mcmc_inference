@@ -40,7 +40,7 @@ class IntegralExperiment:
 
         pred_mean, pred_std = self.gp.predict(relevant_theta.reshape(1, -1), return_std=True)
 
-        sigma_total = np.sqrt(self.y_err**2) + pred_std.item()**2)
+        sigma_total = np.sqrt(self.y_err**2 + pred_std.item()**2)
 
         return norm.logpdf(self.y_meas, loc=pred_mean.item(), scale=sigma_total)
 
