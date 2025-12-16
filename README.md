@@ -1,5 +1,8 @@
 # MCMC Inference
-Markov Chain Monte Carlo (MCMC) framework to infer nuclear data from both microscopic energy dependent and integral experiments. Surrogate models are built per experiment using Gaussian Processes with the 80/20 rule for testing. This work was build upon scripts from a PhD student at EPFL, Sarah Maccario. Microscopic experiments could be included due to the help of Pablo Pérez-Maroto. 
+Markov Chain Monte Carlo (MCMC) framework to infer nuclear data from both microscopic energy dependent and integral experiments. Surrogate models are built per experiment using Gaussian Processes with the 80/20 rule for testing. 
+
+## Acknowledgements
+This work was build upon scripts from a PhD student at EPFL, Sarah Maccario. Thanks to Pablo Pérez-Maroto, the capture yield measurement of Cr-53 could be included. He provided the required input files for running SAMMY. 
 
 ## Features
 - Generate training data (perturbed ACE files, )
@@ -8,11 +11,11 @@ Markov Chain Monte Carlo (MCMC) framework to infer nuclear data from both micros
 - Plot prior and posterior responses
 
 ## Installation
-Clone and install in editable mode:
+Clone and install:
 ```bash
 git clone https://github.com/daan1392/mcmc_inference.git
 cd mcmc_inference
-pip install -e .
+pip install .
 ```
 
 ## Project layout
