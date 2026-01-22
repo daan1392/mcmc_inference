@@ -51,9 +51,9 @@ if __name__ == "__main__":
     input_folder = "data/raw/Pérez-Maroto(2025)/cr53_thin_training/"
     title = "cr53_thin"
     pert_folder = "data/raw/Pérez-Maroto(2025)/cr53_thin_training/perturbed_parameters/"
-    samples = 10
-    emin = 1000
-    emax = 10000
+    samples = 100
+    emin = "1000.0"
+    emax = "10000.0"
 
     for i in tqdm(range(samples)):
         perturbed_par_file = f"{pert_folder}{title}_{i}.par"

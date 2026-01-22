@@ -3,12 +3,12 @@ import pandas as pd
 import numpy as np
 
 # Configure parameters
-title = "pmi002"
-template_file = "data/raw/pmi002/pmi002-template.ser"
-nsamples = 5
-ace = "/home/houben/nuclear-data/jeff40/jeff4.xsdir.serpent"
-ace_perturbed = "/home/houben/nuclear-data/cr53/aces_10-24/xsdata_cr53.jeff40"
-output_dir = "data/raw/pmi002/pmi002_serpent_inputs/"
+title = "hmi001"
+template_file = "data/raw/hmi001/hmi001-template.ser"
+nsamples = 100
+ace = "/srv/sci/pack/nuclear-data/jeff_40/xsdir/xsdata.jeff40"
+ace_perturbed = "/scratch/s1/dhouben/epfl/cr53/aces/xsdata_cr53.jeff40"
+output_dir = "data/raw/hmi001/hmi001_serpent_inputs/"
 
 # Read template file
 with open(template_file, "r", encoding="utf-8") as f:

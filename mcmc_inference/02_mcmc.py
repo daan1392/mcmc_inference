@@ -44,7 +44,6 @@ class IntegralExperiment:
 
         return norm.logpdf(self.y_meas, loc=pred_mean.item(), scale=sigma_total)
 
-
 class MicroscopicExperiment:
     """
     Evaluates the likelihood for a microscopic experiment using its specific GP.
@@ -72,8 +71,7 @@ class MicroscopicExperiment:
 
 class JointPosterior:
     """
-    The Master Class.
-    Evaluates Sum(Log Priors) + Sum(Log Likelihoods of ALL experiments).
+    Evaluates Log Prior + Sum(Log Likelihoods of ALL experiments).
     """
 
     def __init__(self, prior_means, prior_stds, experiment_models):

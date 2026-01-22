@@ -1,0 +1,18 @@
+
+ **********************************************************
+ ***                                                    ***
+ ***                 SAMMY Version 8.1.0                ***
+ ***                                                    ***
+ **********************************************************
+
+ Name of input file: 
+ >>> data/raw/Pérez-Maroto(2025)/cr53_thin_training/cr53_thin.inp           <<<
+ Name of parameter file: 
+ >>> data/raw/Pérez-Maroto(2025)/cr53_thin_training/perturbed_parameters/cr <<<
+ Values used for constants -- Kvendf=1
+   mass of neutron =   1.008664915780000 in amu
+   sqrt(m/2)       =  72.298252185556009
+   sqrt(2m)/hbar   =   0.000219680781008
+   Boltzman        =   0.000086173420000
+   finestructure   =   0.034447600026222 in 1/(amu*F)
+ GENERATE PLOT FILE AUTOMATICALLY                                              

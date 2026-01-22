@@ -240,6 +240,7 @@ def output_scatterpdf_plot(exp, prior, posterior, save_path):
         marker=".",
         label="Posterior Samples",
     )
+    
     weight = np.ones_like(posterior) / posterior.max()
     axs["histx"].hist(
         posterior,

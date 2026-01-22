@@ -30,17 +30,17 @@ def read_aces(folder_path, N, zai, mt, T=0):
 
     return xs_list.sort_index(axis=0).interpolate('slinear')
 
-for i in tqdm(range(samples), ascii=True, desc="Generating ACE files"):
-    tape = sandy.Endf6.from_file(f"tapes/n_24-Cr-053g.jeff{i}")
-    ace = tape.get_ace(temperature=300, err=0.01, minimal_processing=True)
-    file2write=open(f"aces/240530.03{i}c",'w')
-    file2write.write(ace["ace"])
-    file2write.close()
+# for i in tqdm(range(samples), ascii=True, desc="Generating ACE files"):
+#     tape = sandy.Endf6.from_file(f"tapes/n_24-Cr-053g.jeff{i}")
+#     ace = tape.get_ace(temperature=300, err=0.01, minimal_processing=True)
+#     file2write=open(f"aces/240530.03{i}c",'w')
+#     file2write.write(ace["ace"])
+#     file2write.close()
 
-file2write=open(f"{output_folder}xsdata_cr53.jeff40",'w')
-for i in tqdm(range(samples), ascii=True, desc="Generating xsdata entry"):
-    file2write.write(f"24053.03{i}c  24053.03{i}c  1  24053  0  52.940658  300  0  /home/houben/cr53/aces/240530.03{i}c\n")
-file2write.close()
+# file2write=open(f"{output_folder}xsdata_cr53.jeff40",'w')
+# for i in tqdm(range(samples), ascii=True, desc="Generating xsdata entry"):
+#     file2write.write(f"24053.03{i}c  24053.03{i}c  1  24053  0  52.940658  300  0  /home/houben/cr53/aces/240530.03{i}c\n")
+# file2write.close()
 
 aces = read_aces(output_folder, samples, zai=240530, mt=102, T=300)
 
