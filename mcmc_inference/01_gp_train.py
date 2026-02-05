@@ -103,7 +103,7 @@ def plot_diagnostics(y_true, y_pred, y_std, title, save_dir, exp_id):
     plt.close()
 
 
-def plot_gp_slices(gp, X_train, y_train, feature_names, save_dir, exp_id, exp_type):
+def plot_gp_slices(gp, X_train, y_train, feature_names, save_dir, exp_id, exp_type, exp_xlabels=None):
     """
     Plots the GP behavior by varying one feature at a time across 1000 points.
     Other features are held at their mean.
@@ -149,7 +149,7 @@ def plot_gp_slices(gp, X_train, y_train, feature_names, save_dir, exp_id, exp_ty
         # Overlay Training Data
         ax.scatter(X_train[:, i], y_train, c="k", s=10, alpha=0.3, label="Training Data")
 
-        ax.set_xlabel(r"$\Gamma_\gamma(E=4 keV)$, eV")
+        ax.set_xlabel(exp_xlabels[i])
         ax.set_ylabel(r"$k_{\text{eff}}$" if exp_type == "integral" else r"$\chi^2$")
         ax.spines[["right", "top"]].set_visible(False)
         if i == 0:
@@ -168,12 +168,17 @@ def train_surrogates(config_path):
 
     output_dir = "models"
     figures_dir = cfg["figures_dir"]
+    
     os.makedirs(output_dir, exist_ok=True)
     os.makedirs(os.path.join(figures_dir, "validation/"), exist_ok=True)
 
     print(f"--- Training GPs (80/20 Split, No Scaling) ---")
 
     for exp in cfg["experiments"]:
+        if exp["type"] == "normalization":
+            print(f"-> Skipping normalization experiment: {exp['id']}")
+            continue
+        
         exp_id = exp["id"]
         print(f"\nProcessing: {exp_id} ({exp.get('title')})")
 
@@ -229,7 +234,7 @@ def train_surrogates(config_path):
         plot_diagnostics(y_val, y_pred, y_std, exp.get("title"), figures_dir, exp_id)
 
         # 2. Slice Plots (using Training data range + 1000 predicted points)
-        plot_gp_slices(gp, X_train, y_train, feature_names, figures_dir, exp_id, exp["type"])
+        plot_gp_slices(gp, X_train, y_train, feature_names, figures_dir, exp_id, exp["type"], cfg["parameters"]["labels"])
 
         # Save
         joblib.dump(gp, os.path.join(output_dir, f"{exp_id}_gp.joblib"))

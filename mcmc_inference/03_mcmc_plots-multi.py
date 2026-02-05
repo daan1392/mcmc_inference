@@ -47,7 +47,20 @@ class MicroscopicExperiment:
         if not os.path.exists(gp_path):
             raise FileNotFoundError(f"GP model for {exp_id} not found at {gp_path}")
         self.gp = joblib.load(gp_path)
+    
+class NormalizationFactor:
+    """
+    Evaluates the likelihood for a microscopic experiment using its specific GP.
+    Now supports mapping specific global parameters to GP inputs.
+    """
 
+    def __init__(self, exp):
+        self.id = exp["id"]
+        self.type = exp["type"]
+        self.unc = exp["experimental_data"]["uncertainty"]
+
+    def get_chi2(self, y):
+        return (1.0 - y) ** 2 / (self.unc ** 2)
 
 def trace_plot(idata, project_name, save_path):
     axes = az.plot_trace(idata, compact=False)
@@ -155,7 +168,7 @@ def output_scatter_plot(exp, prior, posterior, param_idx, param_name, save_path=
     ax.set(
         title=f"{exp.id}",
         xlabel=f"{param_name}",
-        ylabel=r"$k_{\text{eff}}$" if exp.type == "integral" else r"$\chi^2$",
+        ylabel=r"$k_{\text{eff}}$" if exp.type =="microscopic" else r"$\chi^2$",
     )
     # Only add legend if it's a standalone plot
     if axs is None:
@@ -173,8 +186,8 @@ def plot_chi2(exp, prior, posterior, param_idx, param_name, save_path=None, axs=
         ax = axs
 
     # 1. Predictions use the FULL parameter set (N, 5)
-    y_prior_pred = exp.gp.predict(prior)
-    y_post_pred = exp.gp.predict(posterior)
+    y_prior_pred = exp.gp.predict(prior) if exp.type !="normalization" else prior[:, -1]
+    y_post_pred = exp.gp.predict(posterior) if exp.type !="normalization" else posterior[:, -1]
 
     # 2. X-axis uses ONLY the current parameter column (N, 1)
     x_prior = prior[:, param_idx]
@@ -188,7 +201,9 @@ def plot_chi2(exp, prior, posterior, param_idx, param_name, save_path=None, axs=
         xlabel=f"{param_name}",
         ylabel=r"$\chi^2$",
     )
-    # Only add legend if it's a standalone plot
+
+    ax.spines[["right", "top"]].set_visible(False)
+
     if axs is None:
         ax.legend()
         fig.savefig(save_path, dpi=300)
@@ -290,9 +305,8 @@ def plot_chi2pdf(exp, prior, posterior, param_idx, param_name, save_path):
     axs["histy"].tick_params(axis="x", labelbottom=False, bottom=False)
 
     # --- Data Preparation ---
-    # GP needs full shape (N, D)
-    y_prior_pred = exp.gp.predict(prior)
-    y_post_pred = exp.gp.predict(posterior)
+    y_prior_pred = exp.gp.predict(prior) if exp.type != "normalization" else prior[:, param_idx]
+    y_post_pred = exp.gp.predict(posterior) if exp.type != "normalization" else posterior[:, param_idx]
     
     # Plotting needs specific column (N,)
     x_prior = prior[:, param_idx]
@@ -387,6 +401,10 @@ def plot_mcmc_results(config_path):
                     exp_type=exp["type"],
                     gp_path=gp_path,
                 )
+            elif exp["type"] == "normalization":
+                exp_obj = NormalizationFactor(
+                    exp=exp,
+                )
             models.append(exp_obj)
             print(f"    - Loaded {exp['id']}")
         except FileNotFoundError:
@@ -433,16 +451,6 @@ def plot_mcmc_results(config_path):
         # Loop over parameters to create one scatter plot per input dimension
         for i, p_name in enumerate(param_names):
             clean_p_name = p_name.replace(" ", "_").replace("/", "_")
-            
-            # output_scatterpdf_plot(
-            #     exp,
-            #     prior_X_samples,
-            #     posterior_X_samples,
-            #     param_idx=i,
-            #     param_name=param_labels[i],
-            #     save_path=os.path.join(figures_dir, f"{exp.id}_scatter_{clean_p_name}.png"),
-            # )
-
             plot_chi2pdf(
                 exp,
                 prior_X_samples,
@@ -483,8 +491,8 @@ def plot_mcmc_results(config_path):
                 exp,
                 prior_X_samples,
                 posterior_X_samples,
-                param_idx=i,
-                param_name=param_labels[i],
+                param_idx=col,
+                param_name=param_labels[col],
                 save_path=os.path.join(figures_dir, f"{exp.id}_chi2_{clean_p_name}.png"),
                 axs=axs[row, col]
             )
@@ -514,16 +522,14 @@ def plot_mcmc_results(config_path):
     with open(md_path, "w") as f:
         f.write(f"# MCMC Inference Summary: {cfg.get('project_name', 'Results')}\n\n")
         f.write("## Parameter Statistics\n\n")
-        f.write("| Parameter | Prior Mean | Prior Std (Abs) | Posterior Mean | Posterior Std | Change in Mean (%) |\n")
+        f.write("| Parameter | Prior Mean | Rel. Prior Std (Abs) | Posterior Mean | Rel. Posterior Std | Change in Mean (%) |\n")
         f.write("| :--- | :---: | :---: | :---: | :---: | :---: |\n")
 
         for i, param in enumerate(param_names):
             # Prior stats from config/calculation
             pr_mu = prior_means[i]
-            pr_std = prior_stds[i]
+            pr_std = prior_stds[i] 
             
-            # Posterior stats from Arviz Summary
-            # Use .loc to ensure we get the right row for the parameter name
             try:
                 po_mu = summary_df.loc[param, "mean"]
                 po_std = summary_df.loc[param, "sd"] / summary_df.loc[param, "mean"]
@@ -552,7 +558,7 @@ def plot_mcmc_results(config_path):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    parser.add_argument("--config", type=str, default="configs/config.yaml")
+    parser.add_argument("--config", type=str, default="configs/config_multi.yaml")
     args = parser.parse_args()
 
     plot_mcmc_results(args.config)

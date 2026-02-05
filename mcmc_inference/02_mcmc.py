@@ -58,9 +58,7 @@ class MicroscopicExperiment:
         self.gp = joblib.load(gp_path)
 
     def get_log_likelihood(self, theta):
-        relevant_theta = theta[self.input_indices]
-
-        chi2_val = self.gp.predict(relevant_theta.reshape(1, -1))
+        chi2_val = self.gp.predict(theta.reshape(1, -1))
 
         chi2 = max(0.0, chi2_val.item())
 
@@ -68,6 +66,26 @@ class MicroscopicExperiment:
 
         return self.weight * ll
 
+class NormalizationFactor:
+    """
+    Evaluates the likelihood for a microscopic experiment using its specific GP.
+    Now supports mapping specific global parameters to GP inputs.
+    """
+
+    def __init__(self, exp_id, unc, input_indices, weight=1.0):
+        self.id = exp_id
+        self.weight = weight
+        self.unc = unc
+        self.input_indices = input_indices 
+
+    def get_log_likelihood(self, theta):
+        # chi2 = (1-theta[-1])**2 / ((theta[-1]*self.unc)**2)
+
+        # # chi2 = max(0.0, chi2_val.item())
+
+        # ll = -0.5 * np.log(2*np.pi*(theta[-1]*self.unc)**2) - 0.5 * chi2
+
+        return norm.logpdf(1.0, loc=theta[-1], scale=self.unc)
 
 class JointPosterior:
     """
@@ -144,6 +162,12 @@ def run_joint_mcmc(config_path):
                     exp_id=exp["id"],
                     C=exp["training_data"]["C_constant"],
                     gp_path=gp_path,
+                    input_indices=input_indices,
+                )
+            elif exp["type"] == "normalization":
+                exp_obj = NormalizationFactor(
+                    exp_id=exp["id"],
+                    unc=exp["experimental_data"]["uncertainty"],
                     input_indices=input_indices,
                 )
             models.append(exp_obj)

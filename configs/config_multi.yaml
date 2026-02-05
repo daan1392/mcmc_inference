@@ -1,6 +1,6 @@
 project_name: "Nuclear_Data_Inference_2025"
 output_dir: "data/mcmc_chains/"
-figures_dir: "reports/figures/cr53_multi_all_0pcm/"
+figures_dir: "reports/figures/multi-micro_noNorm/"
 
 # -----------------------------------------------------------------------------
 # Global Defaults (Apply to all experiments unless overridden)
@@ -14,57 +14,68 @@ defaults:
   mcmc:
     sampler: "emcee"
     n_walkers: 10
-    n_steps: 5000
-    burn_in: 1000
+    n_steps: 4000
+    burn_in: 200
     random_seed: 102
 
 # -----------------------------------------------------------------------------
 # Prior Information
 # -----------------------------------------------------------------------------
 parameters:
-  names: ["Gg1", "Gg2", "Gg3", "Gg4"]
-  labels: ['$\Gamma_\gamma$ (E=4.1 keV), eV', '$\Gamma_\gamma$ (E=5.7 keV), eV', '$\Gamma_\gamma$ (E=6.8 keV), eV', '$\Gamma_\gamma$ (E=8.2 keV), eV']
-  prior_means: [5.038040, 0.7871651, 4.143858, 3.352590]
-  prior_stds: [0.20, 0.20, 0.20, 0.20]
+  names: ["Gg1", "Gg2", "Gg3", "Gg4", "normalization"]
+  labels: ['$\Gamma_\gamma$ (E=4.1 keV), eV', '$\Gamma_\gamma$ (E=5.7 keV), eV', '$\Gamma_\gamma$ (E=6.8 keV), eV', '$\Gamma_\gamma$ (E=8.2 keV), eV', 'Normalization']
+  prior_means: [5.038040, 0.7871651, 4.143858, 3.352590, 1.0]
+  prior_stds: [0.20, 0.20, 0.20, 0.20, 0.10]
 
 # -----------------------------------------------------------------------------
 # Experiment Definitions
 # -----------------------------------------------------------------------------
 experiments:
-  - id: "pmi002"
-    title: "PMI002"
-    description: "PU-MET-INTER-002 using stainless steel reflector"
-    type: "integral"
-
-    training_data:
-      input_path: "data/processed/multi/pmi002/pmi002_inputs.csv"
-      output_path: "data/processed/multi/pmi002/pmi002_outputs.csv"
-    
-    experimental_data:
-      measurement: 0.98780
-      uncertainty: 0.00230
-
-  - id: "hmi001"
-    title: "HMI001"
-    description: "Stainless steel reflector"
-    type: "integral"
-  
-    training_data:
-      input_path: "data/processed/multi/hmi001/hmi001_inputs.csv"
-      output_path: "data/processed/multi/hmi001/hmi001_outputs.csv"
-      
-    experimental_data:
-      measurement: 0.99600
-      uncertainty: 0.00260
-
   - id: "cr53_thin"
     title: "nTOF Cr53 thin (2022)"
     description: "Time-of-Flight measurement performed in nTOF (CERN) by Pablo Perez et at. using thin Cr-53 target"
     type: "microscopic" # microscopic assumes your output is based on chi-squared
     gp_override:
-      kernel: "Quadratic"
+      kernel: "RBF"
       
     training_data:
-      input_path: "data/processed/multi/ntof/ntof_inputs.csv"
-      output_path: "data/processed/multi/ntof/ntof_outputs.csv" # Using reduced chi-squared statistic
-      C_constant: 10.330074020916287 # -0.5 * (np.log(2 * np.pi * df_lst['dx'].mean()**2))
+      input_path: "data/processed/with-norm/ntof-multi-norm/ntof-multi-norm_inputs.csv"
+      output_path: "data/processed/with-norm/ntof-multi-norm/ntof-multi-norm_outputs.csv" # Using reduced chi-squared statistic
+      C_constant: 586.9892203452627 # -0.5 * (np.log(2 * np.pi * df_lst['dx'].mean()**2))
+
+  - id: "normalization"
+    title: "nTOF Cr53 thin normalization constraint"
+    description: "Constraint to also take into account uncertainty due to the normalization factor in the nTOF capture yield data"
+    type: "normalization"
+
+    experimental_data:
+      measurement: 1.0
+      uncertainty: 0.0000001
+
+  # - id: "hmi001"
+  #   title: "HMI001"
+  #   description: "Stainless steel reflector"
+  #   type: "integral"
+  
+  #   training_data:
+  #     input_path: "data/processed/with-norm/hmi001/hmi001_inputs.csv"
+  #     output_path: "data/processed/with-norm/hmi001/hmi001_outputs.csv"
+      
+  #   experimental_data:
+  #     measurement: 0.99600
+  #     uncertainty: 0.02168
+  #     # uncertainty: 0.00260
+    
+  # - id: "pmi002"
+  #   title: "PMI002"
+  #   description: "PU-MET-INTER-002 using stainless steel reflector"
+  #   type: "integral"
+
+  #   training_data:
+  #     input_path: "data/processed/with-norm/pmi002/pmi002_inputs.csv"
+  #     output_path: "data/processed/with-norm/pmi002/pmi002_outputs.csv"
+    
+  #   experimental_data:
+  #     measurement: 0.98780
+  #     uncertainty: 0.01482
+  #     # uncertainty: 0.00230
