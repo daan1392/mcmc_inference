@@ -19,9 +19,8 @@ class IntegralExperiment:
     Now supports mapping specific global parameters to GP inputs.
     """
 
-    def __init__(self, exp_id, gp_path, y_meas, y_err, input_indices, weight=1.0):
+    def __init__(self, exp_id, gp_path, y_meas, y_err, input_indices):
         self.id = exp_id
-        self.weight = weight
         self.y_meas = y_meas
         self.y_err = y_err
         self.input_indices = input_indices
@@ -40,7 +39,7 @@ class IntegralExperiment:
 
         pred_mean, pred_std = self.gp.predict(relevant_theta.reshape(1, -1), return_std=True)
 
-        sigma_total = np.sqrt(self.y_err**2 + pred_std.item()**2)
+        sigma_total = np.sqrt(self.y_err**2)# + pred_std.item()**2)
 
         return norm.logpdf(self.y_meas, loc=pred_mean.item(), scale=sigma_total)
 
@@ -50,10 +49,8 @@ class MicroscopicExperiment:
     Now supports mapping specific global parameters to GP inputs.
     """
 
-    def __init__(self, exp_id, C, gp_path, input_indices, weight=1.0):
+    def __init__(self, exp_id, gp_path, input_indices):
         self.id = exp_id
-        self.C = C
-        self.weight = weight
         self.input_indices = input_indices 
         self.gp = joblib.load(gp_path)
 
@@ -62,9 +59,9 @@ class MicroscopicExperiment:
 
         chi2 = max(0.0, chi2_val.item())
 
-        ll = self.C - 0.5 * chi2
+        ll = - 0.5 * chi2
 
-        return self.weight * ll
+        return ll
 
 class NormalizationFactor:
     """
@@ -72,9 +69,8 @@ class NormalizationFactor:
     Now supports mapping specific global parameters to GP inputs.
     """
 
-    def __init__(self, exp_id, unc, input_indices, weight=1.0):
+    def __init__(self, exp_id, unc, input_indices):
         self.id = exp_id
-        self.weight = weight
         self.unc = unc
         self.input_indices = input_indices 
 
@@ -108,9 +104,11 @@ class JointPosterior:
         This is the function called by Emcee.
         Returns: ln P(theta | All Data)
         """
+
         lp = self.log_prior(theta)
         if not np.isfinite(lp):
             return -np.inf
+        
 
         total_ll = 0.0
         for exp in self.experiments:
@@ -160,7 +158,6 @@ def run_joint_mcmc(config_path):
             elif exp["type"] == "microscopic":
                 exp_obj = MicroscopicExperiment(
                     exp_id=exp["id"],
-                    C=exp["training_data"]["C_constant"],
                     gp_path=gp_path,
                     input_indices=input_indices,
                 )
@@ -191,7 +188,7 @@ def run_joint_mcmc(config_path):
 
     pos = np.random.normal(
         loc=prior_means,
-        scale=np.array(prior_stds) * 0.1,
+        scale=np.array(prior_stds),
         size=(n_walkers, ndim),
     )
 

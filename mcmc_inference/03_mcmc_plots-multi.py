@@ -8,15 +8,15 @@ import numpy as np
 
 # 
 
-plt.rcParams.update(
-    {
-        "text.usetex": False,
-        "font.family": "STIXGeneral",
-        "mathtext.fontset": "cm",
-        "axes.formatter.use_mathtext": True,
-        "font.size": 16,
-    }
-)
+# plt.rcParams.update(
+#     {
+#         "text.usetex": False,
+#         "font.family": "STIXGeneral",
+#         "mathtext.fontset": "cm",
+#         "axes.formatter.use_mathtext": True,
+#         "font.size": 16,
+#     }
+# )
 
 
 def load_config(config_path):
@@ -25,13 +25,14 @@ def load_config(config_path):
 
 
 class IntegralExperiment:
-    def __init__(self, exp_id, exp_type, gp_path, y_meas, y_err):
-        self.id = exp_id
-        self.type = exp_type
-        self.y_meas = y_meas
-        self.y_err = y_err
+    def __init__(self, exp, gp_path):
+        self.id = exp["id"]
+        self.title = exp["title"]
+        self.type = exp["type"]
+        self.y_meas = exp["experimental_data"]["measurement"]
+        self.y_err = exp["experimental_data"]["uncertainty"]
         if not os.path.exists(gp_path):
-            raise FileNotFoundError(f"GP model for {exp_id} not found at {gp_path}")
+            raise FileNotFoundError(f"GP model for {self.id} not found at {gp_path}")
         self.gp = joblib.load(gp_path)
 
     def get_chi2(self, y):
@@ -39,13 +40,14 @@ class IntegralExperiment:
 
 
 class MicroscopicExperiment:
-    def __init__(self, exp_id, exp_type, gp_path):
-        self.id = exp_id
-        self.type = exp_type
+    def __init__(self, exp, gp_path):
+        self.id = exp["id"]
+        self.title = exp["title"]
+        self.type = exp["type"]
         self.y_meas = 0.0
         self.y_err = 1.0
         if not os.path.exists(gp_path):
-            raise FileNotFoundError(f"GP model for {exp_id} not found at {gp_path}")
+            raise FileNotFoundError(f"GP model for {self.id} not found at {gp_path}")
         self.gp = joblib.load(gp_path)
     
 class NormalizationFactor:
@@ -56,6 +58,7 @@ class NormalizationFactor:
 
     def __init__(self, exp):
         self.id = exp["id"]
+        self.title = "Normalization"
         self.type = exp["type"]
         self.unc = exp["experimental_data"]["uncertainty"]
 
@@ -197,7 +200,7 @@ def plot_chi2(exp, prior, posterior, param_idx, param_name, save_path=None, axs=
     ax.plot(x_post, y_post_pred if exp.type =="microscopic" else exp.get_chi2(y_post_pred), color="C2", ls="None", alpha=0.5, marker=".", label="Posterior")
 
     ax.set(
-        title=f"{exp.id}",
+        # title=f"{exp.title}",
         xlabel=f"{param_name}",
         ylabel=r"$\chi^2$",
     )
@@ -389,16 +392,12 @@ def plot_mcmc_results(config_path):
         try:
             if exp["type"] == "integral":
                 exp_obj = IntegralExperiment(
-                    exp_id=exp["id"],
-                    exp_type=exp["type"],
+                    exp=exp,
                     gp_path=gp_path,
-                    y_meas=exp["experimental_data"]["measurement"],
-                    y_err=exp["experimental_data"]["uncertainty"],
                 )
             elif exp["type"] == "microscopic":
                 exp_obj = MicroscopicExperiment(
-                    exp_id=exp["id"],
-                    exp_type=exp["type"],
+                    exp=exp,
                     gp_path=gp_path,
                 )
             elif exp["type"] == "normalization":
@@ -428,37 +427,37 @@ def plot_mcmc_results(config_path):
 
     # --- Plots ---
     
-    print("Generating Trace Plot...")
-    trace_plot(idata, cfg["project_name"], os.path.join(figures_dir, "trace_plot.png"))
+    # print("Generating Trace Plot...")
+    # trace_plot(idata, cfg["project_name"], os.path.join(figures_dir, "trace_plot.png"))
 
-    print("Generating Corner Plot...")
-    corner_plot(idata, os.path.join(figures_dir, "corner_plot.png"))
+    # print("Generating Corner Plot...")
+    # corner_plot(idata, os.path.join(figures_dir, "corner_plot.png"))
 
-    print("Generating Forest Plot...")
-    forest_plot(idata, os.path.join(figures_dir, "forest_plot.png"))
+    # print("Generating Forest Plot...")
+    # forest_plot(idata, os.path.join(figures_dir, "forest_plot.png"))
 
-    print("Generating Input Plots...")
-    # Updated to handle multi-dim
-    input_pdf_plot(
-        prior_X_samples, 
-        posterior_X_samples, 
-        param_names, 
-        os.path.join(figures_dir, "input_pdf_plot.png")
-    )
+    # print("Generating Input Plots...")
+    # # Updated to handle multi-dim
+    # input_pdf_plot(
+    #     prior_X_samples, 
+    #     posterior_X_samples, 
+    #     param_names, 
+    #     os.path.join(figures_dir, "input_pdf_plot.png")
+    # )
 
-    print("Generating Output Plots...")
-    for exp in models:
-        # Loop over parameters to create one scatter plot per input dimension
-        for i, p_name in enumerate(param_names):
-            clean_p_name = p_name.replace(" ", "_").replace("/", "_")
-            plot_chi2pdf(
-                exp,
-                prior_X_samples,
-                posterior_X_samples,
-                param_idx=i,
-                param_name=param_labels[i],
-                save_path=os.path.join(figures_dir, f"{exp.id}_chi2_{clean_p_name}.png"),
-            )
+    # print("Generating Output Plots...")
+    # for exp in models:
+    #     # Loop over parameters to create one scatter plot per input dimension
+    #     for i, p_name in enumerate(param_names):
+    #         clean_p_name = p_name.replace(" ", "_").replace("/", "_")
+    #         plot_chi2pdf(
+    #             exp,
+    #             prior_X_samples,
+    #             posterior_X_samples,
+    #             param_idx=i,
+    #             param_name=param_labels[i],
+    #             save_path=os.path.join(figures_dir, f"{exp.id}_chi2_{clean_p_name}.png"),
+    #         )
 
     print("Generating Combined Output Plot...")
     # Create a grid: Rows = Experiments, Cols = Parameters
@@ -467,8 +466,8 @@ def plot_mcmc_results(config_path):
         figsize=(4 * n_params, 4 * len(models)), 
         constrained_layout=True
     )
-    
-    # Ensure axs is always 2D array even if 1 exp or 1 param
+
+    # Ensure axs is always 2D
     if len(models) == 1 and n_params == 1:
         axs = np.array([[axs]])
     elif len(models) == 1:
@@ -478,31 +477,25 @@ def plot_mcmc_results(config_path):
 
     for row, exp in enumerate(models):
         for col, p_name in enumerate(param_names):
-            # output_scatter_plot(
-            #     exp, 
-            #     prior_X_samples, 
-            #     posterior_X_samples, 
-            #     param_idx=col, 
-            #     param_name=param_labels[col],
-            #     axs=axs[row, col]
-            # )
-
+            if col == 2:
+                axs[row,col].set(title=exp.title)
             plot_chi2(
                 exp,
                 prior_X_samples,
                 posterior_X_samples,
                 param_idx=col,
                 param_name=param_labels[col],
-                save_path=os.path.join(figures_dir, f"{exp.id}_chi2_{clean_p_name}.png"),
+                save_path=os.path.join(figures_dir, f"{exp.id}_chi2_{p_name}.png"),
                 axs=axs[row, col]
             )
 
-    fig.savefig(f"{figures_dir}/combined_output_scatter.png", dpi=300)
+    # bbox_inches='tight' is crucial here so the top row's title isn't cut off
+    fig.savefig(f"{figures_dir}/combined_output_scatter.png", dpi=300, bbox_inches='tight')
     plt.close()
 
     # --- Summary ---
     print("Generating Summary Table...")
-    summary_df = az.summary(idata, hdi_prob=0.95)
+    summary_df = az.summary(posterior_sel, hdi_prob=0.95)
     summary_path = os.path.join(figures_dir, "posterior_summary.csv")
     summary_df.to_csv(summary_path)
 
@@ -510,7 +503,7 @@ def plot_mcmc_results(config_path):
 
     # --- Generate CSV and Markdown Summaries ---
     print("Generating Summary Tables...")
-    summary_df = az.summary(idata, hdi_prob=0.95)
+    summary_df = az.summary(posterior_sel, hdi_prob=0.95)
     
     # Save CSV
     csv_path = os.path.join(figures_dir, "posterior_summary.csv")

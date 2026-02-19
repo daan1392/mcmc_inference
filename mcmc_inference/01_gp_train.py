@@ -16,15 +16,15 @@ from sklearn.gaussian_process.kernels import (
     DotProduct,
 )
 
-plt.rcParams.update(
-    {
-        "text.usetex": False,
-        "font.family": "STIXGeneral",
-        "mathtext.fontset": "cm",
-        "axes.formatter.use_mathtext": True,
-        "font.size": 14,
-    }
-)
+# plt.rcParams.update(
+#     {
+#         "text.usetex": False,
+#         "font.family": "STIXGeneral",
+#         "mathtext.fontset": "cm",
+#         "axes.formatter.use_mathtext": True,
+#         "font.size": 14,
+#     }
+# )
 
 
 def load_config(config_path):
